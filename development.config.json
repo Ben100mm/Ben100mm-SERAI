@@ -1,0 +1,184 @@
+{
+  "name": "SERAI Development Configuration",
+  "version": "1.0.0",
+  "description": "Development environment configuration for SERAI boutique hotel booking platform",
+  "ports": {
+    "frontend": {
+      "nextjs_owner_dashboard": 4000,
+      "description": "Next.js Owner Dashboard (React + Next.js)"
+    },
+    "backend": {
+      "api_server": 4001,
+      "socket_io": 4001,
+      "description": "Backend API + Socket.io for real-time features"
+    },
+    "mobile": {
+      "react_native_metro": 8082,
+      "description": "React Native Metro bundler for Customer App"
+    },
+    "operations": {
+      "operations_app": 4002,
+      "description": "Operations App (if separate from main backend)"
+    },
+    "webhooks": {
+      "stripe_webhook": 4003,
+      "description": "Stripe webhook handling"
+    }
+  },
+  "databases": {
+    "postgresql": {
+      "port": 5433,
+      "host": "localhost",
+      "database": "serai_dev",
+      "username": "serai_user",
+      "password": "serai_password",
+      "description": "Primary database (avoiding default 5432 for Dreamery conflict)"
+    },
+    "redis": {
+      "port": 6380,
+      "host": "localhost",
+      "password": "serai_redis_password",
+      "description": "Caching and session storage (avoiding default 6379)"
+    },
+    "elasticsearch": {
+      "port": 9201,
+      "host": "localhost",
+      "description": "Search and analytics (avoiding default 9200)"
+    }
+  },
+  "external_services": {
+    "stripe": {
+      "webhook_endpoint": "http://localhost:4003/webhooks/stripe",
+      "description": "Stripe payment processing webhooks"
+    },
+    "twilio": {
+      "webhook_endpoint": "http://localhost:4001/webhooks/twilio",
+      "description": "SMS and WhatsApp integration"
+    },
+    "ota_apis": {
+      "booking_com": "http://localhost:4001/api/ota/booking",
+      "agoda": "http://localhost:4001/api/ota/agoda",
+      "airbnb": "http://localhost:4001/api/ota/airbnb",
+      "description": "OTA integration endpoints"
+    }
+  },
+  "ai_agents": {
+    "concierge_agent": {
+      "port": 4004,
+      "description": "Concierge Agent (RAG + Chat)"
+    },
+    "revenue_max_agent": {
+      "port": 4005,
+      "description": "RevenueMax Agent (ML Pricing AI)"
+    },
+    "reputation_agent": {
+      "port": 4006,
+      "description": "Reputation Agent (Reviews monitoring)"
+    },
+    "housekeeping_agent": {
+      "port": 4007,
+      "description": "Housekeeping Agent (Task management)"
+    },
+    "checkin_agent": {
+      "port": 4008,
+      "description": "Check-In Agent (OCR + Verification)"
+    },
+    "maintenance_sentinel": {
+      "port": 4009,
+      "description": "Maintenance Sentinel (Issue prediction)"
+    },
+    "upsell_agent": {
+      "port": 4010,
+      "description": "Upsell Agent (Recommendations)"
+    },
+    "insights_ai": {
+      "port": 4011,
+      "description": "Insights AI (Reporting and analytics)"
+    },
+    "listing_bot": {
+      "port": 4012,
+      "description": "ListingBot (SEO content generation)"
+    }
+  },
+  "development_urls": {
+    "frontend": "http://localhost:4000",
+    "backend_api": "http://localhost:4001",
+    "operations_app": "http://localhost:4002",
+    "stripe_webhook": "http://localhost:4003",
+    "customer_app": "http://localhost:8082",
+    "description": "Local development URLs for all services"
+  },
+  "environment_variables": {
+    "NODE_ENV": "development",
+    "PORT": 4001,
+    "FRONTEND_PORT": 4000,
+    "OPERATIONS_PORT": 4002,
+    "STRIPE_WEBHOOK_PORT": 4003,
+    "REACT_NATIVE_PORT": 8082,
+    "DATABASE_URL": "postgresql://serai_user:serai_password@localhost:5433/serai_dev",
+    "REDIS_URL": "redis://localhost:6380",
+    "ELASTICSEARCH_URL": "http://localhost:9201",
+    "JWT_SECRET": "serai_dev_jwt_secret_key",
+    "STRIPE_SECRET_KEY": "sk_test_...",
+    "STRIPE_WEBHOOK_SECRET": "whsec_...",
+    "TWILIO_ACCOUNT_SID": "AC...",
+    "TWILIO_AUTH_TOKEN": "...",
+    "OPENAI_API_KEY": "sk-...",
+    "GOOGLE_MAPS_API_KEY": "...",
+    "FIREBASE_PROJECT_ID": "serai-dev",
+    "ONESIGNAL_APP_ID": "...",
+    "ONESIGNAL_API_KEY": "..."
+  },
+  "docker_compose": {
+    "services": {
+      "postgres": {
+        "image": "postgres:15",
+        "ports": ["5433:5432"],
+        "environment": {
+          "POSTGRES_DB": "serai_dev",
+          "POSTGRES_USER": "serai_user",
+          "POSTGRES_PASSWORD": "serai_password"
+        }
+      },
+      "redis": {
+        "image": "redis:7",
+        "ports": ["6380:6379"],
+        "command": "redis-server --requirepass serai_redis_password"
+      },
+      "elasticsearch": {
+        "image": "elasticsearch:8.8.0",
+        "ports": ["9201:9200"],
+        "environment": {
+          "discovery.type": "single-node",
+          "xpack.security.enabled": "false"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "dev:frontend": "cd frontend && npm run dev -- --port 4000",
+    "dev:backend": "cd backend && npm run dev -- --port 4001",
+    "dev:operations": "cd operations && npm run dev -- --port 4002",
+    "dev:mobile": "cd mobile && npx react-native start --port 8082",
+    "dev:webhook": "cd webhooks && npm run dev -- --port 4003",
+    "dev:all": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" \"npm run dev:operations\"",
+    "dev:ai-agents": "concurrently \"npm run dev:concierge\" \"npm run dev:revenue\" \"npm run dev:reputation\"",
+    "setup:db": "docker-compose up -d postgres redis elasticsearch",
+    "migrate:db": "cd backend && npx prisma migrate dev",
+    "seed:db": "cd backend && npx prisma db seed"
+  },
+  "conflicts_avoided": {
+    "dreamery_project": {
+      "description": "Ports adjusted to avoid conflicts with Dreamery Project",
+      "avoided_ports": [3000, 3001, 3002, 3003, 5432, 6379, 9200, 8081],
+      "new_range": "4000-4012 for main services, 5433/6380/9201 for databases"
+    }
+  },
+  "notes": {
+    "port_range": "Using 4000+ range for main application services",
+    "database_ports": "Adjusted database ports to avoid system defaults",
+    "ai_agents": "Each AI agent gets its own port for microservice architecture",
+    "development": "All services configured for local development environment",
+    "production": "Production ports will be 80/443 behind reverse proxy"
+  }
+}

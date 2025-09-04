@@ -1,0 +1,204 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: serai_postgres_dev
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: serai_dev
+      POSTGRES_USER: serai_user
+      POSTGRES_PASSWORD: serai_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init:/docker-entrypoint-initdb.d
+    networks:
+      - serai_network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7
+    container_name: serai_redis_dev
+    ports:
+      - "6380:6379"
+    command: redis-server --requirepass serai_redis_password
+    volumes:
+      - redis_data:/data
+    networks:
+      - serai_network
+    restart: unless-stopped
+
+  # Elasticsearch
+  elasticsearch:
+    image: elasticsearch:8.8.0
+    container_name: serai_elasticsearch_dev
+    ports:
+      - "9201:9200"
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: false
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - serai_network
+    restart: unless-stopped
+
+  # Backend API Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: serai_backend_dev
+    ports:
+      - "4001:4001"
+    environment:
+      NODE_ENV: development
+      PORT: 4001
+      DATABASE_URL: postgresql://serai_user:serai_password@postgres:5432/serai_dev
+      REDIS_URL: redis://:serai_redis_password@redis:6379
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      JWT_SECRET: serai_dev_jwt_secret_key
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
+    networks:
+      - serai_network
+    restart: unless-stopped
+    command: npm run dev
+
+  # Frontend Next.js App
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: serai_frontend_dev
+    ports:
+      - "4000:4000"
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_API_URL: http://localhost:4001
+      NEXT_PUBLIC_WS_URL: ws://localhost:4001
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+    networks:
+      - serai_network
+    restart: unless-stopped
+    command: npm run dev
+
+  # Operations App
+  operations:
+    build:
+      context: ./operations
+      dockerfile: Dockerfile.dev
+    container_name: serai_operations_dev
+    ports:
+      - "4002:4002"
+    environment:
+      NODE_ENV: development
+      PORT: 4002
+      API_URL: http://backend:4001
+      DATABASE_URL: postgresql://serai_user:serai_password@postgres:5432/serai_dev
+    volumes:
+      - ./operations:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - serai_network
+    restart: unless-stopped
+    command: npm run dev
+
+  # Stripe Webhook Handler
+  webhooks:
+    build:
+      context: ./webhooks
+      dockerfile: Dockerfile.dev
+    container_name: serai_webhooks_dev
+    ports:
+      - "4003:4003"
+    environment:
+      NODE_ENV: development
+      PORT: 4003
+      STRIPE_WEBHOOK_SECRET: whsec_development_secret
+      API_URL: http://backend:4001
+    volumes:
+      - ./webhooks:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - serai_network
+    restart: unless-stopped
+    command: npm run dev
+
+  # AI Agents (Optional - can be run separately)
+  concierge-agent:
+    build:
+      context: ./ai-agents/concierge
+      dockerfile: Dockerfile.dev
+    container_name: serai_concierge_agent_dev
+    ports:
+      - "4004:4004"
+    environment:
+      NODE_ENV: development
+      PORT: 4004
+      API_URL: http://backend:4001
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      VECTOR_DB_URL: http://localhost:9201
+    volumes:
+      - ./ai-agents/concierge:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+      - elasticsearch
+    networks:
+      - serai_network
+    restart: unless-stopped
+    command: npm run dev
+
+  revenue-agent:
+    build:
+      context: ./ai-agents/revenue
+      dockerfile: Dockerfile.dev
+    container_name: serai_revenue_agent_dev
+    ports:
+      - "4005:4005"
+    environment:
+      NODE_ENV: development
+      PORT: 4005
+      API_URL: http://backend:4001
+      DATABASE_URL: postgresql://serai_user:serai_password@postgres:5432/serai_dev
+    volumes:
+      - ./ai-agents/revenue:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - serai_network
+    restart: unless-stopped
+    command: npm run dev
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
+
+networks:
+  serai_network:
+    driver: bridge
+    name: serai_dev_network
