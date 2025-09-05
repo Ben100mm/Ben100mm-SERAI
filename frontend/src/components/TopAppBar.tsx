@@ -84,7 +84,7 @@ export default function TopAppBar({
               onClick={() => setIsListingModalOpen(true)}
               className="text-gray-600 hover:text-gray-800 text-sm font-medium"
             >
-              List your property
+              List with SERAI
             </button>
           )}
           
