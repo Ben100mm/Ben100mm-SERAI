@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   description: 'Discover and book unique boutique hotels with AI-powered pricing and personalized experiences.',
   keywords: ['hotel', 'booking', 'boutique', 'travel', 'hospitality', 'AI'],
   authors: [{ name: 'SERAI Team' }],
+  icons: {
+    icon: '/Serai-Favicon-Black.ico',
+    shortcut: '/Serai-Favicon-Black.ico',
+    apple: '/Serai-Favicon-Black.ico',
+  },
 };
 
 export const viewport = {

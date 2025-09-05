@@ -12,7 +12,8 @@ export default function PropertiesPage() {
   const [isTranslationEnabled, setIsTranslationEnabled] = useState(true);
   const [activeTab, setActiveTab] = useState('language');
   const [selectedCurrency, setSelectedCurrency] = useState('Canadian dollar (CAD - $)');
-  const [activeNavTab, setActiveNavTab] = useState('homes');
+  const [isListingModalOpen, setIsListingModalOpen] = useState(false);
+  const [activeNavTab, setActiveNavTab] = useState('silk-route');
   const [isWhereDropdownOpen, setIsWhereDropdownOpen] = useState(false);
   const [whereValue, setWhereValue] = useState('');
   const [isCheckInDropdownOpen, setIsCheckInDropdownOpen] = useState(false);
@@ -32,6 +33,7 @@ export default function PropertiesPage() {
   const [selectedFlexibleMonth, setSelectedFlexibleMonth] = useState(new Date());
   const menuRef = useRef<HTMLDivElement>(null);
   const languageModalRef = useRef<HTMLDivElement>(null);
+  const listingModalRef = useRef<HTMLDivElement>(null);
   const whereDropdownRef = useRef<HTMLDivElement>(null);
   const checkInDropdownRef = useRef<HTMLDivElement>(null);
   const checkOutDropdownRef = useRef<HTMLDivElement>(null);
@@ -46,6 +48,9 @@ export default function PropertiesPage() {
       }
       if (languageModalRef.current && !languageModalRef.current.contains(event.target as Node)) {
         setIsLanguageModalOpen(false);
+      }
+      if (listingModalRef.current && !listingModalRef.current.contains(event.target as Node)) {
+        setIsListingModalOpen(false);
       }
       if (whereDropdownRef.current && !whereDropdownRef.current.contains(event.target as Node)) {
         setIsWhereDropdownOpen(false);
@@ -421,7 +426,12 @@ export default function PropertiesPage() {
         </div>
         
         <div className="flex items-center space-x-4">
-          <button className="text-gray-600 hover:text-gray-800">List with SERAI</button>
+          <button 
+            onClick={() => setIsListingModalOpen(true)}
+            className="text-gray-600 hover:text-gray-800"
+          >
+            List with SERAI
+          </button>
           <button 
             onClick={() => setIsLanguageModalOpen(true)}
             className="p-2 hover:bg-gray-100 rounded-full"
@@ -441,16 +451,22 @@ export default function PropertiesPage() {
             {isMenuOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  Help Centre
+                  Profile
                 </a>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  Refer a property
-                </a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  Find a partner
+                  Memberships
                 </a>
                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                   Gift cards
+                </a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  Refer a friend
+                </a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  SERAI Partners
+                </a>
+                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  Help Centre
                 </a>
               </div>
             )}
@@ -595,14 +611,14 @@ export default function PropertiesPage() {
                       <button
                         key={currency.code}
                         onClick={() => setSelectedCurrency(`${currency.name} (${currency.code} - ${currency.symbol})`)}
-                        className={`p-3 border rounded-lg text-left hover:bg-gray-50 ${
+                        className={`w-20 h-20 border rounded-full flex flex-col items-center justify-center hover:bg-gray-50 ${
                           selectedCurrency === `${currency.name} (${currency.code} - ${currency.symbol})` 
-                            ? 'border-gray-900' 
+                            ? 'border-gray-900 bg-gray-50' 
                             : 'border-gray-200'
                         }`}
                       >
-                        <div className="font-medium text-gray-900 text-sm">{currency.name}</div>
-                        <div className="text-xs text-gray-600">{currency.code} - {currency.symbol}</div>
+                        <div className="font-medium text-gray-900 text-[10px] text-center leading-tight px-1">{currency.name}</div>
+                        <div className="text-[9px] text-gray-600 mt-0.5">{currency.code} - {currency.symbol}</div>
                       </button>
                     ))}
                   </div>
@@ -618,6 +634,16 @@ export default function PropertiesPage() {
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex space-x-8 justify-center">
             <button
+              onClick={() => setActiveNavTab('silk-route')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeNavTab === 'silk-route'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Silk Routes
+            </button>
+            <button
               onClick={() => setActiveNavTab('homes')}
               className={`py-4 px-1 border-b-2 font-medium text-sm ${
                 activeNavTab === 'homes'
@@ -625,7 +651,7 @@ export default function PropertiesPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Listings
+              Serais
             </button>
             <button
               onClick={() => setActiveNavTab('experiences')}
@@ -635,7 +661,7 @@ export default function PropertiesPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Experiences
+              Bazaar
             </button>
             <button
               onClick={() => setActiveNavTab('services')}
@@ -645,7 +671,7 @@ export default function PropertiesPage() {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              Services
+              Essentials
             </button>
           </nav>
         </div>
@@ -1393,6 +1419,79 @@ export default function PropertiesPage() {
           </div>
         </div>
       </main>
+
+      {/* Listing Modal */}
+      {isListingModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div 
+            ref={listingModalRef}
+            className="bg-white rounded-2xl p-8 max-w-md w-full mx-4"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-semibold text-gray-900">What would you like to list?</h2>
+              <button
+                onClick={() => setIsListingModalOpen(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Options */}
+            <div className="grid grid-cols-1 gap-4 mb-8">
+              {/* Home */}
+              <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                    <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+                      <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M9 22V12H15V22" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-lg font-medium text-gray-900">Home</span>
+                </div>
+              </button>
+
+              {/* Experience */}
+              <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                    <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 16V8C20.9996 7.64927 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64927 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.9979 12 21.9979C12.3511 21.9979 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M7.5 4.21L12 6.81L16.5 4.21" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M7.5 19.79V14.6L3 12" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M21 12L16.5 14.6V19.79" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3.27 6.96L12 12.01L20.73 6.96" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 22.08V12" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-lg font-medium text-gray-900">Experience</span>
+                </div>
+              </button>
+
+              {/* Service */}
+              <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 mb-4 flex items-center justify-center">
+                    <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
+                      <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-lg font-medium text-gray-900">Service</span>
+                </div>
+              </button>
+            </div>
+
+            {/* Next Button */}
+            <button className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
