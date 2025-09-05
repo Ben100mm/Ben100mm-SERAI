@@ -3,6 +3,12 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { apiClient, ApiResponse } from '@/lib/api';
 
+interface AuthResponse {
+  user: User;
+  token: string;
+  refreshToken?: string;
+}
+
 interface User {
   id: string;
   email: string;
@@ -76,10 +82,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const storedToken = localStorage.getItem('token');
         if (storedToken) {
           apiClient.setToken(storedToken);
-          const response = await apiClient.getMe();
-          if (response.success && response.data) {
-            setUser(response.data);
-            setToken(storedToken);
+                  const response = await apiClient.getMe() as ApiResponse<User>;
+        if (response.success && response.data) {
+          setUser(response.data);
+          setToken(storedToken);
           } else {
             // Token is invalid, clear it
             localStorage.removeItem('token');
@@ -101,7 +107,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      const response = await apiClient.login({ email, password });
+      const response = await apiClient.login({ email, password }) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
         const { user: userData, token: userToken, refreshToken } = response.data;
@@ -136,7 +142,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }) => {
     try {
       setIsLoading(true);
-      const response = await apiClient.register(userData);
+      const response = await apiClient.register(userData) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
         const { user: newUser, token: userToken, refreshToken } = response.data;
@@ -172,7 +178,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }) => {
     try {
       setIsLoading(true);
-      const response = await apiClient.socialLogin(socialData);
+      const response = await apiClient.socialLogin(socialData) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
         const { user: userData, token: userToken, refreshToken } = response.data;
