@@ -135,7 +135,7 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
 };
 
 export default function HomePage() {
-  const [location, setLocation] = useState('Quebec City, Canada');
+  const [location, setLocation] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [adults, setAdults] = useState('2 adults');
@@ -161,7 +161,7 @@ export default function HomePage() {
       <header className="absolute -top-12 left-0 right-0 z-20 flex items-center justify-between px-2 lg:px-4">
         {/* Logo Section - Top Left Corner */}
         <div className="flex items-center">
-          <Link href="/properties">
+          <Link href="/tabs">
             <Image
               src="/images/serai-images/serai-name-white.png"
               alt="SERAI"
@@ -194,7 +194,7 @@ export default function HomePage() {
                               {/* Card Title */}
                   <div className="mb-6">
                     <h1 className="text-2xl font-bold text-white mb-2">
-                      Stay close to the heart of Quebec City
+                      Find your perfect stay
                     </h1>
                     <p className="text-white/80 text-sm">
                       Find the stay that matches your story—only on Serai.
@@ -212,6 +212,7 @@ export default function HomePage() {
                   type="text"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
+                  placeholder="Enter destination"
                   className="w-full bg-white/90 border border-white/30 rounded-lg px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent text-sm"
                 />
               </div>

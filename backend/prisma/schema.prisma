@@ -1,0 +1,917 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  phone     String?
+  firstName String
+  lastName  String
+  avatar    String?
+  role      UserRole @default(GUEST)
+  isVerified Boolean @default(false)
+  isActive  Boolean  @default(true)
+  
+  // Authentication
+  password  String?
+  refreshTokens RefreshToken[]
+  socialAccounts SocialAccount[]
+  
+  // User Preferences
+  preferences UserPreferences?
+  
+  // Platform-specific data
+  properties  Property[]
+  experiences Experience[]
+  services    Service[]
+  routes      Route[]
+  
+  // Bookings and interactions
+  bookings   Booking[]
+  experienceBookings ExperienceBooking[]
+  serviceBookings ServiceBooking[]
+  routeBookings RouteBooking[]
+  reviews    Review[]
+  favorites  Favorite[]
+  wishlists  Wishlist[]
+  
+  // Notifications
+  notifications Notification[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("refresh_tokens")
+}
+
+model SocialAccount {
+  id        String   @id @default(cuid())
+  provider  String   // google, facebook, apple
+  providerId String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([provider, providerId])
+  @@map("social_accounts")
+}
+
+model UserPreferences {
+  id       String @id @default(cuid())
+  userId   String @unique
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  language String @default("en")
+  currency String @default("CAD")
+  timezone String @default("America/Toronto")
+  
+  // Notification preferences
+  emailNotifications Boolean @default(true)
+  smsNotifications   Boolean @default(false)
+  pushNotifications  Boolean @default(true)
+  
+  // Search preferences
+  searchRadius Int @default(50) // km
+  priceRange   Json? // {min: number, max: number}
+  propertyTypes String[] @default([])
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user_preferences")
+}
+
+// Serais - Property Management
+model Property {
+  id          String        @id @default(cuid())
+  name        String
+  description String
+  type        PropertyType
+  category    PropertyCategory
+  status      PropertyStatus @default(ACTIVE)
+  
+  // Location
+  address     String
+  city        String
+  state       String
+  country     String
+  postalCode  String
+  latitude    Float
+  longitude   Float
+  
+  // Property details
+  bedrooms    Int
+  bathrooms   Int
+  maxGuests   Int
+  size        Float? // sq ft
+  amenities   String[]
+  houseRules  String[]
+  
+  // Pricing
+  basePrice   Float
+  currency    String @default("CAD")
+  pricingRules Json? // Dynamic pricing rules
+  
+  // Media
+  images      PropertyImage[]
+  videos      PropertyVideo[]
+  
+  // Owner
+  ownerId     String
+  owner       User   @relation(fields: [ownerId], references: [id])
+  
+  // Bookings and reviews
+  bookings    Booking[]
+  reviews     Review[]
+  favorites   Favorite[]
+  wishlistItems WishlistItem[]
+  
+  // Availability
+  availability PropertyAvailability[]
+  
+  // SERAI Certification
+  isSeraiCertified Boolean @default(false)
+  certificationDate DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("properties")
+}
+
+model PropertyImage {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  url        String
+  alt        String?
+  order      Int
+  isPrimary  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@map("property_images")
+}
+
+model PropertyVideo {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  url        String
+  thumbnail  String?
+  duration   Int? // seconds
+  order      Int
+  createdAt  DateTime @default(now())
+
+  @@map("property_videos")
+}
+
+model PropertyAvailability {
+  id         String   @id @default(cuid())
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  date       DateTime
+  isAvailable Boolean @default(true)
+  price      Float?
+  minStay    Int? // minimum nights
+  maxStay    Int? // maximum nights
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([propertyId, date])
+  @@map("property_availability")
+}
+
+// Bazaar - Experience Management
+model Experience {
+  id          String            @id @default(cuid())
+  title       String
+  description String
+  type        ExperienceType
+  category    ExperienceCategory
+  status      ExperienceStatus @default(ACTIVE)
+  
+  // Location
+  address     String
+  city        String
+  state       String
+  country     String
+  latitude    Float
+  longitude   Float
+  
+  // Experience details
+  duration    Int // minutes
+  maxGuests   Int
+  minGuests   Int
+  difficulty  ExperienceDifficulty?
+  requirements String[]
+  includes    String[]
+  excludes    String[]
+  
+  // Pricing
+  basePrice   Float
+  currency    String @default("CAD")
+  groupPricing Json? // Different prices for group sizes
+  
+  // Media
+  images      ExperienceImage[]
+  videos      ExperienceVideo[]
+  
+  // Host
+  hostId      String
+  host        User   @relation(fields: [hostId], references: [id])
+  
+  // Bookings and reviews
+  bookings    ExperienceBooking[]
+  reviews     Review[]
+  favorites   Favorite[]
+  wishlistItems WishlistItem[]
+  
+  // Availability
+  availability ExperienceAvailability[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("experiences")
+}
+
+model ExperienceImage {
+  id           String     @id @default(cuid())
+  experienceId String
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  url          String
+  alt          String?
+  order        Int
+  isPrimary    Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+
+  @@map("experience_images")
+}
+
+model ExperienceVideo {
+  id           String     @id @default(cuid())
+  experienceId String
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  url          String
+  thumbnail    String?
+  duration     Int? // seconds
+  order        Int
+  createdAt    DateTime   @default(now())
+
+  @@map("experience_videos")
+}
+
+model ExperienceAvailability {
+  id           String     @id @default(cuid())
+  experienceId String
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  date         DateTime
+  timeSlots    Json // Array of available time slots
+  isAvailable  Boolean    @default(true)
+  price        Float?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([experienceId, date])
+  @@map("experience_availability")
+}
+
+// Essentials - Service Management
+model Service {
+  id          String        @id @default(cuid())
+  title       String
+  description String
+  type        ServiceType
+  category    ServiceCategory
+  status      ServiceStatus @default(ACTIVE)
+  
+  // Location
+  serviceArea String[] // Cities/regions where service is available
+  latitude    Float?
+  longitude   Float?
+  
+  // Service details
+  duration    Int // minutes
+  maxGuests   Int?
+  requirements String[]
+  includes    String[]
+  excludes    String[]
+  
+  // Pricing
+  basePrice   Float
+  currency    String @default("CAD")
+  pricingRules Json? // Different pricing rules
+  
+  // Media
+  images      ServiceImage[]
+  videos      ServiceVideo[]
+  
+  // Provider
+  providerId  String
+  provider    User   @relation(fields: [providerId], references: [id])
+  
+  // Bookings and reviews
+  bookings    ServiceBooking[]
+  reviews     Review[]
+  favorites   Favorite[]
+  wishlistItems WishlistItem[]
+  
+  // Availability
+  availability ServiceAvailability[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("services")
+}
+
+model ServiceImage {
+  id        String  @id @default(cuid())
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  order     Int
+  isPrimary Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("service_images")
+}
+
+model ServiceVideo {
+  id        String  @id @default(cuid())
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  url       String
+  thumbnail String?
+  duration  Int? // seconds
+  order     Int
+  createdAt DateTime @default(now())
+
+  @@map("service_videos")
+}
+
+model ServiceAvailability {
+  id         String  @id @default(cuid())
+  serviceId  String
+  service    Service @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  date       DateTime
+  timeSlots  Json // Array of available time slots
+  isAvailable Boolean @default(true)
+  price      Float?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([serviceId, date])
+  @@map("service_availability")
+}
+
+// Silk Routes - Trip Planning
+model Route {
+  id          String     @id @default(cuid())
+  title       String
+  description String
+  type        RouteType
+  status      RouteStatus @default(ACTIVE)
+  
+  // Route details
+  duration    Int // days
+  difficulty  RouteDifficulty?
+  maxTravelers Int
+  minTravelers Int
+  
+  // Location data
+  startLocation Json // {city, country, coordinates}
+  endLocation   Json // {city, country, coordinates}
+  waypoints     Json // Array of waypoints
+  
+  // Pricing
+  basePrice   Float
+  currency    String @default("CAD")
+  includes    String[]
+  excludes    String[]
+  
+  // Media
+  images      RouteImage[]
+  videos      RouteVideo[]
+  
+  // Creator
+  creatorId   String
+  creator     User   @relation(fields: [creatorId], references: [id])
+  
+  // Bookings and reviews
+  bookings    RouteBooking[]
+  reviews     Review[]
+  favorites   Favorite[]
+  wishlistItems WishlistItem[]
+  
+  // Itinerary
+  itinerary   ItineraryItem[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("routes")
+}
+
+model RouteImage {
+  id      String @id @default(cuid())
+  routeId String
+  route   Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  url     String
+  alt     String?
+  order   Int
+  isPrimary Boolean @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("route_images")
+}
+
+model RouteVideo {
+  id        String @id @default(cuid())
+  routeId   String
+  route     Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  url       String
+  thumbnail String?
+  duration  Int? // seconds
+  order     Int
+  createdAt DateTime @default(now())
+
+  @@map("route_videos")
+}
+
+model ItineraryItem {
+  id          String   @id @default(cuid())
+  routeId     String
+  route       Route    @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  day         Int
+  title       String
+  description String
+  startTime   String? // HH:MM format
+  endTime     String? // HH:MM format
+  location    Json? // {name, address, coordinates}
+  type        ItineraryType
+  order       Int
+  createdAt   DateTime @default(now())
+
+  @@map("itinerary_items")
+}
+
+// Booking System
+model Booking {
+  id          String      @id @default(cuid())
+  bookingNumber String    @unique
+  type        BookingType
+  status      BookingStatus @default(PENDING)
+  
+  // Customer
+  customerId  String
+  customer    User   @relation(fields: [customerId], references: [id])
+  
+  // Booking details
+  checkIn     DateTime
+  checkOut    DateTime?
+  guests      Int
+  totalAmount Float
+  currency    String @default("CAD")
+  
+  // Platform-specific booking
+  propertyId  String?
+  property    Property? @relation(fields: [propertyId], references: [id])
+  
+  // Payment
+  paymentId   String?
+  paymentStatus PaymentStatus @default(PENDING)
+  
+  // Special requests
+  specialRequests String?
+  
+  // Contact info
+  contactEmail String
+  contactPhone String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("bookings")
+}
+
+model ExperienceBooking {
+  id          String      @id @default(cuid())
+  bookingNumber String    @unique
+  status      BookingStatus @default(PENDING)
+  
+  // Customer
+  customerId  String
+  customer    User   @relation(fields: [customerId], references: [id])
+  
+  // Experience
+  experienceId String
+  experience  Experience @relation(fields: [experienceId], references: [id])
+  
+  // Booking details
+  date        DateTime
+  timeSlot    String
+  guests      Int
+  totalAmount Float
+  currency    String @default("CAD")
+  
+  // Payment
+  paymentId   String?
+  paymentStatus PaymentStatus @default(PENDING)
+  
+  // Special requests
+  specialRequests String?
+  
+  // Contact info
+  contactEmail String
+  contactPhone String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("experience_bookings")
+}
+
+model ServiceBooking {
+  id          String      @id @default(cuid())
+  bookingNumber String    @unique
+  status      BookingStatus @default(PENDING)
+  
+  // Customer
+  customerId  String
+  customer    User   @relation(fields: [customerId], references: [id])
+  
+  // Service
+  serviceId   String
+  service     Service @relation(fields: [serviceId], references: [id])
+  
+  // Booking details
+  date        DateTime
+  timeSlot    String
+  guests      Int?
+  totalAmount Float
+  currency    String @default("CAD")
+  
+  // Service location
+  serviceAddress String
+  serviceCity    String
+  serviceState   String
+  serviceCountry String
+  servicePostalCode String?
+  
+  // Payment
+  paymentId   String?
+  paymentStatus PaymentStatus @default(PENDING)
+  
+  // Special requests
+  specialRequests String?
+  
+  // Contact info
+  contactEmail String
+  contactPhone String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("service_bookings")
+}
+
+model RouteBooking {
+  id          String      @id @default(cuid())
+  bookingNumber String    @unique
+  status      BookingStatus @default(PENDING)
+  
+  // Customer
+  customerId  String
+  customer    User   @relation(fields: [customerId], references: [id])
+  
+  // Route
+  routeId     String
+  route       Route @relation(fields: [routeId], references: [id])
+  
+  // Booking details
+  startDate   DateTime
+  endDate     DateTime
+  travelers   Int
+  totalAmount Float
+  currency    String @default("CAD")
+  
+  // Payment
+  paymentId   String?
+  paymentStatus PaymentStatus @default(PENDING)
+  
+  // Special requests
+  specialRequests String?
+  
+  // Contact info
+  contactEmail String
+  contactPhone String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("route_bookings")
+}
+
+// Reviews and Ratings
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5 stars
+  title     String?
+  comment   String?
+  
+  // Reviewer
+  reviewerId String
+  reviewer  User   @relation(fields: [reviewerId], references: [id])
+  
+  // Review target
+  propertyId  String?
+  property    Property? @relation(fields: [propertyId], references: [id])
+  experienceId String?
+  experience  Experience? @relation(fields: [experienceId], references: [id])
+  serviceId   String?
+  service     Service? @relation(fields: [serviceId], references: [id])
+  routeId     String?
+  route       Route? @relation(fields: [routeId], references: [id])
+  
+  // Response
+  response  String?
+  responseDate DateTime?
+  
+  // Helpfulness
+  helpfulCount Int @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reviews")
+}
+
+// Favorites and Wishlists
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Favorite target
+  propertyId  String?
+  property    Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  experienceId String?
+  experience  Experience? @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  serviceId   String?
+  service     Service? @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  routeId     String?
+  route       Route? @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  
+  createdAt DateTime @default(now())
+
+  @@unique([userId, propertyId, experienceId, serviceId, routeId])
+  @@map("favorites")
+}
+
+model Wishlist {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  isPublic    Boolean  @default(false)
+  
+  // Owner
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  
+  // Items
+  items       WishlistItem[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("wishlists")
+}
+
+model WishlistItem {
+  id         String   @id @default(cuid())
+  wishlistId String
+  wishlist   Wishlist @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  
+  // Item target
+  propertyId  String?
+  property    Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  experienceId String?
+  experience  Experience? @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+  serviceId   String?
+  service     Service? @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  routeId     String?
+  route       Route? @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  
+  notes      String?
+  createdAt  DateTime @default(now())
+
+  @@map("wishlist_items")
+}
+
+// Notifications
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      NotificationType
+  title     String
+  message   String
+  data      Json? // Additional data
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  @@map("notifications")
+}
+
+// Enums
+enum UserRole {
+  GUEST
+  HOST
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum PropertyType {
+  BOUTIQUE_HOTEL
+  HOMESTAY
+  ECO_LODGE
+  LUXURY_GLAMPING
+  HERITAGE_HAVELI
+  DESERT_CAMP
+  MOUNTAIN_CABIN
+  APARTMENT
+  HOUSE
+  VILLA
+  CONDO
+  COTTAGE
+  CHALET
+}
+
+enum PropertyCategory {
+  LUXURY
+  BOUTIQUE
+  BUDGET
+  MID_RANGE
+  PREMIUM
+}
+
+enum PropertyStatus {
+  ACTIVE
+  INACTIVE
+  PENDING_APPROVAL
+  SUSPENDED
+  DRAFT
+}
+
+enum ExperienceType {
+  CULTURAL_IMMERSION
+  ADVENTURE
+  CULINARY
+  SPIRITUAL_WELLNESS
+  ART_NATURE
+  PRIVATE_EVENT
+}
+
+enum ExperienceCategory {
+  OUTDOOR
+  INDOOR
+  EDUCATIONAL
+  ENTERTAINMENT
+  WELLNESS
+  CULTURAL
+}
+
+enum ExperienceStatus {
+  ACTIVE
+  INACTIVE
+  PENDING_APPROVAL
+  SUSPENDED
+  DRAFT
+}
+
+enum ExperienceDifficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+  EXPERT
+}
+
+enum ServiceType {
+  WELLNESS_GROOMING
+  CULINARY
+  ART_MEDIA
+  LOGISTICS_ASSISTANCE
+}
+
+enum ServiceCategory {
+  SPA_MASSAGE
+  BEAUTY_GROOMING
+  PRIVATE_CHEF
+  CATERING
+  PHOTOGRAPHY
+  VIDEOS
+  TRANSPORTATION
+  CONCIERGE
+}
+
+enum ServiceStatus {
+  ACTIVE
+  INACTIVE
+  PENDING_APPROVAL
+  SUSPENDED
+  DRAFT
+}
+
+enum RouteType {
+  GOLDEN_TRIANGLE
+  HIMALAYAN_LOOP
+  CULTURAL_CIRCUIT
+  ADVENTURE_TRAIL
+  CULINARY_TOUR
+  WELLNESS_RETREAT
+  CUSTOM
+}
+
+enum RouteStatus {
+  ACTIVE
+  INACTIVE
+  PENDING_APPROVAL
+  SUSPENDED
+  DRAFT
+}
+
+enum RouteDifficulty {
+  EASY
+  MODERATE
+  CHALLENGING
+  EXTREME
+}
+
+enum ItineraryType {
+  ACCOMMODATION
+  EXPERIENCE
+  SERVICE
+  TRANSPORTATION
+  DINING
+  SIGHTSEEING
+  FREE_TIME
+}
+
+enum BookingType {
+  PROPERTY
+  EXPERIENCE
+  SERVICE
+  ROUTE
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  NO_SHOW
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+enum NotificationType {
+  BOOKING_CONFIRMATION
+  BOOKING_CANCELLATION
+  PAYMENT_SUCCESS
+  PAYMENT_FAILED
+  REVIEW_REQUEST
+  MESSAGE_RECEIVED
+  SYSTEM_UPDATE
+  PROMOTIONAL
+}

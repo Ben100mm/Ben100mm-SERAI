@@ -1,0 +1,855 @@
+'use client';
+
+import Image from 'next/image';
+import { useState, useRef, useEffect } from 'react';
+import { ArrowLeft, Globe, Menu, ChevronDown, Heart, Star, ChevronRight, Clock } from 'lucide-react';
+import Link from 'next/link';
+
+export default function PropertiesPage() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState('English (Canada)');
+  const [isTranslationEnabled, setIsTranslationEnabled] = useState(true);
+  const [activeTab, setActiveTab] = useState('language');
+  const [selectedCurrency, setSelectedCurrency] = useState('Canadian dollar (CAD - $)');
+  const [isListingModalOpen, setIsListingModalOpen] = useState(false);
+  const [activeNavTab, setActiveNavTab] = useState('silk-route');
+  const [isWhereDropdownOpen, setIsWhereDropdownOpen] = useState(false);
+  const [whereValue, setWhereValue] = useState('');
+  const [isCheckInDropdownOpen, setIsCheckInDropdownOpen] = useState(false);
+  const [isCheckOutDropdownOpen, setIsCheckOutDropdownOpen] = useState(false);
+  const [checkInValue, setCheckInValue] = useState('');
+  const [checkOutValue, setCheckOutValue] = useState('');
+  const [selectedDates, setSelectedDates] = useState<{checkIn: Date | null, checkOut: Date | null}>({
+    checkIn: null,
+    checkOut: null
+  });
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [flexibleOption, setFlexibleOption] = useState('Exact dates');
+  const [activeCalendarTab, setActiveCalendarTab] = useState('dates');
+  const [selectedMonths, setSelectedMonths] = useState(3);
+  const [isDragging, setIsDragging] = useState(false);
+  const [selectedDuration, setSelectedDuration] = useState('Month');
+  const [selectedFlexibleMonth, setSelectedFlexibleMonth] = useState(new Date());
+  const menuRef = useRef<HTMLDivElement>(null);
+  const languageModalRef = useRef<HTMLDivElement>(null);
+  const listingModalRef = useRef<HTMLDivElement>(null);
+  const whereDropdownRef = useRef<HTMLDivElement>(null);
+  const checkInDropdownRef = useRef<HTMLDivElement>(null);
+  const checkOutDropdownRef = useRef<HTMLDivElement>(null);
+  const circleRef = useRef<HTMLDivElement>(null);
+  const monthScrollRef = useRef<HTMLDivElement>(null);
+
+  // Dynamic search bar based on active tab
+  const renderSearchBar = () => {
+    switch (activeNavTab) {
+      case 'silk-route':
+        return (
+          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+            {/* Itinerary Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Itinerary</label>
+              <input
+                type="text"
+                placeholder="Plan your journey"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Duration Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Duration</label>
+              <input
+                type="text"
+                placeholder="7-14 days"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Interests, Experiences & Essentials Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Interests, Experiences & Essentials</label>
+              <input
+                type="text"
+                placeholder="Culture, nature, food"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Search Button */}
+            <div className="px-6 py-3">
+              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        );
+      
+      case 'serais':
+        return (
+          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+            {/* Where Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative" ref={whereDropdownRef}>
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Where</label>
+              <input
+                type="text"
+                placeholder="Search destinations"
+                value={whereValue}
+                onChange={(e) => setWhereValue(e.target.value)}
+                onFocus={() => setIsWhereDropdownOpen(true)}
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Check In Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative" ref={checkInDropdownRef}>
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Check in</label>
+              <input
+                type="text"
+                placeholder="Add date"
+                value={checkInValue}
+                onChange={(e) => setCheckInValue(e.target.value)}
+                onFocus={() => setIsCheckInDropdownOpen(true)}
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Check Out Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative" ref={checkOutDropdownRef}>
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Check out</label>
+              <input
+                type="text"
+                placeholder="Add date"
+                value={checkOutValue}
+                onChange={(e) => setCheckOutValue(e.target.value)}
+                onFocus={() => setIsCheckOutDropdownOpen(true)}
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Who Field */}
+            <div className="flex-1 px-6 py-3">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Who</label>
+              <input
+                type="text"
+                placeholder="Add guests"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Search Button */}
+            <div className="px-6 py-3">
+              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        );
+      
+      case 'bazaar':
+        return (
+          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+            {/* Experience Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Experience</label>
+              <input
+                type="text"
+                placeholder="Search experience"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Location Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Location</label>
+              <input
+                type="text"
+                placeholder="Search destinations"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Date Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Date</label>
+              <input
+                type="text"
+                placeholder="Add date"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Group Size Field */}
+            <div className="flex-1 px-6 py-3">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Group</label>
+              <input
+                type="text"
+                placeholder="Add guests"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Search Button */}
+            <div className="px-6 py-3">
+              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        );
+      
+      case 'essentials':
+        return (
+          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+            {/* Service Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Service</label>
+              <input
+                type="text"
+                placeholder="Search essentials"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Location Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Location</label>
+              <input
+                type="text"
+                placeholder="Search destinations"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Date Field */}
+            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Date</label>
+              <input
+                type="text"
+                placeholder="Add date"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Time Field */}
+            <div className="flex-1 px-6 py-3">
+              <label className="block text-xs font-semibold text-gray-900 mb-1">Time</label>
+              <input
+                type="text"
+                placeholder="Add time"
+                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              />
+            </div>
+            
+            {/* Search Button */}
+            <div className="px-6 py-3">
+              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        );
+      
+      default:
+        return null;
+    }
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsMenuOpen(false);
+      }
+      if (languageModalRef.current && !languageModalRef.current.contains(event.target as Node)) {
+        setIsLanguageModalOpen(false);
+      }
+      if (listingModalRef.current && !listingModalRef.current.contains(event.target as Node)) {
+        setIsListingModalOpen(false);
+      }
+      if (whereDropdownRef.current && !whereDropdownRef.current.contains(event.target as Node)) {
+        setIsWhereDropdownOpen(false);
+      }
+      if (checkInDropdownRef.current && !checkInDropdownRef.current.contains(event.target as Node)) {
+        setIsCheckInDropdownOpen(false);
+      }
+      if (checkOutDropdownRef.current && !checkOutDropdownRef.current.contains(event.target as Node)) {
+        setIsCheckOutDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Sample data for different platforms
+  const silkRoutesData = [
+    {
+      id: 1,
+      title: 'Golden Triangle Circuit',
+      description: 'Delhi, Agra, Jaipur - India\'s most iconic route',
+      duration: '7-10 days',
+      price: 'From $1,200',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.8,
+      isGuestFavorite: true
+    },
+    {
+      id: 2,
+      title: 'Himalayan Loop',
+      description: 'Mountain adventures through Nepal and Bhutan',
+      duration: '12-15 days',
+      price: 'From $2,500',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.9,
+      isGuestFavorite: false
+    },
+    {
+      id: 3,
+      title: 'Silk Road Explorer',
+      description: 'Ancient trade routes through Central Asia',
+      duration: '14-21 days',
+      price: 'From $3,200',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.7,
+      isGuestFavorite: true
+    }
+  ];
+
+  const seraisData = [
+    {
+      id: 1,
+      image: '/images/serai-images/quebec2.jpg',
+      type: 'Boutique Hotel in Montreal',
+      location: 'Montreal, Quebec',
+      dates: 'Jan 10-12',
+      price: '$156 CAD for 2 nights',
+      rating: 4.88,
+      isGuestFavorite: true
+    },
+    {
+      id: 2,
+      image: '/images/serai-images/quebec2.jpg',
+      type: 'Heritage Haveli in Jaipur',
+      location: 'Jaipur, Rajasthan',
+      dates: 'Feb 15-17',
+      price: '$89 CAD per night',
+      rating: 4.76,
+      isGuestFavorite: false
+    },
+    {
+      id: 3,
+      image: '/images/serai-images/quebec2.jpg',
+      type: 'Eco Lodge in Kerala',
+      location: 'Kochi, Kerala',
+      dates: 'Mar 5-8',
+      price: '$124 CAD per night',
+      rating: 4.92,
+      isGuestFavorite: true
+    }
+  ];
+
+  const bazaarData = [
+    {
+      id: 1,
+      title: 'Traditional Pottery Workshop',
+      description: 'Learn ancient techniques from master craftsmen',
+      location: 'Jaipur, India',
+      duration: '3 hours',
+      price: '$45 CAD per person',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.9,
+      isGuestFavorite: true
+    },
+    {
+      id: 2,
+      title: 'Himalayan Trekking Adventure',
+      description: 'Guided trek through pristine mountain trails',
+      location: 'Nepal',
+      duration: '2 days',
+      price: '$180 CAD per person',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.8,
+      isGuestFavorite: false
+    },
+    {
+      id: 3,
+      title: 'Cooking Class with Local Chef',
+      description: 'Master authentic regional recipes',
+      location: 'Kochi, India',
+      duration: '4 hours',
+      price: '$65 CAD per person',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.7,
+      isGuestFavorite: true
+    }
+  ];
+
+  const essentialsData = [
+    {
+      id: 1,
+      title: 'Spa & Wellness Package',
+      description: 'Relaxing massage and wellness treatments',
+      location: 'At your hotel',
+      duration: '2 hours',
+      price: '$120 CAD',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.9,
+      isGuestFavorite: true
+    },
+    {
+      id: 2,
+      title: 'Private Chef Service',
+      description: 'Personal chef for authentic local cuisine',
+      location: 'Your accommodation',
+      duration: 'Evening',
+      price: '$200 CAD',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.8,
+      isGuestFavorite: false
+    },
+    {
+      id: 3,
+      title: 'Photography Session',
+      description: 'Professional travel photography',
+      location: 'Any location',
+      duration: '1 hour',
+      price: '$150 CAD',
+      image: '/images/serai-images/quebec2.jpg',
+      rating: 4.7,
+      isGuestFavorite: true
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header */}
+      <div className="bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between h-16">
+            {/* Back Button and Logo */}
+        <div className="flex items-center space-x-4">
+              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900">
+                <ArrowLeft className="w-5 h-5" />
+                <span className="text-sm font-medium">Back</span>
+          </Link>
+              <Link href="/tabs">
+          <Image
+            src="/images/serai-images/serai-name-black.png"
+            alt="SERAI"
+                  width={120}
+                  height={36}
+                  className="h-8 w-auto"
+            priority
+          />
+              </Link>
+        </div>
+        
+            {/* Right Side - Language, Currency, Menu */}
+        <div className="flex items-center space-x-4">
+              {/* Language Selector */}
+              <div className="relative" ref={languageModalRef}>
+          <button 
+                  onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}
+                  className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
+          >
+                  <Globe className="w-4 h-4" />
+                  <span className="text-sm font-medium">{selectedLanguage}</span>
+                  <ChevronDown className="w-4 h-4" />
+          </button>
+
+                {/* Language Modal */}
+                {isLanguageModalOpen && (
+                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-lg font-semibold text-gray-900">Language and region</h3>
+          <button 
+                          onClick={() => setIsLanguageModalOpen(false)}
+                          className="text-gray-400 hover:text-gray-600"
+          >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+          </button>
+              </div>
+
+                      {/* Tabs */}
+                      <div className="flex space-x-6 mb-6">
+                <button 
+                  onClick={() => setActiveTab('language')}
+                  className={`text-lg font-semibold pb-2 ${
+                    activeTab === 'language' 
+                      ? 'text-gray-900 border-b-2 border-gray-900' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                          Language
+                </button>
+                <button 
+                  onClick={() => setActiveTab('currency')}
+                  className={`text-lg font-semibold pb-2 ${
+                    activeTab === 'currency' 
+                      ? 'text-gray-900 border-b-2 border-gray-900' 
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                >
+                  Currency
+              </button>
+            </div>
+
+                      {/* Language Tab */}
+                      {activeTab === 'language' && (
+                        <div className="space-y-3">
+                      <button
+                            onClick={() => setSelectedLanguage('English (Canada)')}
+                            className={`w-full flex items-center justify-between p-3 rounded-lg border ${
+                              selectedLanguage === 'English (Canada)' ? 'border-gray-900' : 'border-gray-200'
+                            }`}
+                          >
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-lg">🇨🇦</div>
+                              <div>
+                                <div className="font-medium text-gray-900">English</div>
+                                <div className="text-sm text-gray-600">Canada</div>
+                    </div>
+                  </div>
+                            {selectedLanguage === 'English (Canada)' && (
+                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            )}
+                          </button>
+
+                      <button 
+                        onClick={() => setSelectedLanguage('Français (Canada)')}
+                            className={`w-full flex items-center justify-between p-3 rounded-lg border ${
+                          selectedLanguage === 'Français (Canada)' ? 'border-gray-900' : 'border-gray-200'
+                        }`}
+                      >
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-lg">🇨🇦</div>
+                              <div>
+                        <div className="font-medium text-gray-900">Français</div>
+                        <div className="text-sm text-gray-600">Canada</div>
+                    </div>
+                  </div>
+                            {selectedLanguage === 'Français (Canada)' && (
+                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            )}
+                          </button>
+                        </div>
+                      )}
+
+                      {/* Currency Tab */}
+                      {activeTab === 'currency' && (
+                        <div className="space-y-3">
+                        <button
+                            onClick={() => setSelectedCurrency('Canadian dollar (CAD - $)')}
+                            className={`w-full flex items-center justify-between p-3 rounded-lg border ${
+                              selectedCurrency === 'Canadian dollar (CAD - $)' ? 'border-gray-900' : 'border-gray-200'
+                            }`}
+                          >
+                            <div className="flex items-center space-x-3">
+                              <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-lg">$</div>
+                              <div>
+                                <div className="font-medium text-gray-900">Canadian dollar</div>
+                                <div className="text-sm text-gray-600">CAD - $</div>
+                              </div>
+                            </div>
+                            {selectedCurrency === 'Canadian dollar (CAD - $)' && (
+                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                              </svg>
+                            )}
+                        </button>
+                    </div>
+                      )}
+                  </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu */}
+              <div className="relative" ref={menuRef}>
+                      <button
+                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                  className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
+                >
+                  <Menu className="w-4 h-4" />
+                  <span className="text-sm font-medium">Menu</span>
+                  <ChevronDown className="w-4 h-4" />
+                      </button>
+
+                {/* Menu Dropdown */}
+                {isMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+                    <div className="py-1">
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Help</a>
+                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+      {/* Navigation Tabs */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <nav className="flex space-x-8 justify-center">
+            <button
+              onClick={() => setActiveNavTab('silk-route')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeNavTab === 'silk-route'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Routes
+            </button>
+            <button
+              onClick={() => setActiveNavTab('serais')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeNavTab === 'serais'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Serais
+            </button>
+            <button
+              onClick={() => setActiveNavTab('bazaar')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeNavTab === 'bazaar'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Bazaars
+            </button>
+            <button
+              onClick={() => setActiveNavTab('essentials')}
+              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+                activeNavTab === 'essentials'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+              }`}
+            >
+              Essentials
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      {/* Search Bar */}
+      <div className="bg-white py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          {renderSearchBar()}
+        </div>
+      </div>
+
+      {/* Main Content - Tabbed Interface */}
+      <main className="max-w-7xl mx-auto px-4 py-8">
+        {activeNavTab === 'silk-route' && (
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Plan your trip</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {silkRoutesData.map((route) => (
+                <div key={route.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+                <div className="relative h-48 bg-gray-200">
+                  <img
+                      src={route.image}
+                      alt={route.title}
+                    className="w-full h-full object-cover"
+                  />
+                    {route.isGuestFavorite && (
+                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
+                        Guest favorite
+                  </div>
+                    )}
+                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+                      <Heart className="w-4 h-4 text-gray-600" />
+                    </button>
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium text-gray-900">{route.rating}</span>
+                    </div>
+                      <span className="text-sm text-gray-500">{route.duration}</span>
+                  </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{route.title}</h3>
+                    <p className="text-gray-600 text-sm mb-4 flex-grow">{route.description}</p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-lg font-semibold text-gray-900">{route.price}</span>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
+                      Plan Trip
+                    </button>
+                  </div>
+                </div>
+              </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeNavTab === 'serais' && (
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Hotels</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {seraisData.map((property) => (
+                <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+                <div className="relative h-48 bg-gray-200">
+                  <img
+                      src={property.image}
+                      alt={property.type}
+                    className="w-full h-full object-cover"
+                  />
+                    {property.isGuestFavorite && (
+                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
+                        Guest favorite
+                  </div>
+                    )}
+                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+                      <Heart className="w-4 h-4 text-gray-600" />
+                    </button>
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium text-gray-900">{property.rating}</span>
+                    </div>
+                      <span className="text-sm text-gray-500">{property.dates}</span>
+                  </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{property.type}</h3>
+                    <p className="text-gray-600 text-sm mb-4">{property.location}</p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-lg font-semibold text-gray-900">{property.price}</span>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeNavTab === 'bazaar' && (
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Experiences</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {bazaarData.map((experience) => (
+                <div key={experience.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+                <div className="relative h-48 bg-gray-200">
+                  <img
+                      src={experience.image}
+                      alt={experience.title}
+                    className="w-full h-full object-cover"
+                  />
+                    {experience.isGuestFavorite && (
+                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
+                        Guest favorite
+                  </div>
+                    )}
+                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+                      <Heart className="w-4 h-4 text-gray-600" />
+                    </button>
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium text-gray-900">{experience.rating}</span>
+                    </div>
+                      <div className="flex items-center space-x-1 text-sm text-gray-500">
+                        <Clock className="w-4 h-4" />
+                        <span>{experience.duration}</span>
+                  </div>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{experience.title}</h3>
+                    <p className="text-gray-600 text-sm mb-2">{experience.description}</p>
+                    <p className="text-gray-500 text-sm mb-4">{experience.location}</p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-lg font-semibold text-gray-900">{experience.price}</span>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
+                      Book Experience
+                    </button>
+                  </div>
+                </div>
+              </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeNavTab === 'essentials' && (
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {essentialsData.map((service) => (
+                <div key={service.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+                <div className="relative h-48 bg-gray-200">
+                  <img
+                      src={service.image}
+                      alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
+                    {service.isGuestFavorite && (
+                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
+                        Guest favorite
+                  </div>
+                    )}
+                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
+                      <Heart className="w-4 h-4 text-gray-600" />
+                    </button>
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between mb-2">
+                    <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="text-sm font-medium text-gray-900">{service.rating}</span>
+                    </div>
+                      <div className="flex items-center space-x-1 text-sm text-gray-500">
+                        <Clock className="w-4 h-4" />
+                        <span>{service.duration}</span>
+                  </div>
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{service.title}</h3>
+                    <p className="text-gray-600 text-sm mb-2">{service.description}</p>
+                    <p className="text-gray-500 text-sm mb-4">{service.location}</p>
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-lg font-semibold text-gray-900">{service.price}</span>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
+                      Book Service
+                    </button>
+                  </div>
+                </div>
+              </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  );
+}
