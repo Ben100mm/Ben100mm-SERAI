@@ -2,18 +2,13 @@
 
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Globe, Menu, ChevronDown, Heart, Star, ChevronRight, Clock } from 'lucide-react';
+import { Heart, Star, ChevronRight, Clock } from 'lucide-react';
 import Link from 'next/link';
+import TopAppBar from '@/components/TopAppBar';
 
 export default function PropertiesPage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('English (Canada)');
-  const [isTranslationEnabled, setIsTranslationEnabled] = useState(true);
-  const [activeTab, setActiveTab] = useState('language');
-  const [selectedCurrency, setSelectedCurrency] = useState('Canadian dollar (CAD - $)');
-  const [isListingModalOpen, setIsListingModalOpen] = useState(false);
   const [activeNavTab, setActiveNavTab] = useState('silk-route');
+
   const [isWhereDropdownOpen, setIsWhereDropdownOpen] = useState(false);
   const [whereValue, setWhereValue] = useState('');
   const [isCheckInDropdownOpen, setIsCheckInDropdownOpen] = useState(false);
@@ -31,9 +26,6 @@ export default function PropertiesPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [selectedDuration, setSelectedDuration] = useState('Month');
   const [selectedFlexibleMonth, setSelectedFlexibleMonth] = useState(new Date());
-  const menuRef = useRef<HTMLDivElement>(null);
-  const languageModalRef = useRef<HTMLDivElement>(null);
-  const listingModalRef = useRef<HTMLDivElement>(null);
   const whereDropdownRef = useRef<HTMLDivElement>(null);
   const checkInDropdownRef = useRef<HTMLDivElement>(null);
   const checkOutDropdownRef = useRef<HTMLDivElement>(null);
@@ -44,7 +36,7 @@ export default function PropertiesPage() {
   const renderSearchBar = () => {
     switch (activeNavTab) {
       case 'silk-route':
-        return (
+  return (
           <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
             {/* Itinerary Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
@@ -54,8 +46,8 @@ export default function PropertiesPage() {
                 placeholder="Plan your journey"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
-            
+        </div>
+        
             {/* Duration Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
               <label className="block text-xs font-semibold text-gray-900 mb-1">Duration</label>
@@ -63,9 +55,9 @@ export default function PropertiesPage() {
                 type="text"
                 placeholder="7-14 days"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
-              />
-            </div>
-            
+          />
+        </div>
+        
             {/* Interests, Experiences & Essentials Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
               <label className="block text-xs font-semibold text-gray-900 mb-1">Interests, Experiences & Essentials</label>
@@ -74,7 +66,7 @@ export default function PropertiesPage() {
                 placeholder="Culture, nature, food"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
+              </div>
             
             {/* Search Button */}
             <div className="px-6 py-3">
@@ -84,7 +76,7 @@ export default function PropertiesPage() {
                 </svg>
               </button>
             </div>
-          </div>
+                      </div>
         );
       
       case 'serais':
@@ -101,6 +93,25 @@ export default function PropertiesPage() {
                 onFocus={() => setIsWhereDropdownOpen(true)}
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
+                {isWhereDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                  <div className="p-2">
+                    <div className="text-sm text-gray-500 mb-2">Popular destinations</div>
+                    {['Montreal', 'Toronto', 'Vancouver', 'Quebec City', 'Ottawa'].map((city) => (
+                          <button
+                        key={city}
+                            onClick={() => {
+                          setWhereValue(city);
+                              setIsWhereDropdownOpen(false);
+                            }}
+                        className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded text-sm"
+                      >
+                        {city}
+                          </button>
+                        ))}
+                    </div>
+                  </div>
+                )}
             </div>
             
             {/* Check In Field */}
@@ -127,8 +138,8 @@ export default function PropertiesPage() {
                 onFocus={() => setIsCheckOutDropdownOpen(true)}
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
-            
+                      </div>
+
             {/* Who Field */}
             <div className="flex-1 px-6 py-3">
               <label className="block text-xs font-semibold text-gray-900 mb-1">Who</label>
@@ -142,16 +153,16 @@ export default function PropertiesPage() {
             {/* Search Button */}
             <div className="px-6 py-3">
               <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-            </div>
-          </div>
+                                </svg>
+                              </button>
+                            </div>
+                                </div>
         );
       
       case 'bazaar':
-        return (
+                                return (
           <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
             {/* Experience Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
@@ -161,7 +172,7 @@ export default function PropertiesPage() {
                 placeholder="Search experience"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
+                            </div>
             
             {/* Location Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
@@ -171,8 +182,8 @@ export default function PropertiesPage() {
                 placeholder="Search destinations"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
-            
+                                </div>
+                                
             {/* Date Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
               <label className="block text-xs font-semibold text-gray-900 mb-1">Date</label>
@@ -191,17 +202,17 @@ export default function PropertiesPage() {
                 placeholder="Add guests"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
-            
+                            </div>
+                            
             {/* Search Button */}
             <div className="px-6 py-3">
               <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-              </button>
-            </div>
-          </div>
+                                  </button>
+                              </div>
+                            </div>
         );
       
       case 'essentials':
@@ -215,8 +226,8 @@ export default function PropertiesPage() {
                 placeholder="Search essentials"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
-            
+                                </div>
+                                
             {/* Location Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
               <label className="block text-xs font-semibold text-gray-900 mb-1">Location</label>
@@ -234,7 +245,7 @@ export default function PropertiesPage() {
                 type="text"
                 placeholder="Add date"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
-              />
+                />
             </div>
             
             {/* Time Field */}
@@ -245,17 +256,17 @@ export default function PropertiesPage() {
                 placeholder="Add time"
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
-            </div>
-            
+                      </div>
+
             {/* Search Button */}
             <div className="px-6 py-3">
               <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-              </button>
-            </div>
-          </div>
+                                </svg>
+                              </button>
+                            </div>
+                                </div>
         );
       
       default:
@@ -263,18 +274,9 @@ export default function PropertiesPage() {
     }
   };
 
-  // Close menu when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-      }
-      if (languageModalRef.current && !languageModalRef.current.contains(event.target as Node)) {
-        setIsLanguageModalOpen(false);
-      }
-      if (listingModalRef.current && !listingModalRef.current.contains(event.target as Node)) {
-        setIsListingModalOpen(false);
-      }
       if (whereDropdownRef.current && !whereDropdownRef.current.contains(event.target as Node)) {
         setIsWhereDropdownOpen(false);
       }
@@ -296,318 +298,145 @@ export default function PropertiesPage() {
   const silkRoutesData = [
     {
       id: 1,
-      title: 'Golden Triangle Circuit',
-      description: 'Delhi, Agra, Jaipur - India\'s most iconic route',
-      duration: '7-10 days',
-      price: 'From $1,200',
-      image: '/images/serai-images/quebec2.jpg',
+      title: "Golden Triangle Circuit",
+      description: "Explore the cultural heart of India with this classic route covering Delhi, Agra, and Jaipur.",
+      duration: "7 days",
+      price: "From $1,200",
+      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=300&fit=crop",
       rating: 4.8,
-      isGuestFavorite: true
+      reviews: 124
     },
     {
       id: 2,
-      title: 'Himalayan Loop',
-      description: 'Mountain adventures through Nepal and Bhutan',
-      duration: '12-15 days',
-      price: 'From $2,500',
-      image: '/images/serai-images/quebec2.jpg',
+      title: "Himalayan Adventure",
+      description: "Trek through the majestic Himalayas with stops in Leh, Manali, and Shimla.",
+      duration: "14 days",
+      price: "From $2,500",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
       rating: 4.9,
-      isGuestFavorite: false
+      reviews: 89
     },
     {
       id: 3,
-      title: 'Silk Road Explorer',
-      description: 'Ancient trade routes through Central Asia',
-      duration: '14-21 days',
-      price: 'From $3,200',
-      image: '/images/serai-images/quebec2.jpg',
+      title: "Coastal Kerala",
+      description: "Discover the backwaters and beaches of Kerala with this relaxing coastal journey.",
+      duration: "10 days",
+      price: "From $1,800",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
       rating: 4.7,
-      isGuestFavorite: true
+      reviews: 156
     }
   ];
 
   const seraisData = [
     {
       id: 1,
-      image: '/images/serai-images/quebec2.jpg',
-      type: 'Boutique Hotel in Montreal',
-      location: 'Montreal, Quebec',
-      dates: 'Jan 10-12',
-      price: '$156 CAD for 2 nights',
-      rating: 4.88,
-      isGuestFavorite: true
+      title: "Heritage Palace Hotel",
+      location: "Montreal, Canada",
+      price: "$180/night",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
+      rating: 4.6,
+      reviews: 89,
+      type: "Boutique Hotel"
     },
     {
       id: 2,
-      image: '/images/serai-images/quebec2.jpg',
-      type: 'Heritage Haveli in Jaipur',
-      location: 'Jaipur, Rajasthan',
-      dates: 'Feb 15-17',
-      price: '$89 CAD per night',
-      rating: 4.76,
-      isGuestFavorite: false
+      title: "Mountain View Lodge",
+      location: "Banff, Canada",
+      price: "$220/night",
+      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=300&fit=crop",
+      rating: 4.8,
+      reviews: 124,
+      type: "Eco Lodge"
     },
     {
       id: 3,
-      image: '/images/serai-images/quebec2.jpg',
-      type: 'Eco Lodge in Kerala',
-      location: 'Kochi, Kerala',
-      dates: 'Mar 5-8',
-      price: '$124 CAD per night',
-      rating: 4.92,
-      isGuestFavorite: true
+      title: "Desert Oasis Resort",
+      location: "Phoenix, USA",
+      price: "$150/night",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      rating: 4.5,
+      reviews: 67,
+      type: "Luxury Glamping"
     }
   ];
 
   const bazaarData = [
     {
       id: 1,
-      title: 'Traditional Pottery Workshop',
-      description: 'Learn ancient techniques from master craftsmen',
-      location: 'Jaipur, India',
-      duration: '3 hours',
-      price: '$45 CAD per person',
-      image: '/images/serai-images/quebec2.jpg',
-      rating: 4.9,
-      isGuestFavorite: true
+      title: "Traditional Pottery Workshop",
+      location: "Montreal, Canada",
+      price: "$45/person",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      rating: 4.7,
+      reviews: 45,
+      duration: "3 hours"
     },
     {
       id: 2,
-      title: 'Himalayan Trekking Adventure',
-      description: 'Guided trek through pristine mountain trails',
-      location: 'Nepal',
-      duration: '2 days',
-      price: '$180 CAD per person',
-      image: '/images/serai-images/quebec2.jpg',
-      rating: 4.8,
-      isGuestFavorite: false
+      title: "Cooking Class with Local Chef",
+      location: "Toronto, Canada",
+      price: "$75/person",
+      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+      rating: 4.9,
+      reviews: 78,
+      duration: "4 hours"
     },
     {
       id: 3,
-      title: 'Cooking Class with Local Chef',
-      description: 'Master authentic regional recipes',
-      location: 'Kochi, India',
-      duration: '4 hours',
-      price: '$65 CAD per person',
-      image: '/images/serai-images/quebec2.jpg',
-      rating: 4.7,
-      isGuestFavorite: true
+      title: "Photography Walk",
+      location: "Vancouver, Canada",
+      price: "$35/person",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+      rating: 4.6,
+      reviews: 92,
+      duration: "2 hours"
     }
   ];
 
   const essentialsData = [
     {
       id: 1,
-      title: 'Spa & Wellness Package',
-      description: 'Relaxing massage and wellness treatments',
-      location: 'At your hotel',
-      duration: '2 hours',
-      price: '$120 CAD',
-      image: '/images/serai-images/quebec2.jpg',
-      rating: 4.9,
-      isGuestFavorite: true
+      title: "Spa & Wellness Package",
+      location: "Montreal, Canada",
+      price: "$120/session",
+      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+      rating: 4.8,
+      reviews: 56,
+      type: "Wellness"
     },
     {
       id: 2,
-      title: 'Private Chef Service',
-      description: 'Personal chef for authentic local cuisine',
-      location: 'Your accommodation',
-      duration: 'Evening',
-      price: '$200 CAD',
-      image: '/images/serai-images/quebec2.jpg',
-      rating: 4.8,
-      isGuestFavorite: false
+      title: "Private Chef Service",
+      location: "Toronto, Canada",
+      price: "$200/meal",
+      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+      rating: 4.9,
+      reviews: 34,
+      type: "Culinary"
     },
     {
       id: 3,
-      title: 'Photography Session',
-      description: 'Professional travel photography',
-      location: 'Any location',
-      duration: '1 hour',
-      price: '$150 CAD',
-      image: '/images/serai-images/quebec2.jpg',
+      title: "Professional Photography",
+      location: "Vancouver, Canada",
+      price: "$150/hour",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
       rating: 4.7,
-      isGuestFavorite: true
+      reviews: 89,
+      type: "Media"
     }
   ];
-
-  return (
+                                  
+                                  return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            {/* Back Button and Logo */}
-        <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2 text-gray-600 hover:text-gray-900">
-                <ArrowLeft className="w-5 h-5" />
-                <span className="text-sm font-medium">Back</span>
-          </Link>
-              <Link href="/tabs">
-          <Image
-            src="/images/serai-images/serai-name-black.png"
-            alt="SERAI"
-                  width={120}
-                  height={36}
-                  className="h-8 w-auto"
-            priority
-          />
-              </Link>
-        </div>
-        
-            {/* Right Side - Language, Currency, Menu */}
-        <div className="flex items-center space-x-4">
-              {/* Language Selector */}
-              <div className="relative" ref={languageModalRef}>
-          <button 
-                  onClick={() => setIsLanguageModalOpen(!isLanguageModalOpen)}
-                  className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-          >
-                  <Globe className="w-4 h-4" />
-                  <span className="text-sm font-medium">{selectedLanguage}</span>
-                  <ChevronDown className="w-4 h-4" />
-          </button>
-
-                {/* Language Modal */}
-                {isLanguageModalOpen && (
-                  <div className="absolute right-0 mt-2 w-80 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                    <div className="p-4">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-lg font-semibold text-gray-900">Language and region</h3>
-          <button 
-                          onClick={() => setIsLanguageModalOpen(false)}
-                          className="text-gray-400 hover:text-gray-600"
-          >
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-          </button>
-              </div>
-
-                      {/* Tabs */}
-                      <div className="flex space-x-6 mb-6">
-                <button 
-                  onClick={() => setActiveTab('language')}
-                  className={`text-lg font-semibold pb-2 ${
-                    activeTab === 'language' 
-                      ? 'text-gray-900 border-b-2 border-gray-900' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                          Language
-                </button>
-                <button 
-                  onClick={() => setActiveTab('currency')}
-                  className={`text-lg font-semibold pb-2 ${
-                    activeTab === 'currency' 
-                      ? 'text-gray-900 border-b-2 border-gray-900' 
-                      : 'text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  Currency
-              </button>
-            </div>
-
-                      {/* Language Tab */}
-                      {activeTab === 'language' && (
-                        <div className="space-y-3">
-                      <button
-                            onClick={() => setSelectedLanguage('English (Canada)')}
-                            className={`w-full flex items-center justify-between p-3 rounded-lg border ${
-                              selectedLanguage === 'English (Canada)' ? 'border-gray-900' : 'border-gray-200'
-                            }`}
-                          >
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-lg">🇨🇦</div>
-                              <div>
-                                <div className="font-medium text-gray-900">English</div>
-                                <div className="text-sm text-gray-600">Canada</div>
-                    </div>
-                  </div>
-                            {selectedLanguage === 'English (Canada)' && (
-                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            )}
-                          </button>
-
-                      <button 
-                        onClick={() => setSelectedLanguage('Français (Canada)')}
-                            className={`w-full flex items-center justify-between p-3 rounded-lg border ${
-                          selectedLanguage === 'Français (Canada)' ? 'border-gray-900' : 'border-gray-200'
-                        }`}
-                      >
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-lg">🇨🇦</div>
-                              <div>
-                        <div className="font-medium text-gray-900">Français</div>
-                        <div className="text-sm text-gray-600">Canada</div>
-                    </div>
-                  </div>
-                            {selectedLanguage === 'Français (Canada)' && (
-                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            )}
-                          </button>
-                        </div>
-                      )}
-
-                      {/* Currency Tab */}
-                      {activeTab === 'currency' && (
-                        <div className="space-y-3">
-                        <button
-                            onClick={() => setSelectedCurrency('Canadian dollar (CAD - $)')}
-                            className={`w-full flex items-center justify-between p-3 rounded-lg border ${
-                              selectedCurrency === 'Canadian dollar (CAD - $)' ? 'border-gray-900' : 'border-gray-200'
-                            }`}
-                          >
-                            <div className="flex items-center space-x-3">
-                              <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center text-lg">$</div>
-                              <div>
-                                <div className="font-medium text-gray-900">Canadian dollar</div>
-                                <div className="text-sm text-gray-600">CAD - $</div>
-                              </div>
-                            </div>
-                            {selectedCurrency === 'Canadian dollar (CAD - $)' && (
-                              <svg className="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                              </svg>
-                            )}
-                        </button>
-                    </div>
-                      )}
-                  </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Menu */}
-              <div className="relative" ref={menuRef}>
-                      <button
-                  onClick={() => setIsMenuOpen(!isMenuOpen)}
-                  className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-                >
-                  <Menu className="w-4 h-4" />
-                  <span className="text-sm font-medium">Menu</span>
-                  <ChevronDown className="w-4 h-4" />
-                      </button>
-
-                {/* Menu Dropdown */}
-                {isMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
-                    <div className="py-1">
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account</a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Help</a>
-                      <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-        </div>
-      </div>
+      {/* Top App Bar */}
+      <TopAppBar 
+        backHref="/"
+        logoHref="/tabs"
+        showListingButton={true}
+        showLanguageButton={true}
+        showMenuButton={true}
+      />
 
       {/* Navigation Tabs */}
       <div className="bg-white border-b border-gray-200">
@@ -615,7 +444,7 @@ export default function PropertiesPage() {
           <nav className="flex space-x-8 justify-center">
             <button
               onClick={() => setActiveNavTab('silk-route')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'silk-route'
                   ? 'border-gray-900 text-gray-900'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -625,7 +454,7 @@ export default function PropertiesPage() {
             </button>
             <button
               onClick={() => setActiveNavTab('serais')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'serais'
                   ? 'border-gray-900 text-gray-900'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -635,7 +464,7 @@ export default function PropertiesPage() {
             </button>
             <button
               onClick={() => setActiveNavTab('bazaar')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'bazaar'
                   ? 'border-gray-900 text-gray-900'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -645,7 +474,7 @@ export default function PropertiesPage() {
             </button>
             <button
               onClick={() => setActiveNavTab('essentials')}
-              className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'essentials'
                   ? 'border-gray-900 text-gray-900'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -656,7 +485,7 @@ export default function PropertiesPage() {
           </nav>
         </div>
       </div>
-
+            
       {/* Search Bar */}
       <div className="bg-white py-4">
         <div className="max-w-7xl mx-auto px-4">
@@ -672,35 +501,35 @@ export default function PropertiesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {silkRoutesData.map((route) => (
                 <div key={route.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
-                <div className="relative h-48 bg-gray-200">
-                  <img
+                  <div className="relative">
+                    <Image
                       src={route.image}
                       alt={route.title}
-                    className="w-full h-full object-cover"
-                  />
-                    {route.isGuestFavorite && (
-                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
-                        Guest favorite
-                  </div>
-                    )}
-                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
-                      <Heart className="w-4 h-4 text-gray-600" />
+                      width={400}
+                      height={300}
+                      className="w-full h-48 object-cover"
+                    />
+                    <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow">
+                      <Heart className="h-4 w-4 text-gray-600" />
                     </button>
-                </div>
-                <div className="p-4 flex flex-col flex-grow">
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium text-gray-900">{route.rating}</span>
-                    </div>
-                      <span className="text-sm text-gray-500">{route.duration}</span>
                   </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{route.title}</h3>
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-lg font-semibold text-gray-900">{route.title}</h3>
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm text-gray-600 ml-1">{route.rating}</span>
+                        <span className="text-sm text-gray-400 ml-1">({route.reviews})</span>
+                </div>
+              </div>
                     <p className="text-gray-600 text-sm mb-4 flex-grow">{route.description}</p>
-                    <div className="flex items-center justify-between mt-auto">
-                      <span className="text-lg font-semibold text-gray-900">{route.price}</span>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
-                      Plan Trip
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-lg font-semibold text-gray-900">{route.price}</div>
+                        <div className="text-sm text-gray-500">{route.duration}</div>
+                  </div>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200 mt-auto">
+                        View Details
                     </button>
                   </div>
                 </div>
@@ -716,34 +545,34 @@ export default function PropertiesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {seraisData.map((property) => (
                 <div key={property.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
-                <div className="relative h-48 bg-gray-200">
-                  <img
+                  <div className="relative">
+                    <Image
                       src={property.image}
-                      alt={property.type}
-                    className="w-full h-full object-cover"
-                  />
-                    {property.isGuestFavorite && (
-                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
-                        Guest favorite
+                      alt={property.title}
+                      width={400}
+                      height={300}
+                      className="w-full h-48 object-cover"
+                    />
+                    <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow">
+                    <Heart className="h-4 w-4 text-gray-600" />
+                  </button>
                   </div>
-                    )}
-                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
-                      <Heart className="w-4 h-4 text-gray-600" />
-                    </button>
-                </div>
-                <div className="p-4 flex flex-col flex-grow">
+                  <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium text-gray-900">{property.rating}</span>
+                      <h3 className="text-lg font-semibold text-gray-900">{property.title}</h3>
+                      <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm text-gray-600 ml-1">{property.rating}</span>
+                        <span className="text-sm text-gray-400 ml-1">({property.reviews})</span>
                     </div>
-                      <span className="text-sm text-gray-500">{property.dates}</span>
                   </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{property.type}</h3>
-                    <p className="text-gray-600 text-sm mb-4">{property.location}</p>
+                    <p className="text-gray-600 text-sm mb-2">{property.location}</p>
+                    <p className="text-gray-500 text-xs mb-4">{property.type}</p>
                     <div className="flex items-center justify-between mt-auto">
-                      <span className="text-lg font-semibold text-gray-900">{property.price}</span>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
+                      <div>
+                        <div className="text-lg font-semibold text-gray-900">{property.price}</div>
+                    </div>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
                       View Details
                     </button>
                   </div>
@@ -760,39 +589,38 @@ export default function PropertiesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {bazaarData.map((experience) => (
                 <div key={experience.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
-                <div className="relative h-48 bg-gray-200">
-                  <img
+                  <div className="relative">
+                    <Image
                       src={experience.image}
                       alt={experience.title}
-                    className="w-full h-full object-cover"
-                  />
-                    {experience.isGuestFavorite && (
-                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
-                        Guest favorite
+                      width={400}
+                      height={300}
+                      className="w-full h-48 object-cover"
+                    />
+                    <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow">
+                    <Heart className="h-4 w-4 text-gray-600" />
+                  </button>
                   </div>
-                    )}
-                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
-                      <Heart className="w-4 h-4 text-gray-600" />
-                    </button>
-                </div>
-                <div className="p-4 flex flex-col flex-grow">
+                  <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium text-gray-900">{experience.rating}</span>
+                      <h3 className="text-lg font-semibold text-gray-900">{experience.title}</h3>
+                      <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm text-gray-600 ml-1">{experience.rating}</span>
+                        <span className="text-sm text-gray-400 ml-1">({experience.reviews})</span>
                     </div>
-                      <div className="flex items-center space-x-1 text-sm text-gray-500">
-                        <Clock className="w-4 h-4" />
-                        <span>{experience.duration}</span>
                   </div>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{experience.title}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{experience.description}</p>
-                    <p className="text-gray-500 text-sm mb-4">{experience.location}</p>
+                    <p className="text-gray-600 text-sm mb-2">{experience.location}</p>
+                    <div className="flex items-center text-gray-500 text-xs mb-4">
+                    <Clock className="h-3 w-3 mr-1" />
+                      {experience.duration}
+                  </div>
                     <div className="flex items-center justify-between mt-auto">
-                      <span className="text-lg font-semibold text-gray-900">{experience.price}</span>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
-                      Book Experience
+                      <div>
+                        <div className="text-lg font-semibold text-gray-900">{experience.price}</div>
+                </div>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                        View Details
                     </button>
                   </div>
                 </div>
@@ -808,39 +636,35 @@ export default function PropertiesPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {essentialsData.map((service) => (
                 <div key={service.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
-                <div className="relative h-48 bg-gray-200">
-                  <img
+                  <div className="relative">
+                    <Image
                       src={service.image}
                       alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                    {service.isGuestFavorite && (
-                      <div className="absolute top-3 left-3 bg-white px-2 py-1 rounded-full text-xs font-semibold text-gray-900">
-                        Guest favorite
+                      width={400}
+                      height={300}
+                      className="w-full h-48 object-cover"
+                    />
+                    <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow">
+                    <Heart className="h-4 w-4 text-gray-600" />
+                  </button>
                   </div>
-                    )}
-                    <button className="absolute top-3 right-3 p-2 bg-white/80 rounded-full hover:bg-white transition-colors">
-                      <Heart className="w-4 h-4 text-gray-600" />
-                    </button>
-                </div>
-                <div className="p-4 flex flex-col flex-grow">
+                  <div className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="text-sm font-medium text-gray-900">{service.rating}</span>
+                      <h3 className="text-lg font-semibold text-gray-900">{service.title}</h3>
+                      <div className="flex items-center">
+                      <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="text-sm text-gray-600 ml-1">{service.rating}</span>
+                        <span className="text-sm text-gray-400 ml-1">({service.reviews})</span>
                     </div>
-                      <div className="flex items-center space-x-1 text-sm text-gray-500">
-                        <Clock className="w-4 h-4" />
-                        <span>{service.duration}</span>
                   </div>
-                    </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-1">{service.title}</h3>
-                    <p className="text-gray-600 text-sm mb-2">{service.description}</p>
-                    <p className="text-gray-500 text-sm mb-4">{service.location}</p>
+                    <p className="text-gray-600 text-sm mb-2">{service.location}</p>
+                    <p className="text-gray-500 text-xs mb-4">{service.type}</p>
                     <div className="flex items-center justify-between mt-auto">
-                      <span className="text-lg font-semibold text-gray-900">{service.price}</span>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 shadow-lg">
-                      Book Service
+                      <div>
+                        <div className="text-lg font-semibold text-gray-900">{service.price}</div>
+                    </div>
+                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                        View Details
                     </button>
                   </div>
                 </div>
