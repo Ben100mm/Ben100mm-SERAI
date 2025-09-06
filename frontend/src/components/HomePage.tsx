@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { User, LogIn, Calendar, Search } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 // DatePicker Component
 const DatePicker = ({ label, value, onChange, placeholder }: { label: string; value: string; onChange: (value: string) => void; placeholder: string }) => {
@@ -135,11 +136,26 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
 };
 
 export default function HomePage() {
+  const router = useRouter();
   const [location, setLocation] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
   const [adults, setAdults] = useState('2 adults');
   const [children, setChildren] = useState('0 children');
+
+  const handleSearch = () => {
+    // Create search parameters object
+    const searchParams = new URLSearchParams({
+      location: location,
+      checkIn: checkIn,
+      checkOut: checkOut,
+      adults: adults,
+      children: children
+    });
+
+    // Navigate to search results page with interactive map
+    router.push(`/search?${searchParams.toString()}`);
+  };
 
   return (
     <div className="relative h-screen overflow-hidden">
@@ -281,11 +297,26 @@ export default function HomePage() {
 
                                   {/* Search Button */}
                     <div className="pt-3">
-                      <button className="w-full bg-gradient-to-r from-red-800 to-red-900 text-white font-semibold py-3 rounded-lg hover:from-red-900 hover:to-red-950 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-2 text-sm">
+                      <button 
+                        onClick={handleSearch}
+                        className="w-full bg-gradient-to-r from-red-800 to-red-900 text-white font-semibold py-3 rounded-lg hover:from-red-900 hover:to-red-950 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-2 text-sm"
+                      >
                         <Search className="h-4 w-4" />
                         <span>Search</span>
                       </button>
                     </div>
+            </div>
+          </div>
+
+          {/* Plan Your Trip Button Container */}
+          <div className="mt-6">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-4">
+              <button 
+                onClick={() => router.push('/tabs')}
+                className="w-full bg-gradient-to-r from-red-800 to-red-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-red-900 hover:to-red-950 transition-all duration-300 hover:scale-105 shadow-lg text-sm"
+              >
+                Plan your trip with SERAI
+              </button>
             </div>
           </div>
         </div>

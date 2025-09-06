@@ -5,16 +5,19 @@ import { useState, useRef, useEffect } from 'react';
 import { Heart, Star, ChevronRight, Clock } from 'lucide-react';
 import Link from 'next/link';
 import TopAppBar from '@/components/TopAppBar';
+import { useSearchParams } from 'next/navigation';
 
 export default function PropertiesPage() {
+  const searchParams = useSearchParams();
   const [activeNavTab, setActiveNavTab] = useState('silk-route');
 
+  // Initialize state with URL parameters if available
   const [isWhereDropdownOpen, setIsWhereDropdownOpen] = useState(false);
-  const [whereValue, setWhereValue] = useState('');
+  const [whereValue, setWhereValue] = useState(searchParams.get('location') || '');
   const [isCheckInDropdownOpen, setIsCheckInDropdownOpen] = useState(false);
   const [isCheckOutDropdownOpen, setIsCheckOutDropdownOpen] = useState(false);
-  const [checkInValue, setCheckInValue] = useState('');
-  const [checkOutValue, setCheckOutValue] = useState('');
+  const [checkInValue, setCheckInValue] = useState(searchParams.get('checkIn') || '');
+  const [checkOutValue, setCheckOutValue] = useState(searchParams.get('checkOut') || '');
   const [selectedDates, setSelectedDates] = useState<{checkIn: Date | null, checkOut: Date | null}>({
     checkIn: null,
     checkOut: null
@@ -26,11 +29,31 @@ export default function PropertiesPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [selectedDuration, setSelectedDuration] = useState('Month');
   const [selectedFlexibleMonth, setSelectedFlexibleMonth] = useState(new Date());
+  const [guestsValue, setGuestsValue] = useState('');
   const whereDropdownRef = useRef<HTMLDivElement>(null);
   const checkInDropdownRef = useRef<HTMLDivElement>(null);
   const checkOutDropdownRef = useRef<HTMLDivElement>(null);
   const circleRef = useRef<HTMLDivElement>(null);
   const monthScrollRef = useRef<HTMLDivElement>(null);
+
+  // Update state when URL parameters change
+  useEffect(() => {
+    const location = searchParams.get('location');
+    const checkIn = searchParams.get('checkIn');
+    const checkOut = searchParams.get('checkOut');
+    const adults = searchParams.get('adults');
+    const children = searchParams.get('children');
+    
+    if (location) setWhereValue(location);
+    if (checkIn) setCheckInValue(checkIn);
+    if (checkOut) setCheckOutValue(checkOut);
+    
+    // Combine adults and children for guests display
+    if (adults || children) {
+      const guestsText = `${adults || '0 adults'}, ${children || '0 children'}`;
+      setGuestsValue(guestsText);
+    }
+  }, [searchParams]);
 
   // Dynamic search bar based on active tab
   const renderSearchBar = () => {
@@ -146,6 +169,8 @@ export default function PropertiesPage() {
               <input
                 type="text"
                 placeholder="Add guests"
+                value={guestsValue}
+                onChange={(e) => setGuestsValue(e.target.value)}
                 className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
               />
             </div>
@@ -444,40 +469,40 @@ export default function PropertiesPage() {
           <nav className="flex space-x-8 justify-center">
                                   <button
               onClick={() => setActiveNavTab('silk-route')}
-              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'silk-route'
-                  ? 'text-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
               Routes
                                   </button>
                                     <button
               onClick={() => setActiveNavTab('serais')}
-              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'serais'
-                  ? 'text-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
               Serais
                                     </button>
                                 <button
               onClick={() => setActiveNavTab('bazaar')}
-              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'bazaar'
-                  ? 'text-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
               Bazaars
                                 </button>
                                 <button
               onClick={() => setActiveNavTab('essentials')}
-              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'essentials'
-                  ? 'text-gray-900'
-                  : 'text-gray-500 hover:text-gray-700'
+                  ? 'border-gray-900 text-gray-900'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
               Essentials
