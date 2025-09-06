@@ -228,10 +228,7 @@ export default function MembershipsPage() {
     );
   }
 
-  if (!isAuthenticated) {
-    router.push('/auth');
-    return null;
-  }
+  // Allow non-authenticated users to view the page
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -354,7 +351,7 @@ export default function MembershipsPage() {
                   {/* Action Button - pushed to bottom */}
                   <div className="mt-auto">
                     <button
-                      onClick={() => handleUpgrade(tier.id)}
+                      onClick={() => isAuthenticated ? handleUpgrade(tier.id) : router.push('/auth')}
                       disabled={tier.isCurrent}
                       className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
                         tier.isCurrent
@@ -362,7 +359,7 @@ export default function MembershipsPage() {
                           : 'bg-gray-900 hover:bg-gray-800 text-white'
                       }`}
                     >
-                       {tier.isCurrent ? 'Current Plan' : 'Upgrade'}
+                       {tier.isCurrent ? 'Current Plan' : (isAuthenticated ? 'Upgrade' : 'Sign up to join')}
                       {!tier.isCurrent && <ArrowRight className="h-4 w-4 ml-2 inline" />}
                     </button>
                   </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { User, Mail, Phone, MapPin, Calendar, Edit3, Save, X, Shield, AlertTriangle, FileText, CheckCircle } from 'lucide-react';
+import { User, Mail, Phone, MapPin, Calendar, Edit3, Save, X, Shield, AlertTriangle, FileText, CheckCircle, Crown, Star, Zap, ArrowRight } from 'lucide-react';
 
 export default function ProfileTab() {
   const [isEditing, setIsEditing] = useState(false);
@@ -31,7 +31,12 @@ export default function ProfileTab() {
     identityVerified: false,
     idType: 'Driver License',
     idNumber: 'DL123456789',
-    idExpiryDate: '2025-12-31'
+    idExpiryDate: '2025-12-31',
+    // Membership
+    currentMembership: 'voyager',
+    membershipStartDate: '2024-01-15',
+    membershipExpiryDate: '2025-01-15',
+    membershipStatus: 'active'
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -131,6 +136,81 @@ export default function ProfileTab() {
                 disabled={!isEditing}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Current Membership */}
+        <div className="bg-gray-50 rounded-lg p-6">
+          <h3 className="text-lg font-medium text-gray-900 mb-4 flex items-center">
+            <Crown className="h-5 w-5 mr-2" />
+            Current Membership
+          </h3>
+          
+          <div className="bg-white rounded-lg p-4 border border-gray-200">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-3">
+                <div className="p-2 bg-red-100 rounded-lg">
+                  <Star className="h-6 w-6 text-red-600" />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900">SERAI Voyager</h4>
+                  <p className="text-sm text-gray-600">Enhanced for frequent travelers</p>
+                </div>
+              </div>
+              <div className="text-right">
+                <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                  formData.membershipStatus === 'active' 
+                    ? 'bg-green-100 text-green-800' 
+                    : 'bg-red-100 text-red-800'
+                }`}>
+                  {formData.membershipStatus === 'active' ? 'Active' : 'Inactive'}
+                </div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+              <div>
+                <p className="text-sm text-gray-600">Start Date</p>
+                <p className="font-medium text-gray-900">{formData.membershipStartDate}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Expiry Date</p>
+                <p className="font-medium text-gray-900">{formData.membershipExpiryDate}</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-600">Annual Cost</p>
+                <p className="font-medium text-gray-900">$299/year</p>
+              </div>
+            </div>
+            
+            <div className="border-t border-gray-200 pt-4">
+              <h5 className="text-sm font-medium text-gray-900 mb-2">Your Benefits</h5>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <Zap className="h-4 w-4 text-red-600" />
+                  <span>7% discount on stays</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <Zap className="h-4 w-4 text-red-600" />
+                  <span>3% cashback on bookings</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <Zap className="h-4 w-4 text-red-600" />
+                  <span>Priority support</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-600">
+                  <Zap className="h-4 w-4 text-red-600" />
+                  <span>Early access to properties</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-4 pt-4 border-t border-gray-200">
+              <button className="flex items-center space-x-2 text-red-600 hover:text-red-700 font-medium text-sm">
+                <span>Manage Membership</span>
+                <ArrowRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>

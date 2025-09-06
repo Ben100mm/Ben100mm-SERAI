@@ -86,13 +86,6 @@ export default function AuthPage() {
     }
   };
 
-  const handleGuestLogin = async () => {
-    setError('');
-    const result = await login('guest@serai.com', 'any-password');
-    if (!result.success) {
-      setError(result.message || 'Guest login failed');
-    }
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -198,32 +191,6 @@ export default function AuthPage() {
               </button>
             </form>
 
-            {/* Development Mode: Quick Access */}
-            {process.env.NODE_ENV === 'development' && (
-              <div className="mt-6">
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-gray-300" />
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-white text-gray-500">Development Mode</span>
-                  </div>
-                </div>
-                
-                <div className="mt-4">
-                  <button
-                    onClick={handleGuestLogin}
-                    disabled={isLoading}
-                    className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isLoading ? 'Please wait...' : 'Continue as Guest (Dev Mode)'}
-                  </button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Skip authentication for development
-                  </p>
-                </div>
-              </div>
-            )}
 
             {/* Social Login */}
             <div className="mt-8">

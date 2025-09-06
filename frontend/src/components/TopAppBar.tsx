@@ -117,6 +117,13 @@ export default function TopAppBar({
                   >
                     Account
                   </Link>
+                  <Link 
+                    href="/dev-settings" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                    onClick={() => setIsMenuOpen(false)} 
+                  >
+                    Dev Settings
+                  </Link>
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                     Gift Cards
                   </a>
@@ -147,6 +154,13 @@ export default function TopAppBar({
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Help
+                  </Link>
+                  <Link 
+                    href="/dev-settings" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
+                    onClick={() => setIsMenuOpen(false)} 
+                  >
+                    Dev Settings
                   </Link>
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                     Sign out

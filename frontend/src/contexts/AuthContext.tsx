@@ -50,8 +50,8 @@ interface AuthContextType {
     lastName: string;
     avatar?: string;
   }) => Promise<{ success: boolean; message?: string }>;
-  logout: () => void;
-  updateUser: (userData: Partial<User>) => void;
+  logout: () => Promise<void>;
+  refreshToken: () => Promise<boolean>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -79,8 +79,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       try {
-        // Development mode: Auto-login with mock user
+        // Development mode: Check if auto-login is enabled
         if (process.env.NODE_ENV === 'development') {
+          const autoLoginEnabled = localStorage.getItem('dev-auto-login-enabled');
+          
+          // If auto-login is disabled, don't auto-login
+          if (autoLoginEnabled === 'false') {
+            setIsLoading(false);
+            return;
+          }
+          
+          // Auto-login with mock user (default behavior)
           const mockUser: User = {
             id: 'dev-user-123',
             email: 'dev@serai.com',
@@ -96,12 +105,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               timezone: 'America/Toronto',
               emailNotifications: true,
               smsNotifications: false,
-              pushNotifications: true
-            }
+              pushNotifications: true,
+            },
           };
-          
-          const mockToken = 'dev-token-123';
-          
+
+          const mockToken = 'dev-mock-token-12345';
+
           setUser(mockUser);
           setToken(mockToken);
           apiClient.setToken(mockToken);
@@ -159,12 +168,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             timezone: 'America/Toronto',
             emailNotifications: true,
             smsNotifications: false,
-            pushNotifications: true
-          }
+            pushNotifications: true,
+          },
         };
-        
-        const mockToken = 'dev-token-123';
-        
+
+        const mockToken = 'dev-mock-token-12345';
+
         setUser(mockUser);
         setToken(mockToken);
         apiClient.setToken(mockToken);
@@ -178,11 +187,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response = await apiClient.login({ email, password }) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
-        const { user: userData, token: userToken, refreshToken } = response.data;
+        const { user: userData, token: authToken, refreshToken } = response.data;
         
         setUser(userData);
-        setToken(userToken);
-        apiClient.setToken(userToken);
+        setToken(authToken);
+        apiClient.setToken(authToken);
+        localStorage.setItem('token', authToken);
         
         // Store refresh token for future use
         if (refreshToken) {
@@ -193,9 +203,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } else {
         return { success: false, message: response.message || 'Login failed' };
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Login error:', error);
-      return { success: false, message: error.message || 'Login failed' };
+      return { success: false, message: 'An error occurred during login' };
     } finally {
       setIsLoading(false);
     }
@@ -228,12 +238,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             timezone: 'America/Toronto',
             emailNotifications: true,
             smsNotifications: false,
-            pushNotifications: true
-          }
+            pushNotifications: true,
+          },
         };
-        
-        const mockToken = 'dev-token-123';
-        
+
+        const mockToken = 'dev-mock-token-12345';
+
         setUser(mockUser);
         setToken(mockToken);
         apiClient.setToken(mockToken);
@@ -247,11 +257,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response = await apiClient.register(userData) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
-        const { user: newUser, token: userToken, refreshToken } = response.data;
+        const { user: userData, token: authToken, refreshToken } = response.data;
         
-        setUser(newUser);
-        setToken(userToken);
-        apiClient.setToken(userToken);
+        setUser(userData);
+        setToken(authToken);
+        apiClient.setToken(authToken);
+        localStorage.setItem('token', authToken);
         
         // Store refresh token for future use
         if (refreshToken) {
@@ -262,9 +273,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } else {
         return { success: false, message: response.message || 'Registration failed' };
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Registration error:', error);
-      return { success: false, message: error.message || 'Registration failed' };
+      return { success: false, message: 'An error occurred during registration' };
     } finally {
       setIsLoading(false);
     }
@@ -299,12 +310,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             timezone: 'America/Toronto',
             emailNotifications: true,
             smsNotifications: false,
-            pushNotifications: true
-          }
+            pushNotifications: true,
+          },
         };
-        
-        const mockToken = 'dev-token-123';
-        
+
+        const mockToken = 'dev-mock-token-12345';
+
         setUser(mockUser);
         setToken(mockToken);
         apiClient.setToken(mockToken);
@@ -318,11 +329,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const response = await apiClient.socialLogin(socialData) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
-        const { user: userData, token: userToken, refreshToken } = response.data;
+        const { user: userData, token: authToken, refreshToken } = response.data;
         
         setUser(userData);
-        setToken(userToken);
-        apiClient.setToken(userToken);
+        setToken(authToken);
+        apiClient.setToken(authToken);
+        localStorage.setItem('token', authToken);
         
         // Store refresh token for future use
         if (refreshToken) {
@@ -333,9 +345,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       } else {
         return { success: false, message: response.message || 'Social login failed' };
       }
-    } catch (error: any) {
+    } catch (error) {
       console.error('Social login error:', error);
-      return { success: false, message: error.message || 'Social login failed' };
+      return { success: false, message: 'An error occurred during social login' };
     } finally {
       setIsLoading(false);
     }
@@ -358,9 +370,36 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const updateUser = (userData: Partial<User>) => {
-    if (user) {
-      setUser({ ...user, ...userData });
+  const refreshToken = async (): Promise<boolean> => {
+    try {
+      const storedRefreshToken = localStorage.getItem('refreshToken');
+      if (!storedRefreshToken) {
+        return false;
+      }
+
+      const response = await apiClient.refreshToken(storedRefreshToken) as ApiResponse<{ token: string; refreshToken?: string }>;
+      
+      if (response.success && response.data) {
+        const { token: newToken, refreshToken: newRefreshToken } = response.data;
+        
+        setToken(newToken);
+        apiClient.setToken(newToken);
+        localStorage.setItem('token', newToken);
+        
+        if (newRefreshToken) {
+          localStorage.setItem('refreshToken', newRefreshToken);
+        }
+        
+        return true;
+      } else {
+        // Refresh token is invalid, logout user
+        await logout();
+        return false;
+      }
+    } catch (error) {
+      console.error('Token refresh error:', error);
+      await logout();
+      return false;
     }
   };
 
@@ -373,7 +412,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     register,
     socialLogin,
     logout,
-    updateUser,
+    refreshToken,
   };
 
   return (

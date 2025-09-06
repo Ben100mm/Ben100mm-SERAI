@@ -65,12 +65,7 @@ export default function BadgesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [activeTab, setActiveTab] = useState<'clubs' | 'badges'>('clubs');
 
-  // Redirect if not authenticated
-  useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push('/auth');
-    }
-  }, [isAuthenticated, isLoading, router]);
+  // Allow non-authenticated users to view the page
 
   if (isLoading) {
     return (
@@ -83,9 +78,7 @@ export default function BadgesPage() {
     );
   }
 
-  if (!isAuthenticated) {
-    return null; // Will redirect
-  }
+  // Allow non-authenticated users to view the page
 
   const badges: Badge[] = [
     // Journey Milestones
@@ -870,17 +863,23 @@ export default function BadgesPage() {
                       <div>
                         <h3 className="font-medium text-gray-900">Traveler Clubs</h3>
                         <p className="text-sm text-gray-600">
-                          {clubs.filter(club => club.userType === 'traveler' && club.status === 'member').length} memberships • 
-                          {clubs.filter(club => club.userType === 'traveler' && club.status === 'invited').length} invitations • 
-                          {clubs.filter(club => club.userType === 'traveler' && club.status === 'eligible').length} eligible
+                          {isAuthenticated ? (
+                            <>
+                              {clubs.filter(club => club.userType === 'traveler' && club.status === 'member').length} memberships • 
+                              {clubs.filter(club => club.userType === 'traveler' && club.status === 'invited').length} invitations • 
+                              {clubs.filter(club => club.userType === 'traveler' && club.status === 'eligible').length} eligible
+                            </>
+                          ) : (
+                            'Sign up to see your club memberships and invitations'
+                          )}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-amber-600">
-                        {clubs.filter(club => club.userType === 'traveler' && club.status === 'member').length}
+                        {isAuthenticated ? clubs.filter(club => club.userType === 'traveler' && club.status === 'member').length : '—'}
                       </div>
-                      <div className="text-xs text-gray-500">Active</div>
+                      <div className="text-xs text-gray-500">{isAuthenticated ? 'Active' : 'Sign up to see'}</div>
                     </div>
                   </div>
                 </div>
@@ -895,17 +894,23 @@ export default function BadgesPage() {
                       <div>
                         <h3 className="font-medium text-gray-900">Host Clubs</h3>
                         <p className="text-sm text-gray-600">
-                          {clubs.filter(club => club.userType === 'host' && club.status === 'member').length} memberships • 
-                          {clubs.filter(club => club.userType === 'host' && club.status === 'invited').length} invitations • 
-                          {clubs.filter(club => club.userType === 'host' && club.status === 'eligible').length} eligible
+                          {isAuthenticated ? (
+                            <>
+                              {clubs.filter(club => club.userType === 'host' && club.status === 'member').length} memberships • 
+                              {clubs.filter(club => club.userType === 'host' && club.status === 'invited').length} invitations • 
+                              {clubs.filter(club => club.userType === 'host' && club.status === 'eligible').length} eligible
+                            </>
+                          ) : (
+                            'Sign up to see your host club memberships and invitations'
+                          )}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-blue-600">
-                        {clubs.filter(club => club.userType === 'host' && club.status === 'member').length}
+                        {isAuthenticated ? clubs.filter(club => club.userType === 'host' && club.status === 'member').length : '—'}
                       </div>
-                      <div className="text-xs text-gray-500">Active</div>
+                      <div className="text-xs text-gray-500">{isAuthenticated ? 'Active' : 'Sign up to see'}</div>
                     </div>
                   </div>
                 </div>
@@ -920,17 +925,23 @@ export default function BadgesPage() {
                       <div>
                         <h3 className="font-medium text-gray-900">Universal Clubs</h3>
                         <p className="text-sm text-gray-600">
-                          {clubs.filter(club => club.userType === 'both' && club.status === 'member').length} memberships • 
-                          {clubs.filter(club => club.userType === 'both' && club.status === 'invited').length} invitations • 
-                          {clubs.filter(club => club.userType === 'both' && club.status === 'eligible').length} eligible
+                          {isAuthenticated ? (
+                            <>
+                              {clubs.filter(club => club.userType === 'both' && club.status === 'member').length} memberships • 
+                              {clubs.filter(club => club.userType === 'both' && club.status === 'invited').length} invitations • 
+                              {clubs.filter(club => club.userType === 'both' && club.status === 'eligible').length} eligible
+                            </>
+                          ) : (
+                            'Sign up to see your universal club memberships and invitations'
+                          )}
                         </p>
                       </div>
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-red-600">
-                        {clubs.filter(club => club.userType === 'both' && club.status === 'member').length}
+                        {isAuthenticated ? clubs.filter(club => club.userType === 'both' && club.status === 'member').length : '—'}
                       </div>
-                      <div className="text-xs text-gray-500">Active</div>
+                      <div className="text-xs text-gray-500">{isAuthenticated ? 'Active' : 'Sign up to see'}</div>
                     </div>
                   </div>
                 </div>
@@ -976,8 +987,12 @@ export default function BadgesPage() {
                         <span className={`text-xs font-medium px-2 py-1 rounded-full ${getTierColor(club.tier)}`}>
                           {club.tier}
                         </span>
-                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${getStatusColor(club.status)}`}>
-                          {getStatusText(club.status)}
+                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                          isAuthenticated 
+                            ? getStatusColor(club.status)
+                            : 'bg-gray-100 text-gray-500'
+                        }`}>
+                          {isAuthenticated ? getStatusText(club.status) : 'Sign up to join'}
                         </span>
                       </div>
                     </div>
@@ -1042,8 +1057,12 @@ export default function BadgesPage() {
                         <span className={`text-xs font-medium px-2 py-1 rounded-full ${getTierColor(club.tier)}`}>
                           {club.tier}
                         </span>
-                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${getStatusColor(club.status)}`}>
-                          {getStatusText(club.status)}
+                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                          isAuthenticated 
+                            ? getStatusColor(club.status)
+                            : 'bg-gray-100 text-gray-500'
+                        }`}>
+                          {isAuthenticated ? getStatusText(club.status) : 'Sign up to join'}
                         </span>
                       </div>
                     </div>
@@ -1108,8 +1127,12 @@ export default function BadgesPage() {
                         <span className={`text-xs font-medium px-2 py-1 rounded-full ${getTierColor(club.tier)}`}>
                           {club.tier}
                         </span>
-                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${getStatusColor(club.status)}`}>
-                          {getStatusText(club.status)}
+                        <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                          isAuthenticated 
+                            ? getStatusColor(club.status)
+                            : 'bg-gray-100 text-gray-500'
+                        }`}>
+                          {isAuthenticated ? getStatusText(club.status) : 'Sign up to join'}
                         </span>
                       </div>
                     </div>
@@ -1207,8 +1230,8 @@ export default function BadgesPage() {
               <h3 className="font-semibold text-gray-900 mb-1 text-sm">{badge.name}</h3>
               <p className="text-gray-600 text-xs mb-3 leading-relaxed">{badge.description}</p>
               
-              {/* Progress Bar */}
-              {badge.progress !== undefined && badge.maxProgress && (
+              {/* Progress Bar - Only show for authenticated users */}
+              {isAuthenticated && badge.progress !== undefined && badge.maxProgress && (
                 <div className="mb-3">
                   <div className="flex justify-between text-xs text-gray-500 mb-1">
                     <span>Progress</span>
@@ -1225,8 +1248,8 @@ export default function BadgesPage() {
                 </div>
               )}
 
-              {/* Earned Status */}
-              {badge.earned && (
+              {/* Earned Status - Only show for authenticated users */}
+              {isAuthenticated && badge.earned && (
                 <div className="flex items-center text-red-600 text-xs font-medium">
                   <Award className="h-3 w-3 mr-1" />
                   Earned
