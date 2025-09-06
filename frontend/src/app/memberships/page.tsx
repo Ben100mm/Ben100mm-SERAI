@@ -55,15 +55,15 @@ export default function MembershipsPage() {
       id: 'select',
       name: 'SERAI Select',
       subtitle: 'Essential benefits for every traveler',
-      price: 0,
-      period: 'month',
+      price: 149,
+      period: 'year',
       color: 'gray',
       icon: <Shield className="h-8 w-8" />,
       features: {
-        discountPercent: 5,
+        discountPercent: 3,
         validity: '6 months',
-        cashback: 2,
-        usage: 'Basic bookings',
+        cashback: 1,
+        usage: 'Stays',
         exclusiveDeals: false,
         additionalFeatures: [
           {
@@ -82,22 +82,21 @@ export default function MembershipsPage() {
             description: 'Full mobile app functionality'
           }
         ]
-      },
-      isCurrent: true
+      }
     },
     {
       id: 'voyager',
       name: 'SERAI Voyager',
-      subtitle: 'Enhanced experience for frequent travelers',
-      price: 29,
-      period: 'month',
-      color: 'blue',
+      subtitle: 'Enhanced for frequent travelers',
+      price: 299,
+      period: 'year',
+      color: 'white',
       icon: <Star className="h-8 w-8" />,
       features: {
-        discountPercent: 15,
+        discountPercent: 7,
         validity: '6 months',
-        cashback: 5,
-        usage: 'All bookings',
+        cashback: 3,
+        usage: 'Stays',
         exclusiveDeals: true,
         additionalFeatures: [
           {
@@ -121,22 +120,21 @@ export default function MembershipsPage() {
             description: 'Room upgrades when available'
           }
         ]
-      },
-      isPopular: true
+      }
     },
     {
       id: 'prestige',
       name: 'SERAI Prestige',
       subtitle: 'Ultimate luxury and exclusivity',
-      price: 99,
-      period: 'month',
-      color: 'purple',
+      price: 499,
+      period: 'year',
+      color: 'blue',
       icon: <Crown className="h-8 w-8" />,
       features: {
-        discountPercent: 25,
+        discountPercent: 10,
         validity: '12 months',
-        cashback: 10,
-        usage: 'Unlimited',
+        cashback: 5,
+        usage: 'All bookings',
         exclusiveDeals: true,
         additionalFeatures: [
           {
@@ -179,21 +177,29 @@ export default function MembershipsPage() {
           accent: 'text-gray-600',
           button: 'bg-gray-900 hover:bg-gray-800 text-white'
         };
+      case 'white':
+        return {
+          bg: 'bg-white',
+          border: 'border-gray-200',
+          text: 'text-gray-900',
+          accent: 'text-gray-600',
+          button: 'bg-gray-900 hover:bg-gray-800 text-white'
+        };
       case 'blue':
         return {
-          bg: 'bg-blue-50',
-          border: 'border-blue-200',
-          text: 'text-blue-900',
-          accent: 'text-blue-600',
-          button: 'bg-blue-600 hover:bg-blue-700 text-white'
+          bg: 'bg-amber-50',
+          border: 'border-amber-200',
+          text: 'text-amber-900',
+          accent: 'text-amber-600',
+          button: 'bg-amber-600 hover:bg-amber-700 text-white'
         };
       case 'purple':
         return {
-          bg: 'bg-purple-50',
-          border: 'border-purple-200',
-          text: 'text-purple-900',
-          accent: 'text-purple-600',
-          button: 'bg-purple-600 hover:bg-purple-700 text-white'
+          bg: 'bg-red-50',
+          border: 'border-red-200',
+          text: 'text-red-900',
+          accent: 'text-red-600',
+          button: 'bg-red-600 hover:bg-red-700 text-white'
         };
       default:
         return {
@@ -248,231 +254,124 @@ export default function MembershipsPage() {
             return (
               <div
                 key={tier.id}
-                className={`relative rounded-2xl p-8 border-2 transition-all duration-200 hover:shadow-lg ${
-                  tier.isPopular 
-                    ? 'border-red-500 shadow-lg scale-105' 
-                    : colors.border
-                } ${colors.bg}`}
+                className={`relative rounded-2xl p-8 border-2 transition-all duration-200 hover:shadow-lg flex flex-col ${colors.border} ${colors.bg}`}
+                style={{ minHeight: '600px' }}
               >
-                {tier.isPopular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center">
-                      <Star className="h-4 w-4 mr-1" />
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
                 {tier.isCurrent && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                    <span className="bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center">
                       <Check className="h-4 w-4 mr-1" />
                       Current Plan
                     </span>
                   </div>
                 )}
 
-                {/* Tier Header */}
-                <div className="text-center mb-6">
-                  <div className={`inline-flex p-3 rounded-full mb-4 ${colors.bg}`}>
-                    <div className={colors.accent}>
-                      {tier.icon}
-                    </div>
-                  </div>
-                  <h3 className={`text-2xl font-bold ${colors.text} mb-2`}>{tier.name}</h3>
-                  <p className="text-gray-600 mb-4">{tier.subtitle}</p>
-                  
-                  <div className="mb-6">
-                    <span className={`text-4xl font-bold ${colors.text}`}>
-                      ${tier.price}
-                    </span>
-                    <span className="text-gray-600 ml-1">/{tier.period}</span>
-                    {tier.price === 0 && (
-                      <div className="text-sm text-gray-500 mt-1">Free forever</div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Key Features */}
-                <div className="space-y-4 mb-8">
-                  <div className="flex items-center justify-between py-2 border-b border-gray-200">
-                    <div className="flex items-center">
-                      <Percent className="h-5 w-5 text-gray-400 mr-3" />
-                      <span className="font-medium">Discount</span>
-                    </div>
-                    <span className={`font-bold ${colors.accent}`}>{tier.features.discountPercent}%</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between py-2 border-b border-gray-200">
-                    <div className="flex items-center">
-                      <Clock className="h-5 w-5 text-gray-400 mr-3" />
-                      <span className="font-medium">Validity</span>
-                    </div>
-                    <span className="font-medium">{tier.features.validity}</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between py-2 border-b border-gray-200">
-                    <div className="flex items-center">
-                      <CreditCard className="h-5 w-5 text-gray-400 mr-3" />
-                      <span className="font-medium">Cashback</span>
-                    </div>
-                    <span className={`font-bold ${colors.accent}`}>{tier.features.cashback}%</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between py-2 border-b border-gray-200">
-                    <div className="flex items-center">
-                      <Zap className="h-5 w-5 text-gray-400 mr-3" />
-                      <span className="font-medium">Usage</span>
-                    </div>
-                    <span className="font-medium">{tier.features.usage}</span>
-                  </div>
-                  
-                  <div className="flex items-center justify-between py-2">
-                    <div className="flex items-center">
-                      <Gift className="h-5 w-5 text-gray-400 mr-3" />
-                      <span className="font-medium">Exclusive Deals</span>
-                    </div>
-                    {tier.features.exclusiveDeals ? (
-                      <Check className="h-5 w-5 text-green-500" />
-                    ) : (
-                      <X className="h-5 w-5 text-gray-400" />
-                    )}
-                  </div>
-                </div>
-
-                {/* Additional Features */}
-                <div className="mb-8">
-                  <h4 className="font-semibold text-gray-900 mb-4">Additional Benefits</h4>
-                  <div className="space-y-3">
-                    {tier.features.additionalFeatures.map((feature, index) => (
-                      <div key={index} className="flex items-start">
-                        <div className="text-green-500 mr-3 mt-0.5">
-                          {feature.icon}
-                        </div>
-                        <div>
-                          <div className="font-medium text-sm text-gray-900">{feature.name}</div>
-                          <div className="text-xs text-gray-600">{feature.description}</div>
-                        </div>
+                {/* Content wrapper to push button to bottom */}
+                <div className="flex flex-col flex-1">
+                  {/* Tier Header */}
+                  <div className="text-center mb-6">
+                    <div className={`inline-flex p-3 rounded-full mb-4 ${colors.bg}`}>
+                      <div className={colors.accent}>
+                        {tier.icon}
                       </div>
-                    ))}
+                    </div>
+                    <h3 className={`text-2xl font-bold ${colors.text} mb-2`}>{tier.name}</h3>
+                    <p className="text-gray-700 mb-4">{tier.subtitle}</p>
+                    
+                    <div className="mb-6">
+                      <span className={`text-4xl font-bold ${colors.text}`}>
+                        ${tier.price}
+                      </span>
+                      <span className="text-gray-700 ml-1">/{tier.period}</span>
+                    </div>
+                  </div>
+
+                  {/* Key Features */}
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <div className="flex items-center">
+                        <Percent className="h-5 w-5 text-gray-600 mr-3" />
+                        <span className="font-medium text-gray-900">Discount</span>
+                      </div>
+                      <span className={`font-bold ${colors.accent}`}>{tier.features.discountPercent}%</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <div className="flex items-center">
+                        <Clock className="h-5 w-5 text-gray-600 mr-3" />
+                        <span className="font-medium text-gray-900">Validity</span>
+                      </div>
+                      <span className="font-medium text-gray-900">{tier.features.validity}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <div className="flex items-center">
+                        <CreditCard className="h-5 w-5 text-gray-600 mr-3" />
+                        <span className="font-medium text-gray-900">Cashback</span>
+                      </div>
+                      <span className={`font-bold ${colors.accent}`}>{tier.features.cashback}%</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                      <div className="flex items-center">
+                        <Zap className="h-5 w-5 text-gray-600 mr-3" />
+                        <span className="font-medium text-gray-900">Usage</span>
+                      </div>
+                      <span className="font-medium text-gray-900">{tier.features.usage}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between py-2">
+                      <div className="flex items-center">
+                        <Gift className="h-5 w-5 text-gray-600 mr-3" />
+                        <span className="font-medium text-gray-900">Exclusive Deals</span>
+                      </div>
+                      {tier.features.exclusiveDeals ? (
+                        <Check className="h-5 w-5 text-green-500" />
+                      ) : (
+                        <X className="h-5 w-5 text-gray-400" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Additional Features */}
+                  <div className="mb-8 flex-1">
+                    <h4 className="font-semibold text-gray-900 mb-4">Additional Benefits</h4>
+                    <div className="space-y-3">
+                      {tier.features.additionalFeatures.map((feature, index) => (
+                        <div key={index} className="flex items-start">
+                          <div className="text-green-500 mr-3 mt-0.5">
+                            {feature.icon}
+                          </div>
+                          <div>
+                            <div className="font-medium text-sm text-gray-900">{feature.name}</div>
+                            <div className="text-xs text-gray-600">{feature.description}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Button - pushed to bottom */}
+                  <div className="mt-auto">
+                    <button
+                      onClick={() => handleUpgrade(tier.id)}
+                      disabled={tier.isCurrent}
+                      className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
+                        tier.isCurrent
+                          ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
+                          : 'bg-gray-900 hover:bg-gray-800 text-white'
+                      }`}
+                    >
+                       {tier.isCurrent ? 'Current Plan' : 'Upgrade'}
+                      {!tier.isCurrent && <ArrowRight className="h-4 w-4 ml-2 inline" />}
+                    </button>
                   </div>
                 </div>
-
-                {/* Action Button */}
-                <button
-                  onClick={() => handleUpgrade(tier.id)}
-                  disabled={tier.isCurrent}
-                  className={`w-full py-3 px-6 rounded-lg font-medium transition-all duration-200 ${
-                    tier.isCurrent
-                      ? 'bg-gray-100 text-gray-500 cursor-not-allowed'
-                      : tier.isPopular
-                      ? 'bg-red-600 hover:bg-red-700 text-white'
-                      : colors.button
-                  }`}
-                >
-                  {tier.isCurrent ? 'Current Plan' : `Upgrade to ${tier.name}`}
-                  {!tier.isCurrent && <ArrowRight className="h-4 w-4 ml-2 inline" />}
-                </button>
               </div>
             );
           })}
         </div>
 
-        {/* Comparison Table */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Feature Comparison</h2>
-            <p className="text-gray-600 text-sm mt-1">Compare all membership features side by side</p>
-          </div>
-          
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-medium text-gray-900">Features</th>
-                  {membershipTiers.map((tier) => (
-                    <th key={tier.id} className="px-6 py-4 text-center text-sm font-medium text-gray-900">
-                      <div className="flex flex-col items-center">
-                        <div className="font-semibold">{tier.name}</div>
-                        <div className="text-xs text-gray-500">${tier.price}/{tier.period}</div>
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Discount Percentage</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center text-sm text-gray-900">
-                      <span className="font-bold text-lg">{tier.features.discountPercent}%</span>
-                    </td>
-                  ))}
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Validity Period</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center text-sm text-gray-900">
-                      {tier.features.validity}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Cashback Rate</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center text-sm text-gray-900">
-                      <span className="font-bold">{tier.features.cashback}%</span>
-                    </td>
-                  ))}
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Usage Limits</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center text-sm text-gray-900">
-                      {tier.features.usage}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Exclusive Deals</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center">
-                      {tier.features.exclusiveDeals ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
-                      ) : (
-                        <X className="h-5 w-5 text-gray-400 mx-auto" />
-                      )}
-                    </td>
-                  ))}
-                </tr>
-                <tr className="bg-gray-50">
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Priority Support</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center">
-                      {tier.id === 'select' ? (
-                        <X className="h-5 w-5 text-gray-400 mx-auto" />
-                      ) : (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
-                      )}
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  <td className="px-6 py-4 text-sm font-medium text-gray-900">Concierge Service</td>
-                  {membershipTiers.map((tier) => (
-                    <td key={tier.id} className="px-6 py-4 text-center">
-                      {tier.id === 'prestige' ? (
-                        <Check className="h-5 w-5 text-green-500 mx-auto" />
-                      ) : (
-                        <X className="h-5 w-5 text-gray-400 mx-auto" />
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
 
         {/* FAQ Section */}
         <div className="mt-12">
