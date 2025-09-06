@@ -195,10 +195,10 @@ export default function MembershipsPage() {
         };
       case 'purple':
         return {
-          bg: 'bg-red-50',
-          border: 'border-red-200',
-          text: 'text-red-900',
-          accent: 'text-red-600',
+          bg: 'bg-gray-100',
+          border: 'border-gray-300',
+          text: 'text-gray-900',
+          accent: 'text-gray-600',
           button: 'bg-red-600 hover:bg-red-700 text-white'
         };
       default:

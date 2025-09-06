@@ -955,7 +955,7 @@ export default function BadgesPage() {
                     key={club.id}
                     className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                       club.status === 'member' 
-                        ? 'border-red-200 shadow-sm' 
+                        ? 'border-gray-300 shadow-sm' 
                         : club.status === 'invited'
                         ? 'border-blue-200 shadow-sm'
                         : 'border-gray-200 hover:border-gray-300'
@@ -1021,7 +1021,7 @@ export default function BadgesPage() {
                     key={club.id}
                     className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                       club.status === 'member' 
-                        ? 'border-red-200 shadow-sm' 
+                        ? 'border-gray-300 shadow-sm' 
                         : club.status === 'invited'
                         ? 'border-blue-200 shadow-sm'
                         : 'border-gray-200 hover:border-gray-300'
@@ -1087,7 +1087,7 @@ export default function BadgesPage() {
                     key={club.id}
                     className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                       club.status === 'member' 
-                        ? 'border-red-200 shadow-sm' 
+                        ? 'border-gray-300 shadow-sm' 
                         : club.status === 'invited'
                         ? 'border-blue-200 shadow-sm'
                         : 'border-gray-200 hover:border-gray-300'
@@ -1187,7 +1187,7 @@ export default function BadgesPage() {
               key={badge.id}
               className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                 badge.earned 
-                  ? 'border-red-200 shadow-sm' 
+                  ? 'border-gray-300 shadow-sm' 
                   : 'border-gray-200 hover:border-gray-300'
               }`}
             >
@@ -1217,7 +1217,7 @@ export default function BadgesPage() {
                   <div className="w-full bg-gray-200 rounded-full h-1.5">
                     <div 
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        badge.earned ? 'bg-red-500' : 'bg-gray-900'
+                        badge.earned ? 'bg-[#4a7c4a]' : 'bg-gray-900'
                       }`}
                       style={{ width: `${Math.min((badge.progress / badge.maxProgress) * 100, 100)}%` }}
                     ></div>
