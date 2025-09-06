@@ -79,13 +79,47 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     const initAuth = async () => {
       try {
+        // Development mode: Auto-login with mock user
+        if (process.env.NODE_ENV === 'development') {
+          const mockUser: User = {
+            id: 'dev-user-123',
+            email: 'dev@serai.com',
+            firstName: 'Development',
+            lastName: 'User',
+            phone: '+1 (555) 123-4567',
+            role: 'GUEST',
+            isVerified: true,
+            isActive: true,
+            preferences: {
+              language: 'en',
+              currency: 'CAD',
+              timezone: 'America/Toronto',
+              emailNotifications: true,
+              smsNotifications: false,
+              pushNotifications: true
+            }
+          };
+          
+          const mockToken = 'dev-token-123';
+          
+          setUser(mockUser);
+          setToken(mockToken);
+          apiClient.setToken(mockToken);
+          localStorage.setItem('token', mockToken);
+          
+          console.log('🚀 Development mode: Auto-logged in as mock user');
+          setIsLoading(false);
+          return;
+        }
+
+        // Production mode: Check stored token
         const storedToken = localStorage.getItem('token');
         if (storedToken) {
           apiClient.setToken(storedToken);
-                  const response = await apiClient.getMe() as ApiResponse<User>;
-        if (response.success && response.data) {
-          setUser(response.data);
-          setToken(storedToken);
+          const response = await apiClient.getMe() as ApiResponse<User>;
+          if (response.success && response.data) {
+            setUser(response.data);
+            setToken(storedToken);
           } else {
             // Token is invalid, clear it
             localStorage.removeItem('token');
@@ -107,6 +141,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const login = async (email: string, password: string) => {
     try {
       setIsLoading(true);
+      
+      // Development mode: Always succeed with mock user
+      if (process.env.NODE_ENV === 'development') {
+        const mockUser: User = {
+          id: 'dev-user-123',
+          email: email || 'dev@serai.com',
+          firstName: 'Development',
+          lastName: 'User',
+          phone: '+1 (555) 123-4567',
+          role: 'GUEST',
+          isVerified: true,
+          isActive: true,
+          preferences: {
+            language: 'en',
+            currency: 'CAD',
+            timezone: 'America/Toronto',
+            emailNotifications: true,
+            smsNotifications: false,
+            pushNotifications: true
+          }
+        };
+        
+        const mockToken = 'dev-token-123';
+        
+        setUser(mockUser);
+        setToken(mockToken);
+        apiClient.setToken(mockToken);
+        localStorage.setItem('token', mockToken);
+        
+        console.log('🚀 Development mode: Login successful with mock user');
+        return { success: true };
+      }
+      
+      // Production mode: Use real API
       const response = await apiClient.login({ email, password }) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
@@ -142,6 +210,40 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }) => {
     try {
       setIsLoading(true);
+      
+      // Development mode: Always succeed with mock user
+      if (process.env.NODE_ENV === 'development') {
+        const mockUser: User = {
+          id: 'dev-user-123',
+          email: userData.email,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          phone: userData.phone || '+1 (555) 123-4567',
+          role: 'GUEST',
+          isVerified: true,
+          isActive: true,
+          preferences: {
+            language: 'en',
+            currency: 'CAD',
+            timezone: 'America/Toronto',
+            emailNotifications: true,
+            smsNotifications: false,
+            pushNotifications: true
+          }
+        };
+        
+        const mockToken = 'dev-token-123';
+        
+        setUser(mockUser);
+        setToken(mockToken);
+        apiClient.setToken(mockToken);
+        localStorage.setItem('token', mockToken);
+        
+        console.log('🚀 Development mode: Registration successful with mock user');
+        return { success: true };
+      }
+      
+      // Production mode: Use real API
       const response = await apiClient.register(userData) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {
@@ -178,6 +280,41 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }) => {
     try {
       setIsLoading(true);
+      
+      // Development mode: Always succeed with mock user
+      if (process.env.NODE_ENV === 'development') {
+        const mockUser: User = {
+          id: 'dev-user-123',
+          email: socialData.email || 'dev@serai.com',
+          firstName: socialData.firstName || 'Development',
+          lastName: socialData.lastName || 'User',
+          phone: '+1 (555) 123-4567',
+          avatar: socialData.avatar,
+          role: 'GUEST',
+          isVerified: true,
+          isActive: true,
+          preferences: {
+            language: 'en',
+            currency: 'CAD',
+            timezone: 'America/Toronto',
+            emailNotifications: true,
+            smsNotifications: false,
+            pushNotifications: true
+          }
+        };
+        
+        const mockToken = 'dev-token-123';
+        
+        setUser(mockUser);
+        setToken(mockToken);
+        apiClient.setToken(mockToken);
+        localStorage.setItem('token', mockToken);
+        
+        console.log('🚀 Development mode: Social login successful with mock user');
+        return { success: true };
+      }
+      
+      // Production mode: Use real API
       const response = await apiClient.socialLogin(socialData) as ApiResponse<AuthResponse>;
       
       if (response.success && response.data) {

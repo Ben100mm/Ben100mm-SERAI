@@ -110,14 +110,32 @@ export default function TopAppBar({
               {/* Dropdown Menu */}
               {isMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <Link 
+                    href="/account" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     Account
-                  </a>
+                  </Link>
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                     Gift Cards
                   </a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                  <Link 
+                    href="/badges" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Clubs & Badges
+                  </Link>
+                  <Link 
+                    href="/memberships" 
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
                     Memberships
+                  </Link>
+                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    Partner with SERAI
                   </a>
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                     Help

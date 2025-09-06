@@ -1,13 +1,13 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import { Heart, Star, MapPin, Calendar, Users, Filter, Maximize2, Plus, Minus, X, Check } from 'lucide-react';
 import Link from 'next/link';
 import TopAppBar from '@/components/TopAppBar';
 import { useSearchParams } from 'next/navigation';
 
-export default function SearchResultsPage() {
+function SearchResultsPageContent() {
   const searchParams = useSearchParams();
   const mapRef = useRef<HTMLDivElement>(null);
   
@@ -687,5 +687,20 @@ export default function SearchResultsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function SearchResultsPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    }>
+      <SearchResultsPageContent />
+    </Suspense>
   );
 }

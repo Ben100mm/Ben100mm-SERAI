@@ -11,6 +11,19 @@ export default function AuthPage() {
   const router = useRouter();
   
   const [error, setError] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('US');
+  
+  const countryOptions = [
+    { value: 'US', label: 'United States', code: '+1' },
+    { value: 'CA', label: 'Canada', code: '+1' },
+    { value: 'GB', label: 'United Kingdom', code: '+44' },
+    { value: 'AU', label: 'Australia', code: '+61' },
+    { value: 'DE', label: 'Germany', code: '+49' },
+    { value: 'FR', label: 'France', code: '+33' },
+    { value: 'IN', label: 'India', code: '+91' }
+  ];
+  
+  const selectedCountryData = countryOptions.find(country => country.value === selectedCountry);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -36,6 +49,12 @@ export default function AuthPage() {
     } catch (error) {
       setError('Phone verification failed');
     }
+  };
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setSelectedCountry(value);
+    console.log('Country selected:', value);
   };
 
   const handleSocialLogin = async (provider: 'google' | 'facebook' | 'apple' | 'email' | 'twitter') => {
@@ -64,6 +83,14 @@ export default function AuthPage() {
     const result = await socialLogin(mockSocialData);
     if (!result.success) {
       setError(result.message || 'Social login failed');
+    }
+  };
+
+  const handleGuestLogin = async () => {
+    setError('');
+    const result = await login('guest@serai.com', 'any-password');
+    if (!result.success) {
+      setError(result.message || 'Guest login failed');
     }
   };
 
@@ -114,19 +141,24 @@ export default function AuthPage() {
                 <div className="relative">
                   <select
                     id="country"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent appearance-none bg-white"
-                    defaultValue="US"
+                    className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent appearance-none bg-white cursor-pointer z-20 relative text-gray-900"
+                    value={selectedCountry}
+                    onChange={handleCountryChange}
+                    style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
                   >
-                    <option value="US">United States (+1)</option>
-                    <option value="CA">Canada (+1)</option>
-                    <option value="GB">United Kingdom (+44)</option>
-                    <option value="AU">Australia (+61)</option>
-                    <option value="DE">Germany (+49)</option>
-                    <option value="FR">France (+33)</option>
-                    <option value="IN">India (+91)</option>
+                    {countryOptions.map((country) => (
+                      <option key={country.value} value={country.value}>
+                        {country.label} ({country.code})
+                      </option>
+                    ))}
                   </select>
-                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                  <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none z-10" />
                 </div>
+                {selectedCountryData && (
+                  <div className="mt-2 text-sm text-gray-600">
+                    Selected: {selectedCountryData.label} {selectedCountryData.code}
+                  </div>
+                )}
               </div>
 
               {/* Phone Number Field */}
@@ -134,13 +166,18 @@ export default function AuthPage() {
                 <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                   Phone number
                 </label>
-                                  <input
+                <div className="flex">
+                  <div className="flex items-center px-3 py-3 border border-r-0 border-gray-300 rounded-l-lg bg-gray-50 text-gray-700 font-medium">
+                    {selectedCountryData?.code}
+                  </div>
+                  <input
                     type="tel"
-                  id="phone"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white"
+                    id="phone"
+                    className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white"
                     placeholder="Enter your phone number"
-                  required
+                    required
                   />
+                </div>
               </div>
 
               {/* Privacy Policy Text */}
@@ -160,6 +197,33 @@ export default function AuthPage() {
                 {isLoading ? 'Please wait...' : 'Continue'}
               </button>
             </form>
+
+            {/* Development Mode: Quick Access */}
+            {process.env.NODE_ENV === 'development' && (
+              <div className="mt-6">
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-300" />
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">Development Mode</span>
+                  </div>
+                </div>
+                
+                <div className="mt-4">
+                  <button
+                    onClick={handleGuestLogin}
+                    disabled={isLoading}
+                    className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? 'Please wait...' : 'Continue as Guest (Dev Mode)'}
+                  </button>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    Skip authentication for development
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Social Login */}
             <div className="mt-8">
