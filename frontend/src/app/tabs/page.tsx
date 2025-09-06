@@ -298,31 +298,31 @@ export default function PropertiesPage() {
   const silkRoutesData = [
     {
       id: 1,
-      title: "Golden Triangle Circuit",
-      description: "Explore the cultural heart of India with this classic route covering Delhi, Agra, and Jaipur.",
+      title: "Pacific Coast Highway",
+      description: "Drive along California's stunning coastline from San Francisco to Los Angeles with stops in Big Sur and Monterey.",
       duration: "7 days",
       price: "From $1,200",
-      image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Pacific Coast Highway.jpg",
       rating: 4.8,
       reviews: 124
     },
     {
       id: 2,
-      title: "Himalayan Adventure",
-      description: "Trek through the majestic Himalayas with stops in Leh, Manali, and Shimla.",
+      title: "Rocky Mountain Adventure",
+      description: "Explore the majestic Rocky Mountains with stops in Denver, Aspen, and Banff National Park.",
       duration: "14 days",
       price: "From $2,500",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Rocky Mountain Highway.jpg",
       rating: 4.9,
       reviews: 89
     },
     {
       id: 3,
-      title: "Coastal Kerala",
-      description: "Discover the backwaters and beaches of Kerala with this relaxing coastal journey.",
+      title: "New England Fall Foliage",
+      description: "Experience the breathtaking autumn colors across Vermont, New Hampshire, and Maine.",
       duration: "10 days",
       price: "From $1,800",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      image: "/images/serai-images/New England Fall Foliage.jpg",
       rating: 4.7,
       reviews: 156
     }
@@ -331,10 +331,10 @@ export default function PropertiesPage() {
   const seraisData = [
     {
       id: 1,
-      title: "Heritage Palace Hotel",
+      title: "Historic Downtown Inn",
       location: "Montreal, Canada",
       price: "$180/night",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Historic Downtown Inn.jpg",
       rating: 4.6,
       reviews: 89,
       type: "Boutique Hotel"
@@ -344,7 +344,7 @@ export default function PropertiesPage() {
       title: "Mountain View Lodge",
       location: "Banff, Canada",
       price: "$220/night",
-      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Mountain View Lodge.jpg",
       rating: 4.8,
       reviews: 124,
       type: "Eco Lodge"
@@ -354,7 +354,7 @@ export default function PropertiesPage() {
       title: "Desert Oasis Resort",
       location: "Phoenix, USA",
       price: "$150/night",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Desert Oasis Resort.jpg",
       rating: 4.5,
       reviews: 67,
       type: "Luxury Glamping"
@@ -364,30 +364,30 @@ export default function PropertiesPage() {
   const bazaarData = [
     {
       id: 1,
-      title: "Traditional Pottery Workshop",
+      title: "Artisan Pottery Workshop",
       location: "Montreal, Canada",
       price: "$45/person",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Artisan Pottery Workshop.jpg",
       rating: 4.7,
       reviews: 45,
       duration: "3 hours"
     },
     {
       id: 2,
-      title: "Cooking Class with Local Chef",
+      title: "Farm-to-Table Cooking Class",
       location: "Toronto, Canada",
       price: "$75/person",
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Farm-to-Table Cooking Class.jpg",
       rating: 4.9,
       reviews: 78,
       duration: "4 hours"
     },
     {
       id: 3,
-      title: "Photography Walk",
+      title: "Urban Photography Walk",
       location: "Vancouver, Canada",
       price: "$35/person",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Urban Photography Walk.jpg",
       rating: 4.6,
       reviews: 92,
       duration: "2 hours"
@@ -400,7 +400,7 @@ export default function PropertiesPage() {
       title: "Spa & Wellness Package",
       location: "Montreal, Canada",
       price: "$120/session",
-      image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Spa & Wellness Package.jpg",
       rating: 4.8,
       reviews: 56,
       type: "Wellness"
@@ -410,7 +410,7 @@ export default function PropertiesPage() {
       title: "Private Chef Service",
       location: "Toronto, Canada",
       price: "$200/meal",
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Private Chef Service.jpg",
       rating: 4.9,
       reviews: 34,
       type: "Culinary"
@@ -420,7 +420,7 @@ export default function PropertiesPage() {
       title: "Professional Photography",
       location: "Vancouver, Canada",
       price: "$150/hour",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+      image: "/images/serai-images/Professional Photography.jpg",
       rating: 4.7,
       reviews: 89,
       type: "Media"
@@ -428,7 +428,7 @@ export default function PropertiesPage() {
   ];
                                   
                                   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Top App Bar */}
       <TopAppBar 
         backHref="/"
@@ -439,52 +439,52 @@ export default function PropertiesPage() {
       />
 
       {/* Navigation Tabs */}
-      <div className="bg-white border-b border-gray-200">
+      <div className="bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex space-x-8 justify-center">
-            <button
+                                  <button
               onClick={() => setActiveNavTab('silk-route')}
-              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'silk-route'
-                  ? 'border-gray-900 text-gray-900'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'text-gray-900'
+                  : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               Routes
-            </button>
-            <button
+                                  </button>
+                                    <button
               onClick={() => setActiveNavTab('serais')}
-              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'serais'
-                  ? 'border-gray-900 text-gray-900'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'text-gray-900'
+                  : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               Serais
-            </button>
-            <button
+                                    </button>
+                                <button
               onClick={() => setActiveNavTab('bazaar')}
-              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'bazaar'
-                  ? 'border-gray-900 text-gray-900'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'text-gray-900'
+                  : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               Bazaars
-            </button>
-            <button
+                                </button>
+                                <button
               onClick={() => setActiveNavTab('essentials')}
-              className={`py-4 px-4 border-b-2 font-medium text-sm w-full text-center cursor-pointer ${
+              className={`py-4 px-4 font-medium text-sm w-full text-center cursor-pointer ${
                 activeNavTab === 'essentials'
-                  ? 'border-gray-900 text-gray-900'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'text-gray-900'
+                  : 'text-gray-500 hover:text-gray-700'
               }`}
             >
               Essentials
-            </button>
+                                </button>
           </nav>
-        </div>
-      </div>
+                              </div>
+            </div>
             
       {/* Search Bar */}
       <div className="bg-white py-4">
@@ -494,7 +494,7 @@ export default function PropertiesPage() {
       </div>
 
       {/* Main Content - Tabbed Interface */}
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-8 bg-white">
         {activeNavTab === 'silk-route' && (
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Plan your trip</h2>
