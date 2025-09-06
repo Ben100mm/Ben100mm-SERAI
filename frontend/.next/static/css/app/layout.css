@@ -673,6 +673,9 @@ video {
 .grid {
   display: grid;
 }
+.hidden {
+  display: none;
+}
 .h-12 {
   height: 3rem;
 }
@@ -795,6 +798,9 @@ video {
 }
 .flex-1 {
   flex: 1 1 0%;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 .flex-grow {
   flex-grow: 1;
@@ -1166,6 +1172,15 @@ video {
 }
 .pt-3 {
   padding-top: 0.75rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+.pr-6 {
+  padding-right: 1.5rem;
+}
+.pt-6 {
+  padding-top: 1.5rem;
 }
 .text-left {
   text-align: left;
