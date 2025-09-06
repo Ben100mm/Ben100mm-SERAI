@@ -173,8 +173,19 @@ export default function SearchResultsPage() {
   const handleZoomOut = () => setMapZoom(prev => Math.max(prev - 1, 3));
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Custom styles for range slider */}
+    <div className="h-screen bg-white flex flex-col overflow-hidden">
+      {/* Custom styles for range slider and page overflow */}
+      <style jsx global>{`
+        html, body {
+          overflow: hidden;
+          height: 100%;
+        }
+        
+        #__next {
+          height: 100%;
+          overflow: hidden;
+        }
+      `}</style>
       <style jsx>{`
         .slider::-webkit-slider-thumb {
           appearance: none;
@@ -235,7 +246,7 @@ export default function SearchResultsPage() {
       />
 
       {/* Search Bar */}
-      <div className="bg-white border-b border-gray-200 py-4">
+      <div className="bg-white border-b border-gray-200 py-4 flex-shrink-0">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Search Form */}
@@ -311,17 +322,17 @@ export default function SearchResultsPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex h-[calc(100vh-140px)]">
+      <div className="flex flex-1 overflow-hidden">
         {/* Left Sidebar - Property Listings */}
-        <div className="w-1/2 overflow-y-auto bg-white border-r border-gray-200">
-          <div className="p-6">
-            <div className="mb-6">
-              <h1 className="text-2xl font-semibold text-gray-900">
-                Over 1,000 homes
-              </h1>
-            </div>
+        <div className="w-1/2 bg-white border-r border-gray-200 flex flex-col">
+          <div className="p-6 flex-shrink-0">
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Over 1000 stays
+            </h1>
+          </div>
 
-            {/* Property Listings Grid */}
+          {/* Property Listings Grid - Scrollable */}
+          <div className="flex-1 overflow-y-auto px-6 pb-6">
             <div className="space-y-6">
               {properties.map((property) => (
                 <div key={property.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
@@ -372,10 +383,10 @@ export default function SearchResultsPage() {
         </div>
 
         {/* Right Side - Interactive Map */}
-        <div className="w-1/2 relative">
+        <div className="w-1/2 relative flex-1 p-4 pt-6 pr-6 pb-6">
           <div 
             ref={mapRef}
-            className="w-full h-full bg-gray-100 relative"
+            className="w-full h-full bg-gray-100 relative rounded-lg"
             style={{ 
               backgroundImage: `url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><rect fill="%23e5e7eb" width="1000" height="600"/><path fill="%23d1d5db" d="M100 200 Q200 150 300 200 T500 200 L700 180 Q800 170 900 180 L950 200 Q980 220 950 250 L900 280 Q800 290 700 280 L500 300 Q300 310 300 350 T300 400 L200 420 Q150 430 100 420 Z"/></svg>')`,
               backgroundSize: 'cover',
@@ -386,7 +397,7 @@ export default function SearchResultsPage() {
             <div className="absolute top-4 right-4 flex flex-col space-y-2">
               <button
                 onClick={() => setIsMapFullscreen(!isMapFullscreen)}
-                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
+                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900"
               >
                 <Maximize2 className="h-4 w-4" />
               </button>
@@ -395,13 +406,13 @@ export default function SearchResultsPage() {
             <div className="absolute bottom-4 right-4 flex flex-col space-y-2">
               <button
                 onClick={handleZoomIn}
-                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
+                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900"
               >
                 <Plus className="h-4 w-4" />
               </button>
               <button
                 onClick={handleZoomOut}
-                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow"
+                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900"
               >
                 <Minus className="h-4 w-4" />
               </button>
