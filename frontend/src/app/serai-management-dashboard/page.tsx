@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useDashboardSync } from '../../hooks/useDashboardSync';
 import MobileManagementDashboard from '../../components/MobileManagementDashboard';
 import TopAppBar from '../../components/TopAppBar';
+import ManagementMessages from '../../components/management-dashboard/ManagementMessages';
 import { 
   Building2, 
   BarChart3, 
@@ -179,6 +180,7 @@ export default function SeraiManagementDashboardPage() {
   const [managementRole, setManagementRole] = useState<ManagementRole>('ADMIN');
   const [activeSubTab, setActiveSubTab] = useState('');
   const [isMobile, setIsMobile] = useState(false);
+  const [communicationHubTab, setCommunicationHubTab] = useState('communication-hub');
   
   // WebSocket and real-time sync
   const {
@@ -1148,113 +1150,148 @@ export default function SeraiManagementDashboardPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Communication Hub</h2>
           <p className="text-gray-600 mb-6">Centralized communication with partners, guests, and team members.</p>
           
-          {/* Communication Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold text-gray-900">Active Conversations</h3>
-                  <p className="text-2xl font-bold text-gray-700">24</p>
-                  <p className="text-sm text-gray-600">Across all channels</p>
-                </div>
-                <MessageCircle className="h-8 w-8 text-gray-700" />
-              </div>
-            </div>
-            <div className="p-4 bg-gray-200 rounded-lg border border-gray-400">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold text-gray-900">Response Rate</h3>
-                  <p className="text-2xl font-bold text-gray-700">98%</p>
-                  <p className="text-sm text-gray-600">Within 2 hours</p>
-                </div>
-                <CheckCircle className="h-8 w-8 text-gray-700" />
-              </div>
-            </div>
-            <div className="p-4 bg-gray-300 rounded-lg border border-gray-500">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold text-gray-900">Partner Messages</h3>
-                  <p className="text-2xl font-bold text-gray-800">156</p>
-                  <p className="text-sm text-gray-700">This month</p>
-                </div>
-                <Users className="h-8 w-8 text-gray-800" />
-              </div>
-            </div>
-            <div className="p-4 bg-gray-400 rounded-lg border border-gray-600">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="font-semibold text-gray-900">Guest Inquiries</h3>
-                  <p className="text-2xl font-bold text-gray-800">89</p>
-                  <p className="text-sm text-gray-700">Pending resolution</p>
-                </div>
-                <Headphones className="h-8 w-8 text-gray-800" />
-              </div>
-            </div>
+          {/* Tab Navigation */}
+          <div className="border-b border-gray-200 mb-6">
+            <nav className="-mb-px flex space-x-8">
+              <button
+                onClick={() => setCommunicationHubTab('communication-hub')}
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                  communicationHubTab === 'communication-hub'
+                    ? 'border-serai-red-500 text-serai-red-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                Communication Hub
+              </button>
+              <button
+                onClick={() => setCommunicationHubTab('messages')}
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                  communicationHubTab === 'messages'
+                    ? 'border-serai-red-500 text-serai-red-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                Messages
+              </button>
+            </nav>
           </div>
 
-          {/* Communication Channels */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="p-4 border border-gray-200 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Messages</h3>
-              <div className="space-y-3">
-                <div className="flex items-start space-x-3 p-3 bg-serai-navy-50 rounded-lg">
-                  <div className="h-8 w-8 rounded-full bg-serai-navy-100 flex items-center justify-center">
-                    <User className="h-5 w-5 text-serai-navy-600" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900">Sarah Johnson</p>
-                      <span className="text-xs text-gray-500">2 min ago</span>
+          {/* Tab Content */}
+          {communicationHubTab === 'communication-hub' && (
+            <div className="space-y-6">
+              {/* Communication Overview */}
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Active Conversations</h3>
+                      <p className="text-2xl font-bold text-gray-700">24</p>
+                      <p className="text-sm text-gray-600">Across all channels</p>
                     </div>
-                    <p className="text-sm text-gray-700">"The maintenance issue in Room 205 has been resolved. Please update the status."</p>
-                    <div className="flex items-center space-x-2 mt-2">
-                      <button className="text-xs text-serai-navy-600 hover:text-serai-navy-800">Reply</button>
-                      <button className="text-xs text-gray-500 hover:text-gray-700">Mark as Read</button>
+                    <MessageCircle className="h-8 w-8 text-gray-700" />
+                  </div>
+                </div>
+                <div className="p-4 bg-gray-200 rounded-lg border border-gray-400">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Response Rate</h3>
+                      <p className="text-2xl font-bold text-gray-700">98%</p>
+                      <p className="text-sm text-gray-600">Within 2 hours</p>
+                    </div>
+                    <CheckCircle className="h-8 w-8 text-gray-700" />
+                  </div>
+                </div>
+                <div className="p-4 bg-gray-300 rounded-lg border border-gray-500">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Partner Messages</h3>
+                      <p className="text-2xl font-bold text-gray-800">156</p>
+                      <p className="text-sm text-gray-700">This month</p>
+                    </div>
+                    <Users className="h-8 w-8 text-gray-800" />
+                  </div>
+                </div>
+                <div className="p-4 bg-gray-400 rounded-lg border border-gray-600">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-semibold text-gray-900">Guest Inquiries</h3>
+                      <p className="text-2xl font-bold text-gray-800">89</p>
+                      <p className="text-sm text-gray-700">Pending resolution</p>
+                    </div>
+                    <Headphones className="h-8 w-8 text-gray-800" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Communication Channels */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div className="p-4 border border-gray-200 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Recent Messages</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-start space-x-3 p-3 bg-serai-navy-50 rounded-lg">
+                      <div className="h-8 w-8 rounded-full bg-serai-navy-100 flex items-center justify-center">
+                        <User className="h-5 w-5 text-serai-navy-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-medium text-gray-900">Sarah Johnson</p>
+                          <span className="text-xs text-gray-500">2 min ago</span>
+                        </div>
+                        <p className="text-sm text-gray-700">"The maintenance issue in Room 205 has been resolved. Please update the status."</p>
+                        <div className="flex items-center space-x-2 mt-2">
+                          <button className="text-xs text-serai-navy-600 hover:text-serai-navy-800">Reply</button>
+                          <button className="text-xs text-gray-500 hover:text-gray-700">Mark as Read</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start space-x-3 p-3 bg-serai-forest-50 rounded-lg">
+                      <div className="h-8 w-8 rounded-full bg-serai-forest-100 flex items-center justify-center">
+                        <User className="h-5 w-5 text-serai-forest-600" />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-medium text-gray-900">Michael Chen</p>
+                          <span className="text-xs text-gray-500">15 min ago</span>
+                        </div>
+                        <p className="text-sm text-gray-700">"Revenue share payment received. Thank you for the quick processing!"</p>
+                        <div className="flex items-center space-x-2 mt-2">
+                          <button className="text-xs text-serai-navy-600 hover:text-serai-navy-800">Reply</button>
+                          <button className="text-xs text-gray-500 hover:text-gray-700">Mark as Read</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-3 p-3 bg-serai-forest-50 rounded-lg">
-                  <div className="h-8 w-8 rounded-full bg-serai-forest-100 flex items-center justify-center">
-                    <User className="h-5 w-5 text-serai-forest-600" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm font-medium text-gray-900">Michael Chen</p>
-                      <span className="text-xs text-gray-500">15 min ago</span>
-                    </div>
-                    <p className="text-sm text-gray-700">"Revenue share payment received. Thank you for the quick processing!"</p>
-                    <div className="flex items-center space-x-2 mt-2">
-                      <button className="text-xs text-serai-navy-600 hover:text-serai-navy-800">Reply</button>
-                      <button className="text-xs text-gray-500 hover:text-gray-700">Mark as Read</button>
-                    </div>
+                <div className="p-4 border border-gray-200 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                  <div className="space-y-3">
+                    <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
+                      <Send className="h-4 w-4" />
+                      <span>Send Announcement</span>
+                    </button>
+                    <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-forest-600 text-white rounded-lg hover:bg-serai-forest-700 transition-colors">
+                      <MessageCircle className="h-4 w-4" />
+                      <span>Start Group Chat</span>
+                    </button>
+                    <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-gold-600 text-white rounded-lg hover:bg-serai-gold-700 transition-colors">
+                      <Bell className="h-4 w-4" />
+                      <span>Send Notification</span>
+                    </button>
+                    <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                      <FileText className="h-4 w-4" />
+                      <span>Create Report</span>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-            
-            <div className="p-4 border border-gray-200 rounded-lg">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-              <div className="space-y-3">
-                <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
-                  <Send className="h-4 w-4" />
-                  <span>Send Announcement</span>
-                </button>
-                <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-forest-600 text-white rounded-lg hover:bg-serai-forest-700 transition-colors">
-                  <MessageCircle className="h-4 w-4" />
-                  <span>Start Group Chat</span>
-                </button>
-                <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-gold-600 text-white rounded-lg hover:bg-serai-gold-700 transition-colors">
-                  <Bell className="h-4 w-4" />
-                  <span>Send Notification</span>
-                </button>
-                <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
-                  <FileText className="h-4 w-4" />
-                  <span>Create Report</span>
-                </button>
-              </div>
-            </div>
-          </div>
+          )}
+
+          {communicationHubTab === 'messages' && (
+            <ManagementMessages />
+          )}
         </div>
       </div>
     );
@@ -1568,11 +1605,15 @@ export default function SeraiManagementDashboardPage() {
 
           {/* Page Content */}
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+            {activeSection === 'communication-hub' && communicationHubTab === 'messages' ? (
+              renderDashboardContent()
+            ) : (
             <div className="pt-8 pb-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {renderDashboardContent()}
               </div>
             </div>
+            )}
           </main>
         </div>
       </div>

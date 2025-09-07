@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, Suspense, lazy } from 'react';
+import { useState, Suspense, lazy, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import TopAppBar from '@/components/TopAppBar';
 import { DASHBOARD_FEATURES, PARTNERSHIP_RESTRICTIONS } from '@/data/partnershipData';
@@ -12,6 +13,7 @@ const DashboardOverview = lazy(() => import('@/components/partner-dashboard/Dash
 const PropertyManagement = lazy(() => import('@/components/partner-dashboard/PropertyManagement'));
 const RevenueFinancial = lazy(() => import('@/components/partner-dashboard/RevenueFinancial'));
 const MasterLeaseContent = lazy(() => import('@/components/partner-dashboard/MasterLeaseContent'));
+const PartnerMessages = lazy(() => import('@/components/partner-dashboard/PartnerMessages'));
 
 // Type definitions
 type PartnershipModel = 'Master Lease' | 'Hybrid Lease' | 'Revenue Share' | 'Management Agreement' | 'Franchise Model';
@@ -29,10 +31,19 @@ type PartnershipRestrictionsMap = {
 };
 
 export default function PartnerDashboardPage() {
+  const searchParams = useSearchParams();
   const [activeSection, setActiveSection] = useState('overview');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [partnershipModel, setPartnershipModel] = useState<PartnershipModel>('Revenue Share'); // Default partnership model
   const [activeSubTab, setActiveSubTab] = useState('');
+
+  // Handle URL parameters for direct navigation
+  useEffect(() => {
+    const section = searchParams.get('section');
+    if (section && DASHBOARD_FEATURES.some((f: any) => f.id === section)) {
+      setActiveSection(section);
+    }
+  }, [searchParams]);
 
   // Use external data for better tree-shaking
   const dashboardFeatures = DASHBOARD_FEATURES;
@@ -184,6 +195,15 @@ export default function PartnerDashboardPage() {
                 <RevenueFinancial partnershipModel={partnershipModel} />
               </Suspense>
             </div>
+          </div>
+        );
+
+      case 'communication':
+        return (
+          <div className="space-y-6">
+            <Suspense fallback={<div className="animate-pulse bg-gray-200 h-screen rounded" />}>
+              <PartnerMessages />
+            </Suspense>
           </div>
         );
 
@@ -352,11 +372,15 @@ export default function PartnerDashboardPage() {
 
           {/* Page Content */}
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-            <div className="pt-8 pb-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                {renderDashboardContent()}
+            {activeSection === 'communication' ? (
+              renderDashboardContent()
+            ) : (
+              <div className="pt-8 pb-6">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                  {renderDashboardContent()}
+                </div>
               </div>
-            </div>
+            )}
           </main>
         </div>
       </div>

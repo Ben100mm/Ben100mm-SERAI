@@ -38,6 +38,13 @@ const XCircle = lazy(() => import('lucide-react').then(mod => ({ default: mod.XC
 const Eye = lazy(() => import('lucide-react').then(mod => ({ default: mod.Eye })));
 const Star = lazy(() => import('lucide-react').then(mod => ({ default: mod.Star })));
 const MapPin = lazy(() => import('lucide-react').then(mod => ({ default: mod.MapPin })));
+const Send = lazy(() => import('lucide-react').then(mod => ({ default: mod.Send })));
+const Paperclip = lazy(() => import('lucide-react').then(mod => ({ default: mod.Paperclip })));
+const Smile = lazy(() => import('lucide-react').then(mod => ({ default: mod.Smile })));
+const Flag = lazy(() => import('lucide-react').then(mod => ({ default: mod.Flag })));
+const CreditCard = lazy(() => import('lucide-react').then(mod => ({ default: mod.CreditCard })));
+const Download = lazy(() => import('lucide-react').then(mod => ({ default: mod.Download })));
+const MoreVertical = lazy(() => import('lucide-react').then(mod => ({ default: mod.MoreVertical })));
 
 // Icon wrapper with Suspense fallback
 const IconWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
@@ -254,5 +261,48 @@ export const LazyStar = (props: any) => (
 export const LazyMapPin = (props: any) => (
   <IconWrapper className="h-5 w-5">
     <MapPin {...props} />
+  </IconWrapper>
+);
+
+export const LazySend = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <Send {...props} />
+  </IconWrapper>
+);
+
+export const LazyPaperclip = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <Paperclip {...props} />
+  </IconWrapper>
+);
+
+export const LazySmile = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <Smile {...props} />
+  </IconWrapper>
+);
+
+
+export const LazyFlag = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <Flag {...props} />
+  </IconWrapper>
+);
+
+export const LazyCreditCard = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <CreditCard {...props} />
+  </IconWrapper>
+);
+
+export const LazyDownload = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <Download {...props} />
+  </IconWrapper>
+);
+
+export const LazyMoreVertical = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <MoreVertical {...props} />
   </IconWrapper>
 );

@@ -32,6 +32,7 @@ const HostsOverview = lazy(() => import('../../components/hosts-dashboard/HostsO
 const PropertyManagement = lazy(() => import('../../components/hosts-dashboard/PropertyManagement'));
 const ExperienceManagement = lazy(() => import('../../components/hosts-dashboard/ExperienceManagement'));
 const ServiceManagement = lazy(() => import('../../components/hosts-dashboard/ServiceManagement'));
+const Messages = lazy(() => import('../../components/hosts-dashboard/Messages'));
 
 // Type definitions
 type HostType = 'Property Host' | 'Experience Host' | 'Service Host' | 'Multi-Host';
@@ -49,7 +50,17 @@ type HostRestrictionsMap = {
 
 export default function HostsDashboardPage() {
   const searchParams = useSearchParams();
-  const [activeSection, setActiveSection] = useState('overview');
+  
+  // Initialize activeSection based on URL parameter
+  const getInitialSection = () => {
+    const section = searchParams.get('section');
+    if (section && HOSTS_DASHBOARD_FEATURES.some((f: any) => f.id === section)) {
+      return section;
+    }
+    return 'overview';
+  };
+  
+  const [activeSection, setActiveSection] = useState(getInitialSection);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [hostType, setHostType] = useState<HostType>('Multi-Host'); // Default host type
   const [activeSubTab, setActiveSubTab] = useState('properties');
@@ -252,19 +263,14 @@ export default function HostsDashboardPage() {
 
       case 'messages':
         return (
-          <div className="space-y-6">
-            <div className="bg-gray-100 rounded-lg shadow-sm border border-gray-300 p-6">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Messages</h2>
-              <p className="text-gray-600 mb-6">Communicate with guests, handle inquiries and reviews.</p>
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <div className="h-96 bg-gray-50 rounded flex items-center justify-center">
-                  <div className="text-center">
-                    <MessageSquare className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-500">Messages interface will be implemented here</p>
-                  </div>
-                </div>
+          <div className="h-screen">
+            <Suspense fallback={
+              <div className="h-full flex items-center justify-center">
+                <div className="animate-pulse bg-gray-200 h-32 w-full rounded" />
               </div>
-            </div>
+            }>
+              <Messages />
+            </Suspense>
           </div>
         );
 
@@ -900,11 +906,15 @@ export default function HostsDashboardPage() {
 
           {/* Page Content */}
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-            <div className="pt-8 pb-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                {renderDashboardContent()}
+            {activeSection === 'messages' ? (
+              renderDashboardContent()
+            ) : (
+              <div className="pt-8 pb-6">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                  {renderDashboardContent()}
+                </div>
               </div>
-            </div>
+            )}
           </main>
         </div>
       </div>
