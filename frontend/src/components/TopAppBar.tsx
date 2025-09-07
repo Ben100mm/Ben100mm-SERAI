@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
 import { ArrowLeft, Globe, Menu, ChevronDown, Bell } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface TopAppBarProps {
   backHref?: string;
@@ -24,6 +25,7 @@ export default function TopAppBar({
   className = '',
   hiddenDropdownItems = []
 }: TopAppBarProps) {
+  const { user } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isListingModalOpen, setIsListingModalOpen] = useState(false);
@@ -81,15 +83,6 @@ export default function TopAppBar({
         </div>
         
         <div className="flex items-center space-x-4">
-          {showListingButton && (
-            <button 
-              onClick={() => setIsListingModalOpen(true)}
-              className="text-gray-600 hover:text-gray-800 text-sm font-medium"
-            >
-              List with SERAI
-            </button>
-          )}
-          
           {/* Notifications */}
           <button className="p-2 hover:bg-gray-100 rounded-full relative">
             <Bell className="h-5 w-5 text-gray-600" />
@@ -177,6 +170,18 @@ export default function TopAppBar({
                     >
                       Partner with SERAI
                     </Link>
+                  )}
+
+                  {showListingButton && !hiddenDropdownItems.includes('List with SERAI') && (
+                    <button 
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsListingModalOpen(true);
+                      }}
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      List with SERAI
+                    </button>
                   )}
 
                   {/* Divider */}
@@ -390,7 +395,20 @@ export default function TopAppBar({
             {/* Options */}
             <div className="grid grid-cols-1 gap-4 mb-8">
               {/* Property */}
-              <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
+              <button 
+                onClick={() => {
+                  setIsListingModalOpen(false);
+                  // Check if user is verified to determine flow
+                  if (user?.isVerified) {
+                    // Verified user: go to confirm number
+                    window.location.href = '/auth/confirm-number?phone=+16478498545';
+                  } else {
+                    // New user: go to login/signup
+                    window.location.href = '/auth/login-signup';
+                  }
+                }}
+                className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left w-full"
+              >
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 mb-4 flex items-center justify-center">
                     <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
@@ -406,7 +424,20 @@ export default function TopAppBar({
               </button>
 
               {/* Experience */}
-              <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
+              <button 
+                onClick={() => {
+                  setIsListingModalOpen(false);
+                  // Check if user is verified to determine flow
+                  if (user?.isVerified) {
+                    // Verified user: go to confirm number
+                    window.location.href = '/auth/confirm-number?phone=+16478498545';
+                  } else {
+                    // New user: go to login/signup
+                    window.location.href = '/auth/login-signup';
+                  }
+                }}
+                className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left w-full"
+              >
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 mb-4 flex items-center justify-center">
                     <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
@@ -423,7 +454,20 @@ export default function TopAppBar({
               </button>
 
               {/* Service */}
-              <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
+              <button 
+                onClick={() => {
+                  setIsListingModalOpen(false);
+                  // Check if user is verified to determine flow
+                  if (user?.isVerified) {
+                    // Verified user: go to confirm number
+                    window.location.href = '/auth/confirm-number?phone=+16478498545';
+                  } else {
+                    // New user: go to login/signup
+                    window.location.href = '/auth/login-signup';
+                  }
+                }}
+                className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left w-full"
+              >
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 mb-4 flex items-center justify-center">
                     <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
@@ -436,8 +480,21 @@ export default function TopAppBar({
             </div>
 
             {/* Next Button */}
-            <button className="w-full bg-serai-navy-500 text-white py-3 px-6 rounded-lg hover:bg-serai-navy-600 transition-colors duration-200">
-              Next
+            <button 
+              onClick={() => {
+                setIsListingModalOpen(false);
+                // Check if user is verified to determine flow
+                if (user?.isVerified) {
+                  // Verified user: go to confirm number
+                  window.location.href = '/auth/confirm-number?phone=+16478498545';
+                } else {
+                  // New user: go to login/signup
+                  window.location.href = '/auth/login-signup';
+                }
+              }}
+              className="w-full bg-serai-navy-500 text-white py-3 px-6 rounded-lg hover:bg-serai-navy-600 transition-colors duration-200 text-center"
+            >
+              {user?.isVerified ? 'Go to Host Dashboard' : 'Next'}
             </button>
           </div>
         </div>

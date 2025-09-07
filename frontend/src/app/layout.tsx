@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   keywords: ['hotel', 'booking', 'boutique', 'travel', 'hospitality', 'AI'],
   authors: [{ name: 'SERAI Team' }],
   icons: {
-    icon: '/Serai-Favicon-Black.ico',
-    shortcut: '/Serai-Favicon-Black.ico',
-    apple: '/Serai-Favicon-Black.ico',
+    icon: '/Serai-Favicon-Black.ico?v=2',
+    shortcut: '/Serai-Favicon-Black.ico?v=2',
+    apple: '/Serai-Favicon-Black.ico?v=2',
   },
 };
 

@@ -262,6 +262,13 @@ export default function DevSettingsPage() {
                     Go to Help Page
                   </button>
                   <button
+                    onClick={() => router.push('/hosts-dashboard')}
+                    className="text-left px-3 py-2 bg-serai-navy-100 hover:bg-serai-navy-200 rounded-lg text-sm transition-colors flex items-center space-x-2"
+                  >
+                    <Building className="h-4 w-4" />
+                    <span>Go to Hosts Dashboard</span>
+                  </button>
+                  <button
                     onClick={() => router.push('/partner-dashboard')}
                     className="text-left px-3 py-2 bg-serai-forest-100 hover:bg-serai-forest-200 rounded-lg text-sm transition-colors flex items-center space-x-2"
                   >

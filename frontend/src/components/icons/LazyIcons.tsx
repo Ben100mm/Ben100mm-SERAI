@@ -36,6 +36,8 @@ const Mail = lazy(() => import('lucide-react').then(mod => ({ default: mod.Mail 
 const CheckCircle = lazy(() => import('lucide-react').then(mod => ({ default: mod.CheckCircle })));
 const XCircle = lazy(() => import('lucide-react').then(mod => ({ default: mod.XCircle })));
 const Eye = lazy(() => import('lucide-react').then(mod => ({ default: mod.Eye })));
+const Star = lazy(() => import('lucide-react').then(mod => ({ default: mod.Star })));
+const MapPin = lazy(() => import('lucide-react').then(mod => ({ default: mod.MapPin })));
 
 // Icon wrapper with Suspense fallback
 const IconWrapper = ({ children, className }: { children: React.ReactNode; className?: string }) => (
@@ -240,5 +242,17 @@ export const LazyXCircle = (props: any) => (
 export const LazyEye = (props: any) => (
   <IconWrapper className="h-5 w-5">
     <Eye {...props} />
+  </IconWrapper>
+);
+
+export const LazyStar = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <Star {...props} />
+  </IconWrapper>
+);
+
+export const LazyMapPin = (props: any) => (
+  <IconWrapper className="h-5 w-5">
+    <MapPin {...props} />
   </IconWrapper>
 );
