@@ -279,7 +279,6 @@ export default function MembershipsPage() {
                       <span className={`text-4xl font-bold ${colors.text}`}>
                         ${tier.price}
                       </span>
-                      <span className="text-gray-700 ml-1">/{tier.period}</span>
                     </div>
                   </div>
 

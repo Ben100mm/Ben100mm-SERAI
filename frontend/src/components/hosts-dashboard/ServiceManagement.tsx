@@ -79,13 +79,13 @@ export default function ServiceManagement({ hostType }: ServiceManagementProps) 
             placeholder="Search services..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500"
+            className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500"
           />
         </div>
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500"
+          className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500 text-gray-900"
         >
           <option value="all">All Status</option>
           <option value="active">Active</option>
@@ -95,7 +95,7 @@ export default function ServiceManagement({ hostType }: ServiceManagementProps) 
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500"
+          className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500 text-gray-900"
         >
           <option value="all">All Types</option>
           <option value="Culinary">Culinary</option>

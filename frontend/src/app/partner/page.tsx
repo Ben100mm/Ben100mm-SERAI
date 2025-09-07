@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronDown, CheckCircle, Building2, Users, TrendingUp, Shield, Zap, Globe, ArrowRight, Star, Award, BarChart3, Smartphone, Wifi, Lock, Headphones, Target, Lightbulb } from 'lucide-react';
+import { ChevronDown, CheckCircle, Building2, Users, TrendingUp, Shield, Zap, Globe, ArrowRight, Star, Award, BarChart3, Smartphone, Wifi, Lock, Headphones, Target, Lightbulb, UserCheck, Brain, Wrench } from 'lucide-react';
 import TopAppBar from '@/components/TopAppBar';
 
 export default function PartnerPage() {
@@ -10,8 +10,42 @@ export default function PartnerPage() {
   const [selectedCity, setSelectedCity] = useState('Select a city');
 
   const cities = [
-    'Montreal', 'Toronto', 'Vancouver', 'Quebec City', 'Ottawa', 
-    'Calgary', 'Edmonton', 'Winnipeg', 'Halifax', 'Victoria'
+    'New York City',
+    'Los Angeles',
+    'San Francisco',
+    'Santa Monica',
+    'San Diego',
+    'Boston',
+    'Washington D.C.',
+    'Seattle',
+    'Chicago',
+    'Vancouver',
+    'Toronto',
+    'Montreal',
+    'Paris',
+    'Barcelona',
+    'Berlin',
+    'Amsterdam',
+    'Madrid',
+    'Valencia',
+    'Florence',
+    'Lisbon',
+    'Athens',
+    'Vienna',
+    'Dublin',
+    'Brussels',
+    'San Sebastián',
+    'Singapore',
+    'Hong Kong',
+    'Tokyo',
+    'Kyoto',
+    'Bangkok',
+    'Penang',
+    'Bali',
+    'Sydney',
+    'Queenstown',
+    'Dubai',
+    'Seoul'
   ];
 
   const benefits = [
@@ -142,6 +176,18 @@ export default function PartnerPage() {
     {
       icon: <Smartphone className="h-6 w-6 text-serai-red-600" />,
       title: "Virtual concierge"
+    },
+    {
+      icon: <UserCheck className="h-6 w-6 text-serai-red-600" />,
+      title: "AI-Powered Seamless Check-in/Check-out"
+    },
+    {
+      icon: <Brain className="h-6 w-6 text-serai-red-600" />,
+      title: "AI-Powered Personalized Recommendations"
+    },
+    {
+      icon: <Wrench className="h-6 w-6 text-serai-red-600" />,
+      title: "AI-Powered Instant Problem Resolution"
     }
   ];
 
@@ -175,11 +221,11 @@ export default function PartnerPage() {
       />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-gray-50 to-white py-20">
+      <section className="bg-gradient-to-br from-gray-50 to-white pt-32 pb-8">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Partner With Serai
+              Partner With Us
             </h1>
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
               Your trusted partner for occupancy, stability, and growth.
@@ -192,13 +238,13 @@ export default function PartnerPage() {
                   onClick={() => setIsCityDropdownOpen(!isCityDropdownOpen)}
                   className="flex items-center space-x-2 bg-white border border-gray-300 rounded-full px-6 py-3 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-gray-700">{selectedCity}</span>
+                  <span style={{ color: '#000000', fontWeight: '600' }}>{selectedCity}</span>
                   <ChevronDown className="h-5 w-5 text-gray-500" />
                 </button>
                 
                 {isCityDropdownOpen && (
                   <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
-                    <div className="p-2">
+                    <div className="p-2 max-h-40 overflow-y-auto">
                       {cities.map((city) => (
                         <button
                           key={city}
@@ -207,6 +253,7 @@ export default function PartnerPage() {
                             setIsCityDropdownOpen(false);
                           }}
                           className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded text-sm"
+                          style={{ color: '#000000', fontWeight: '500' }}
                         >
                           {city}
                         </button>
@@ -216,16 +263,12 @@ export default function PartnerPage() {
                 )}
               </div>
             </div>
-
-            <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
-              Contact Us
-            </button>
           </div>
         </div>
       </section>
 
       {/* Why Partner With Us */}
-      <section className="py-20 bg-white">
+      <section className="pt-8 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Why Partner With Us?</h2>
@@ -447,7 +490,7 @@ export default function PartnerPage() {
       {/* How to Partner */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">How to Partner With Serai</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">How to Partner With Us</h2>
           <p className="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">
             Partnering with Serai is a simple 3-step process:
           </p>
