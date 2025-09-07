@@ -24,13 +24,13 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'bg-green-100 text-green-800';
+        return 'bg-serai-forest-100 text-serai-forest-800';
       case 'Draft':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-serai-gold-100 text-serai-gold-800';
       case 'Inactive':
-        return 'bg-red-100 text-red-800';
+        return 'bg-serai-red-100 text-serai-red-800';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-serai-neutral-100 text-serai-neutral-800';
     }
   };
 
@@ -46,7 +46,7 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+          className="flex items-center space-x-2 px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors"
         >
           <Plus className="h-4 w-4" />
           <span>Add Property</span>
@@ -62,20 +62,20 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
             placeholder="Search properties..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500"
           />
         </div>
         <select
           value={filterStatus}
           onChange={(e) => setFilterStatus(e.target.value)}
-          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500"
+          className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-serai-red-500"
         >
           <option value="all">All Status</option>
           <option value="active">Active</option>
           <option value="draft">Draft</option>
           <option value="inactive">Inactive</option>
         </select>
-        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+        <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-gray-700">
           <Filter className="h-4 w-4" />
           <span>More Filters</span>
         </button>
@@ -149,7 +149,7 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
                   <Edit className="h-4 w-4" />
                   <span className="text-sm">Edit</span>
                 </button>
-                <button className="px-3 py-2 border border-red-300 text-red-600 rounded-lg hover:bg-red-50 transition-colors">
+                <button className="px-3 py-2 border border-serai-red-300 text-serai-red-500 rounded-lg hover:bg-serai-red-50 transition-colors">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>
@@ -172,7 +172,7 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
           {!searchTerm && filterStatus === 'all' && (
             <button
               onClick={() => setShowAddModal(true)}
-              className="flex items-center space-x-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors mx-auto"
+              className="flex items-center space-x-2 px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors mx-auto"
             >
               <Plus className="h-4 w-4" />
               <span>Add Your First Property</span>
@@ -196,7 +196,7 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
               </button>
               <button
                 onClick={() => setShowAddModal(false)}
-                className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                className="flex-1 px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600"
               >
                 Create Property
               </button>

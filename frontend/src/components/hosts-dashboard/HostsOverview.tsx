@@ -15,28 +15,28 @@ export default function HostsOverview({ hostType, setHostType }: HostsOverviewPr
   const getQuickStats = () => {
     const stats = {
       'Property Host': [
-        { label: 'Active Properties', value: '3', icon: <Building2 className="h-8 w-8" />, color: 'bg-blue-100 text-blue-600' },
-        { label: 'Monthly Revenue', value: '$2,400', icon: <DollarSign className="h-8 w-8" />, color: 'bg-green-100 text-green-600' },
-        { label: 'Occupancy Rate', value: '87%', icon: <TrendingUp className="h-8 w-8" />, color: 'bg-purple-100 text-purple-600' },
-        { label: 'Guest Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-yellow-100 text-yellow-600' }
+        { label: 'Active Properties', value: '3', icon: <Building2 className="h-8 w-8" />, color: 'bg-serai-navy-100 text-serai-navy-500' },
+        { label: 'Monthly Revenue', value: '$2,400', icon: <DollarSign className="h-8 w-8" />, color: 'bg-serai-red-100 text-serai-red-500' },
+        { label: 'Occupancy Rate', value: '87%', icon: <TrendingUp className="h-8 w-8" />, color: 'bg-serai-gold-100 text-serai-gold-500' },
+        { label: 'Guest Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-serai-forest-100 text-serai-forest-500' }
       ],
       'Experience Host': [
-        { label: 'Active Experiences', value: '2', icon: <Star className="h-8 w-8" />, color: 'bg-yellow-100 text-yellow-600' },
-        { label: 'Monthly Bookings', value: '24', icon: <Calendar className="h-8 w-8" />, color: 'bg-blue-100 text-blue-600' },
-        { label: 'Guest Satisfaction', value: '4.8', icon: <Users className="h-8 w-8" />, color: 'bg-green-100 text-green-600' },
-        { label: 'Average Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-purple-100 text-purple-600' }
+        { label: 'Active Experiences', value: '2', icon: <Star className="h-8 w-8" />, color: 'bg-serai-gold-100 text-serai-gold-500' },
+        { label: 'Monthly Bookings', value: '24', icon: <Calendar className="h-8 w-8" />, color: 'bg-serai-navy-100 text-serai-navy-500' },
+        { label: 'Guest Satisfaction', value: '4.8', icon: <Users className="h-8 w-8" />, color: 'bg-serai-red-100 text-serai-red-500' },
+        { label: 'Average Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-serai-forest-100 text-serai-forest-500' }
       ],
       'Service Host': [
-        { label: 'Active Services', value: '2', icon: <Settings className="h-8 w-8" />, color: 'bg-gray-100 text-gray-600' },
-        { label: 'Monthly Bookings', value: '18', icon: <Calendar className="h-8 w-8" />, color: 'bg-blue-100 text-blue-600' },
-        { label: 'Service Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-yellow-100 text-yellow-600' },
-        { label: 'Repeat Customers', value: '65%', icon: <Users className="h-8 w-8" />, color: 'bg-green-100 text-green-600' }
+        { label: 'Active Services', value: '2', icon: <Settings className="h-8 w-8" />, color: 'bg-serai-charcoal-100 text-serai-charcoal-500' },
+        { label: 'Monthly Bookings', value: '18', icon: <Calendar className="h-8 w-8" />, color: 'bg-serai-navy-100 text-serai-navy-500' },
+        { label: 'Service Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-serai-gold-100 text-serai-gold-500' },
+        { label: 'Repeat Customers', value: '65%', icon: <Users className="h-8 w-8" />, color: 'bg-serai-red-100 text-serai-red-500' }
       ],
       'Multi-Host': [
-        { label: 'Total Listings', value: '7', icon: <Building2 className="h-8 w-8" />, color: 'bg-blue-100 text-blue-600' },
-        { label: 'Monthly Revenue', value: '$3,200', icon: <DollarSign className="h-8 w-8" />, color: 'bg-green-100 text-green-600' },
-        { label: 'Overall Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-yellow-100 text-yellow-600' },
-        { label: 'Active Bookings', value: '42', icon: <Calendar className="h-8 w-8" />, color: 'bg-purple-100 text-purple-600' }
+        { label: 'Total Listings', value: '7', icon: <Building2 className="h-8 w-8" />, color: 'bg-serai-navy-100 text-serai-navy-500' },
+        { label: 'Monthly Revenue', value: '$3,200', icon: <DollarSign className="h-8 w-8" />, color: 'bg-serai-red-100 text-serai-red-500' },
+        { label: 'Overall Rating', value: '4.8', icon: <Star className="h-8 w-8" />, color: 'bg-serai-gold-100 text-serai-gold-500' },
+        { label: 'Active Bookings', value: '42', icon: <Calendar className="h-8 w-8" />, color: 'bg-serai-forest-100 text-serai-forest-500' }
       ]
     };
     return stats[hostType as keyof typeof stats] || stats['Multi-Host'];

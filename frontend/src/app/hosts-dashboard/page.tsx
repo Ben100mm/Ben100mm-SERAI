@@ -188,7 +188,7 @@ export default function HostsDashboardPage() {
                     onClick={() => setActiveSubTab('properties')}
                     className={`py-2 px-1 border-b-2 text-sm font-medium ${
                       activeSubTab === 'properties'
-                        ? 'border-red-500 text-red-600'
+                        ? 'border-serai-red-500 text-serai-red-500'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -198,7 +198,7 @@ export default function HostsDashboardPage() {
                     onClick={() => setActiveSubTab('experiences')}
                     className={`py-2 px-1 border-b-2 text-sm font-medium ${
                       activeSubTab === 'experiences'
-                        ? 'border-red-500 text-red-600'
+                        ? 'border-serai-red-500 text-serai-red-500'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -208,7 +208,7 @@ export default function HostsDashboardPage() {
                     onClick={() => setActiveSubTab('services')}
                     className={`py-2 px-1 border-b-2 text-sm font-medium ${
                       activeSubTab === 'services'
-                        ? 'border-red-500 text-red-600'
+                        ? 'border-serai-red-500 text-serai-red-500'
                         : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
@@ -282,9 +282,9 @@ export default function HostsDashboardPage() {
                     <div>
                       <p className="text-sm text-gray-600">Total Earnings</p>
                       <p className="text-2xl font-bold text-gray-900">$3,240</p>
-                      <p className="text-sm text-green-600">+12% vs last month</p>
+                      <p className="text-sm text-serai-red-500">+12% vs last month</p>
                     </div>
-                    <DollarSign className="h-8 w-8 text-green-600" />
+                    <DollarSign className="h-8 w-8 text-serai-red-500" />
                   </div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -294,7 +294,7 @@ export default function HostsDashboardPage() {
                       <p className="text-2xl font-bold text-gray-900">$1,850</p>
                       <p className="text-sm text-gray-500">15 bookings</p>
                     </div>
-                    <Calendar className="h-8 w-8 text-blue-600" />
+                    <Calendar className="h-8 w-8 text-serai-navy-500" />
                   </div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -302,9 +302,9 @@ export default function HostsDashboardPage() {
                     <div>
                       <p className="text-sm text-gray-600">Pending</p>
                       <p className="text-2xl font-bold text-gray-900">$420</p>
-                      <p className="text-sm text-yellow-600">3 payments</p>
+                      <p className="text-sm text-serai-gold-500">3 payments</p>
                     </div>
-                    <Clock className="h-8 w-8 text-yellow-600" />
+                    <Clock className="h-8 w-8 text-serai-gold-500" />
                   </div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -314,7 +314,7 @@ export default function HostsDashboardPage() {
                       <p className="text-2xl font-bold text-gray-900">$123</p>
                       <p className="text-sm text-gray-500">All time</p>
                     </div>
-                    <BarChart3 className="h-8 w-8 text-purple-600" />
+                    <BarChart3 className="h-8 w-8 text-serai-forest-500" />
                   </div>
                 </div>
               </div>
@@ -364,9 +364,9 @@ export default function HostsDashboardPage() {
                     <div>
                       <p className="text-sm text-gray-600">Occupancy Rate</p>
                       <p className="text-2xl font-bold text-gray-900">87%</p>
-                      <p className="text-sm text-green-600">+5% vs last month</p>
+                      <p className="text-sm text-serai-red-500">+5% vs last month</p>
                     </div>
-                    <BarChart3 className="h-8 w-8 text-blue-600" />
+                    <BarChart3 className="h-8 w-8 text-serai-navy-500" />
                   </div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -376,7 +376,7 @@ export default function HostsDashboardPage() {
                       <p className="text-2xl font-bold text-gray-900">4.8</p>
                       <p className="text-sm text-gray-500">Based on 24 reviews</p>
                     </div>
-                    <Star className="h-8 w-8 text-yellow-600" />
+                    <Star className="h-8 w-8 text-serai-gold-500" />
                   </div>
                 </div>
                 <div className="bg-white rounded-lg border border-gray-200 p-4">
@@ -384,9 +384,9 @@ export default function HostsDashboardPage() {
                     <div>
                       <p className="text-sm text-gray-600">Response Time</p>
                       <p className="text-2xl font-bold text-gray-900">2.3h</p>
-                      <p className="text-sm text-green-600">-0.5h vs last month</p>
+                      <p className="text-sm text-serai-forest-500">-0.5h vs last month</p>
                     </div>
-                    <Clock className="h-8 w-8 text-green-600" />
+                    <Clock className="h-8 w-8 text-serai-forest-500" />
                   </div>
                 </div>
               </div>
@@ -409,7 +409,7 @@ export default function HostsDashboardPage() {
                       <span className="text-sm text-gray-600">Direct Bookings</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-20 bg-gray-200 rounded-full h-2">
-                          <div className="bg-blue-600 h-2 rounded-full" style={{width: '60%'}}></div>
+                          <div className="bg-serai-navy-500 h-2 rounded-full" style={{width: '60%'}}></div>
                         </div>
                         <span className="text-sm font-semibold text-gray-900">60%</span>
                       </div>
@@ -418,7 +418,7 @@ export default function HostsDashboardPage() {
                       <span className="text-sm text-gray-600">Serai Platform</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-20 bg-gray-200 rounded-full h-2">
-                          <div className="bg-green-600 h-2 rounded-full" style={{width: '30%'}}></div>
+                          <div className="bg-serai-red-500 h-2 rounded-full" style={{width: '30%'}}></div>
                         </div>
                         <span className="text-sm font-semibold text-gray-900">30%</span>
                       </div>
@@ -427,7 +427,7 @@ export default function HostsDashboardPage() {
                       <span className="text-sm text-gray-600">Other Channels</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-20 bg-gray-200 rounded-full h-2">
-                          <div className="bg-yellow-600 h-2 rounded-full" style={{width: '10%'}}></div>
+                          <div className="bg-serai-gold-500 h-2 rounded-full" style={{width: '10%'}}></div>
                         </div>
                         <span className="text-sm font-semibold text-gray-900">10%</span>
                       </div>
@@ -450,8 +450,8 @@ export default function HostsDashboardPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Settings className="h-5 w-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-serai-navy-100 rounded-lg flex items-center justify-center">
+                      <Settings className="h-5 w-5 text-serai-navy-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Getting Started</h3>
                   </div>
@@ -465,8 +465,8 @@ export default function HostsDashboardPage() {
 
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Star className="h-5 w-5 text-green-600" />
+                    <div className="w-10 h-10 bg-serai-gold-100 rounded-lg flex items-center justify-center">
+                      <Star className="h-5 w-5 text-serai-gold-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Guest Experience</h3>
                   </div>
@@ -480,8 +480,8 @@ export default function HostsDashboardPage() {
 
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <BarChart3 className="h-5 w-5 text-purple-600" />
+                    <div className="w-10 h-10 bg-serai-forest-100 rounded-lg flex items-center justify-center">
+                      <BarChart3 className="h-5 w-5 text-serai-forest-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Business Growth</h3>
                   </div>
@@ -506,54 +506,54 @@ export default function HostsDashboardPage() {
               
               {/* Help Options */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 h-full flex flex-col">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <HelpCircle className="h-5 w-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-serai-navy-100 rounded-lg flex items-center justify-center">
+                      <HelpCircle className="h-5 w-5 text-serai-navy-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Help Center</h3>
                   </div>
-                  <p className="text-sm text-gray-600 mb-4">Browse our comprehensive knowledge base for answers to common questions.</p>
-                  <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                  <p className="text-sm text-gray-600 mb-4 flex-1">Browse our comprehensive knowledge base for answers to common questions.</p>
+                  <button className="w-full px-4 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 transition-colors mt-auto">
                     Browse Help Center
                   </button>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 h-full flex flex-col">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <MessageSquare className="h-5 w-5 text-green-600" />
+                    <div className="w-10 h-10 bg-serai-red-100 rounded-lg flex items-center justify-center">
+                      <MessageSquare className="h-5 w-5 text-serai-red-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Contact Support</h3>
                   </div>
-                  <p className="text-sm text-gray-600 mb-4">Get personalized help from our support team via chat or email.</p>
-                  <button className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                  <p className="text-sm text-gray-600 mb-4 flex-1">Get personalized help from our support team via chat or email.</p>
+                  <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors mt-auto">
                     Contact Support
                   </button>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 h-full flex flex-col">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Users className="h-5 w-5 text-purple-600" />
+                    <div className="w-10 h-10 bg-serai-forest-100 rounded-lg flex items-center justify-center">
+                      <Users className="h-5 w-5 text-serai-forest-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Community Forum</h3>
                   </div>
-                  <p className="text-sm text-gray-600 mb-4">Connect with other hosts and share experiences in our community.</p>
-                  <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                  <p className="text-sm text-gray-600 mb-4 flex-1">Connect with other hosts and share experiences in our community.</p>
+                  <button className="w-full px-4 py-2 bg-serai-forest-500 text-white rounded-lg hover:bg-serai-forest-600 transition-colors mt-auto">
                     Join Community
                   </button>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 h-full flex flex-col">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                      <Calendar className="h-5 w-5 text-yellow-600" />
+                    <div className="w-10 h-10 bg-serai-gold-100 rounded-lg flex items-center justify-center">
+                      <Calendar className="h-5 w-5 text-serai-gold-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Schedule Call</h3>
                   </div>
-                  <p className="text-sm text-gray-600 mb-4">Book a one-on-one call with our hosting experts.</p>
-                  <button className="w-full px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors">
+                  <p className="text-sm text-gray-600 mb-4 flex-1">Book a one-on-one call with our hosting experts.</p>
+                  <button className="w-full px-4 py-2 bg-serai-gold-500 text-white rounded-lg hover:bg-serai-gold-600 transition-colors mt-auto">
                     Schedule Call
                   </button>
                 </div>
@@ -573,8 +573,8 @@ export default function HostsDashboardPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <Users className="h-5 w-5 text-blue-600" />
+                    <div className="w-10 h-10 bg-serai-navy-100 rounded-lg flex items-center justify-center">
+                      <Users className="h-5 w-5 text-serai-navy-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Browse Co-hosts</h3>
                   </div>
@@ -585,7 +585,7 @@ export default function HostsDashboardPage() {
                         <p className="text-sm font-medium text-gray-900">Sarah Johnson</p>
                         <p className="text-xs text-gray-500">Toronto, ON • 4.9 rating</p>
                       </div>
-                      <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700">
+                      <button className="px-3 py-1 text-xs bg-serai-navy-500 text-white rounded hover:bg-serai-navy-600">
                         Connect
                       </button>
                     </div>
@@ -594,7 +594,7 @@ export default function HostsDashboardPage() {
                         <p className="text-sm font-medium text-gray-900">Mike Chen</p>
                         <p className="text-xs text-gray-500">Vancouver, BC • 4.8 rating</p>
                       </div>
-                      <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded hover:bg-blue-700">
+                      <button className="px-3 py-1 text-xs bg-serai-navy-500 text-white rounded hover:bg-serai-navy-600">
                         Connect
                       </button>
                     </div>
@@ -603,13 +603,13 @@ export default function HostsDashboardPage() {
 
                 <div className="bg-white rounded-lg border border-gray-200 p-6">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                      <Plus className="h-5 w-5 text-green-600" />
+                    <div className="w-10 h-10 bg-serai-red-100 rounded-lg flex items-center justify-center">
+                      <Plus className="h-5 w-5 text-serai-red-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900">Post Your Need</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4">Create a listing for the type of co-host you're looking for.</p>
-                  <button className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                  <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors">
                     Post Co-host Request
                   </button>
                 </div>
@@ -627,40 +627,40 @@ export default function HostsDashboardPage() {
               
               {/* Listing Types */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:border-red-300 hover:shadow-md transition-all">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                      <Building2 className="h-8 w-8 text-red-600" />
+                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:border-serai-red-300 hover:shadow-md transition-all h-full">
+                  <div className="flex flex-col items-center text-center h-full">
+                    <div className="w-16 h-16 bg-serai-red-100 rounded-lg flex items-center justify-center mb-4">
+                      <Building2 className="h-8 w-8 text-serai-red-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Property</h3>
-                    <p className="text-sm text-gray-600 mb-4">List your space for guests to book and stay.</p>
-                    <button className="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                    <p className="text-sm text-gray-600 mb-4 flex-1">List your space for guests to book and stay.</p>
+                    <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors mt-auto">
                       Create Property
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:border-blue-300 hover:shadow-md transition-all">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                      <Star className="h-8 w-8 text-blue-600" />
+                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:border-serai-gold-300 hover:shadow-md transition-all h-full">
+                  <div className="flex flex-col items-center text-center h-full">
+                    <div className="w-16 h-16 bg-serai-gold-100 rounded-lg flex items-center justify-center mb-4">
+                      <Star className="h-8 w-8 text-serai-gold-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Experience</h3>
-                    <p className="text-sm text-gray-600 mb-4">Create unique experiences for guests to enjoy.</p>
-                    <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    <p className="text-sm text-gray-600 mb-4 flex-1">Create unique experiences for guests to enjoy.</p>
+                    <button className="w-full px-4 py-2 bg-serai-gold-500 text-white rounded-lg hover:bg-serai-gold-600 transition-colors mt-auto">
                       Create Experience
                     </button>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:border-green-300 hover:shadow-md transition-all">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                      <Settings className="h-8 w-8 text-green-600" />
+                <div className="bg-white rounded-lg border border-gray-200 p-6 hover:border-serai-forest-300 hover:shadow-md transition-all h-full">
+                  <div className="flex flex-col items-center text-center h-full">
+                    <div className="w-16 h-16 bg-serai-forest-100 rounded-lg flex items-center justify-center mb-4">
+                      <Settings className="h-8 w-8 text-serai-forest-500" />
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Service</h3>
-                    <p className="text-sm text-gray-600 mb-4">Offer specialized services to enhance guest stays.</p>
-                    <button className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <p className="text-sm text-gray-600 mb-4 flex-1">Offer specialized services to enhance guest stays.</p>
+                    <button className="w-full px-4 py-2 bg-serai-forest-500 text-white rounded-lg hover:bg-serai-forest-600 transition-colors mt-auto">
                       Create Service
                     </button>
                   </div>
@@ -678,31 +678,31 @@ export default function HostsDashboardPage() {
               <p className="text-gray-600 mb-6">Earn rewards by referring new hosts to Serai.</p>
               
               {/* Referral Program */}
-              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <div className="bg-gradient-to-r from-serai-red-50 to-serai-gold-50 border border-serai-red-200 rounded-lg p-6 mb-6">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <Share2 className="h-6 w-6 text-blue-600" />
+                  <div className="w-12 h-12 bg-serai-red-100 rounded-lg flex items-center justify-center">
+                    <Share2 className="h-6 w-6 text-serai-red-500" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-blue-900">Referral Program</h3>
-                    <p className="text-sm text-blue-700">Earn $50 for each successful referral</p>
+                    <h3 className="text-lg font-semibold text-serai-red-900">Referral Program</h3>
+                    <p className="text-sm text-serai-red-700">Earn $50 for each successful referral</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-900">$150</p>
-                    <p className="text-sm text-blue-700">Total Earned</p>
+                    <p className="text-2xl font-bold text-serai-red-900">$150</p>
+                    <p className="text-sm text-serai-red-700">Total Earned</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-900">3</p>
-                    <p className="text-sm text-blue-700">Successful Referrals</p>
+                    <p className="text-2xl font-bold text-serai-red-900">3</p>
+                    <p className="text-sm text-serai-red-700">Successful Referrals</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-2xl font-bold text-blue-900">$50</p>
-                    <p className="text-sm text-blue-700">Per Referral</p>
+                    <p className="text-2xl font-bold text-serai-red-900">$50</p>
+                    <p className="text-sm text-serai-red-700">Per Referral</p>
                   </div>
                 </div>
-                <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors">
                   Get Referral Link
                 </button>
               </div>
