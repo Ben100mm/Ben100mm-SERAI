@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import TopAppBar from '@/components/TopAppBar';
-import { Settings, ToggleLeft, ToggleRight, LogOut, User, Shield, Trash2, RefreshCw } from 'lucide-react';
+import { Settings, ToggleLeft, ToggleRight, LogOut, User, Shield, Trash2, RefreshCw, Building2, Building } from 'lucide-react';
 
 export default function DevSettingsPage() {
   const { user, logout, isAuthenticated } = useAuth();
@@ -12,6 +12,7 @@ export default function DevSettingsPage() {
   const [autoLoginEnabled, setAutoLoginEnabled] = useState(true);
   const [showConfirmLogout, setShowConfirmLogout] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
+  const [showPartnerDashboard, setShowPartnerDashboard] = useState(false);
 
   // Load settings from localStorage on mount
   useEffect(() => {
@@ -22,6 +23,12 @@ export default function DevSettingsPage() {
       // Default to enabled if no setting exists
       setAutoLoginEnabled(true);
       localStorage.setItem('dev-auto-login-enabled', 'true');
+    }
+
+    // Load partner dashboard setting
+    const partnerDashboardSetting = localStorage.getItem('dev-show-partner-dashboard');
+    if (partnerDashboardSetting !== null) {
+      setShowPartnerDashboard(partnerDashboardSetting === 'true');
     }
   }, []);
 
@@ -34,6 +41,12 @@ export default function DevSettingsPage() {
     if (!enabled && isAuthenticated) {
       setShowConfirmLogout(true);
     }
+  };
+
+  // Handle partner dashboard toggle
+  const handleTogglePartnerDashboard = (enabled: boolean) => {
+    setShowPartnerDashboard(enabled);
+    localStorage.setItem('dev-show-partner-dashboard', enabled.toString());
   };
 
   const handleLogout = async () => {
@@ -182,6 +195,35 @@ export default function DevSettingsPage() {
             </h2>
             
             <div className="space-y-4">
+              {/* Partner Dashboard Toggle */}
+              <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
+                <div className="flex items-center space-x-3">
+                  <div className="p-2 bg-green-100 rounded-lg">
+                    <Building2 className="h-5 w-5 text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-green-900">Show Partner Dashboard</h3>
+                    <p className="text-sm text-green-700">
+                      Toggle visibility of partner dashboard features
+                    </p>
+                    <p className="text-xs text-green-600 mt-1">
+                      Current setting: {showPartnerDashboard ? 'Visible' : 'Hidden'}
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleTogglePartnerDashboard(!showPartnerDashboard)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    showPartnerDashboard ? 'bg-green-600' : 'bg-gray-200'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      showPartnerDashboard ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
               {/* Clear All Data */}
               <div className="p-4 bg-red-50 rounded-lg border border-red-200">
                 <h3 className="text-sm font-medium text-red-900 mb-2">Reset Everything</h3>
@@ -219,6 +261,20 @@ export default function DevSettingsPage() {
                   >
                     Go to Help Page
                   </button>
+                  <button
+                    onClick={() => router.push('/partner-dashboard')}
+                    className="text-left px-3 py-2 bg-green-100 hover:bg-green-200 rounded-lg text-sm transition-colors flex items-center space-x-2"
+                  >
+                    <Building2 className="h-4 w-4" />
+                    <span>Go to Partner Dashboard</span>
+                  </button>
+                  <button
+                    onClick={() => router.push('/serai-management-dashboard')}
+                    className="text-left px-3 py-2 bg-blue-100 hover:bg-blue-200 rounded-lg text-sm transition-colors flex items-center space-x-2"
+                  >
+                    <Building className="h-4 w-4" />
+                    <span>Go to Serai Management Dashboard</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -231,10 +287,11 @@ export default function DevSettingsPage() {
           <div className="space-y-2 text-sm text-blue-800">
             <p><strong>1. Disable Auto-Login:</strong> Toggle off to test unauthenticated states (requires page refresh)</p>
             <p><strong>2. Enable Auto-Login:</strong> Toggle on to test authenticated states (requires page refresh)</p>
-            <p><strong>3. Logout:</strong> Use the logout button to clear authentication</p>
-            <p><strong>4. Clear All Data:</strong> Reset everything to a clean state</p>
-            <p><strong>5. Refresh Page:</strong> Apply auto-login setting changes</p>
-            <p><strong>6. Quick Actions:</strong> Navigate between different pages easily</p>
+            <p><strong>3. Partner Dashboard:</strong> Toggle to show/hide partner dashboard features in the app</p>
+            <p><strong>4. Logout:</strong> Use the logout button to clear authentication</p>
+            <p><strong>5. Clear All Data:</strong> Reset everything to a clean state</p>
+            <p><strong>6. Refresh Page:</strong> Apply auto-login setting changes</p>
+            <p><strong>7. Quick Actions:</strong> Navigate between different pages easily, including the Partner Dashboard and Serai Management Dashboard</p>
           </div>
         </div>
       </div>

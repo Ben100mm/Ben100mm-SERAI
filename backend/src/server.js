@@ -5,11 +5,13 @@ const morgan = require('morgan');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const slowDown = require('express-slow-down');
+const http = require('http');
 require('dotenv').config();
 
 const { PrismaClient } = require('@prisma/client');
 const { errorHandler } = require('./middleware/errorHandler');
 const { notFound } = require('./middleware/notFound');
+const WebSocketServer = require('./websocket/websocketServer');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -22,9 +24,14 @@ const bookingRoutes = require('./routes/bookings');
 const reviewRoutes = require('./routes/reviews');
 const searchRoutes = require('./routes/search');
 const notificationRoutes = require('./routes/notifications');
+const managementRoutes = require('./routes/management');
 
 const app = express();
+const server = http.createServer(app);
 const prisma = new PrismaClient();
+
+// Initialize WebSocket server
+const wsServer = new WebSocketServer(server);
 
 // Security middleware
 app.use(helmet({
@@ -99,6 +106,7 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/management', managementRoutes);
 
 // 404 handler
 app.use(notFound);
@@ -121,10 +129,14 @@ process.on('SIGTERM', async () => {
 
 // Start server
 const PORT = process.env.PORT || 4001;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`🚀 SERAI Backend Server running on port ${PORT}`);
   console.log(`📊 Environment: ${process.env.NODE_ENV}`);
   console.log(`🔗 Health check: http://localhost:${PORT}/health`);
+  console.log(`🔌 WebSocket server running on ws://localhost:${PORT}`);
 });
 
-module.exports = app;
+// Make WebSocket server available for external use
+app.wsServer = wsServer;
+
+module.exports = { app, server, wsServer };

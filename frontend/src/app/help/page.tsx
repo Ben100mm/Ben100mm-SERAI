@@ -439,7 +439,9 @@ export default function HelpPage() {
                       <div key={category.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
                         <div className="flex items-center space-x-3 mb-4">
                           <div className="p-2 bg-red-50 rounded-lg">
-                            {category.icon}
+                            <div className="text-red-600">
+                              {category.icon}
+                            </div>
                           </div>
                           <h3 className="text-lg font-semibold text-gray-900">{category.title}</h3>
                         </div>

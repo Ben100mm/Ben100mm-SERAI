@@ -147,11 +147,6 @@ export default function AuthPage() {
                   </select>
                   <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none z-10" />
                 </div>
-                {selectedCountryData && (
-                  <div className="mt-2 text-sm text-gray-600">
-                    Selected: {selectedCountryData.label} {selectedCountryData.code}
-                  </div>
-                )}
               </div>
 
               {/* Phone Number Field */}

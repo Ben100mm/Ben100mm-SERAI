@@ -299,7 +299,7 @@ export default function HomePage() {
                     <div className="pt-3">
                       <button 
                         onClick={handleSearch}
-                        className="w-full bg-gradient-to-r from-red-800 to-red-900 text-white font-semibold py-3 rounded-lg hover:from-red-900 hover:to-red-950 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-2 text-sm"
+                        className="w-full bg-gradient-to-r from-serai-red-500 to-serai-red-600 text-white font-semibold py-3 rounded-lg hover:from-serai-red-600 hover:to-serai-red-700 transition-all duration-300 hover:scale-105 shadow-lg flex items-center justify-center space-x-2 text-sm"
                       >
                         <Search className="h-4 w-4" />
                         <span>Search</span>
@@ -313,7 +313,7 @@ export default function HomePage() {
             <div className="bg-white/10 backdrop-blur-md rounded-xl border border-white/20 p-4">
               <button 
                 onClick={() => router.push('/tabs')}
-                className="w-full bg-gradient-to-r from-red-800 to-red-900 text-white font-semibold py-3 px-6 rounded-lg hover:from-red-900 hover:to-red-950 transition-all duration-300 hover:scale-105 shadow-lg text-sm"
+                className="w-full bg-gradient-to-r from-serai-red-500 to-serai-red-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-serai-red-600 hover:to-serai-red-700 transition-all duration-300 hover:scale-105 shadow-lg text-sm"
               >
                 Plan your trip with SERAI
               </button>

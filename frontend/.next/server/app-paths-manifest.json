@@ -1,7 +1,7 @@
 {
   "/page": "app/page.js",
-  "/tabs/page": "app/tabs/page.js",
-  "/account/page": "app/account/page.js",
-  "/badges/page": "app/badges/page.js",
-  "/memberships/page": "app/memberships/page.js"
+  "/partner-dashboard/page": "app/partner-dashboard/page.js",
+  "/dev-settings/page": "app/dev-settings/page.js",
+  "/serai-management-dashboard/page": "app/serai-management-dashboard/page.js",
+  "/tabs/page": "app/tabs/page.js"
 }

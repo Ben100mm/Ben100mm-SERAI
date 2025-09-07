@@ -331,7 +331,7 @@ export default function TopAppBar({
               </button>
               <button
                 onClick={() => setIsLanguageModalOpen(false)}
-                className="px-4 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg hover:bg-gray-800"
+                className="px-4 py-2 text-sm font-medium text-white bg-serai-navy-500 rounded-lg hover:bg-serai-navy-600"
               >
                 Save
               </button>
@@ -362,16 +362,19 @@ export default function TopAppBar({
 
             {/* Options */}
             <div className="grid grid-cols-1 gap-4 mb-8">
-              {/* Home */}
+              {/* Property */}
               <button className="p-6 border border-gray-200 rounded-xl hover:border-gray-300 hover:shadow-md transition-all duration-200 text-left">
                 <div className="flex flex-col items-center">
                   <div className="w-16 h-16 mb-4 flex items-center justify-center">
                     <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none">
-                      <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M9 22V12H15V22" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M3 21H21L20 9L12 3L4 9L3 21Z" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M9 9H15V21H9V9Z" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M9 13H15" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M9 17H15" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 9V21" stroke="#6B7280" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="text-lg font-medium text-gray-900">Home</span>
+                  <span className="text-lg font-medium text-gray-900">Property</span>
                 </div>
               </button>
 
@@ -406,7 +409,7 @@ export default function TopAppBar({
             </div>
 
             {/* Next Button */}
-            <button className="w-full bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+            <button className="w-full bg-serai-navy-500 text-white py-3 px-6 rounded-lg hover:bg-serai-navy-600 transition-colors duration-200">
               Next
             </button>
           </div>
