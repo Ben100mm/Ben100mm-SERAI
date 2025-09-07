@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/partner-dashboard/page": "app/partner-dashboard/page.js",
-  "/dev-settings/page": "app/dev-settings/page.js",
-  "/serai-management-dashboard/page": "app/serai-management-dashboard/page.js",
-  "/tabs/page": "app/tabs/page.js"
-}

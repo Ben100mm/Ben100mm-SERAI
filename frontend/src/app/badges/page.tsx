@@ -71,7 +71,7 @@ export default function BadgesPage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-serai-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>
@@ -756,30 +756,30 @@ export default function BadgesPage() {
   const getRarityColor = (rarity: string) => {
     switch (rarity) {
       case 'common': return 'text-gray-600 bg-gray-100';
-      case 'uncommon': return 'text-amber-600 bg-amber-100';
-      case 'rare': return 'text-blue-600 bg-blue-100';
-      case 'epic': return 'text-red-600 bg-red-100';
-      case 'legendary': return 'text-yellow-600 bg-yellow-100';
+      case 'uncommon': return 'text-serai-gold-600 bg-serai-gold-100';
+      case 'rare': return 'text-serai-navy-600 bg-serai-navy-100';
+      case 'epic': return 'text-serai-red-600 bg-serai-red-100';
+      case 'legendary': return 'text-serai-cream-600 bg-serai-cream-100';
       default: return 'text-gray-600 bg-gray-100';
     }
   };
 
   const getTierColor = (tier: string) => {
     switch (tier) {
-      case 'bronze': return 'text-amber-600 bg-amber-100';
+      case 'bronze': return 'text-serai-gold-600 bg-serai-gold-100';
       case 'silver': return 'text-gray-600 bg-gray-100';
-      case 'gold': return 'text-yellow-600 bg-yellow-100';
-      case 'platinum': return 'text-blue-600 bg-blue-100';
-      case 'diamond': return 'text-red-600 bg-red-100';
+      case 'gold': return 'text-serai-cream-600 bg-serai-cream-100';
+      case 'platinum': return 'text-serai-navy-600 bg-serai-navy-100';
+      case 'diamond': return 'text-serai-red-600 bg-serai-red-100';
       default: return 'text-gray-600 bg-gray-100';
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'member': return 'text-red-600 bg-red-100';
-      case 'invited': return 'text-blue-600 bg-blue-100';
-      case 'eligible': return 'text-amber-600 bg-amber-100';
+      case 'member': return 'text-serai-red-600 bg-serai-red-100';
+      case 'invited': return 'text-serai-navy-600 bg-serai-navy-100';
+      case 'eligible': return 'text-serai-gold-600 bg-serai-gold-100';
       case 'not-eligible': return 'text-gray-600 bg-gray-100';
       default: return 'text-gray-600 bg-gray-100';
     }
@@ -799,7 +799,7 @@ export default function BadgesPage() {
   const totalBadges = badges.length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Top App Bar */}
       <TopAppBar 
         backHref="/tabs"
@@ -849,7 +849,7 @@ export default function BadgesPage() {
         {activeTab === 'clubs' && (
           <>
             {/* Clubs Overview */}
-            <div className="bg-white rounded-xl p-6 mb-8 shadow-sm border border-gray-200">
+            <div className="bg-serai-cream-50 rounded-xl p-6 mb-8 shadow-sm border border-serai-cream-200">
               <div className="mb-6">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Your Club Status</h2>
                 
@@ -857,8 +857,8 @@ export default function BadgesPage() {
                 <div className="bg-amber-50 rounded-lg p-4 mb-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-amber-100 rounded-lg">
-                        <Users className="h-5 w-5 text-amber-600" />
+                      <div className="p-2 bg-serai-gold-100 rounded-lg">
+                        <Users className="h-5 w-5 text-serai-gold-600" />
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-900">Traveler Clubs</h3>
@@ -876,7 +876,7 @@ export default function BadgesPage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-amber-600">
+                      <div className="text-2xl font-bold text-serai-gold-600">
                         {isAuthenticated ? clubs.filter(club => club.userType === 'traveler' && club.status === 'member').length : '—'}
                       </div>
                       <div className="text-xs text-gray-500">{isAuthenticated ? 'Active' : 'Sign up to see'}</div>
@@ -885,11 +885,11 @@ export default function BadgesPage() {
                 </div>
 
                 {/* Host Clubs Stats */}
-                <div className="bg-blue-50 rounded-lg p-4 mb-4">
+                <div className="bg-serai-navy-50 rounded-lg p-4 mb-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-blue-100 rounded-lg">
-                        <Shield className="h-5 w-5 text-blue-600" />
+                      <div className="p-2 bg-serai-navy-100 rounded-lg">
+                        <Shield className="h-5 w-5 text-serai-navy-600" />
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-900">Host Clubs</h3>
@@ -907,7 +907,7 @@ export default function BadgesPage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-blue-600">
+                      <div className="text-2xl font-bold text-serai-navy-600">
                         {isAuthenticated ? clubs.filter(club => club.userType === 'host' && club.status === 'member').length : '—'}
                       </div>
                       <div className="text-xs text-gray-500">{isAuthenticated ? 'Active' : 'Sign up to see'}</div>
@@ -916,11 +916,11 @@ export default function BadgesPage() {
                 </div>
 
                 {/* Universal Clubs Stats */}
-                <div className="bg-red-50 rounded-lg p-4">
+                <div className="bg-serai-red-50 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-red-100 rounded-lg">
-                        <Crown className="h-5 w-5 text-red-600" />
+                      <div className="p-2 bg-serai-red-100 rounded-lg">
+                        <Crown className="h-5 w-5 text-serai-red-600" />
                       </div>
                       <div>
                         <h3 className="font-medium text-gray-900">Universal Clubs</h3>
@@ -938,7 +938,7 @@ export default function BadgesPage() {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-2xl font-bold text-red-600">
+                      <div className="text-2xl font-bold text-serai-red-600">
                         {isAuthenticated ? clubs.filter(club => club.userType === 'both' && club.status === 'member').length : '—'}
                       </div>
                       <div className="text-xs text-gray-500">{isAuthenticated ? 'Active' : 'Sign up to see'}</div>
@@ -951,8 +951,8 @@ export default function BadgesPage() {
             {/* Traveler Clubs Section */}
             <div className="mb-8">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="p-2 bg-amber-100 rounded-lg">
-                  <Users className="h-6 w-6 text-amber-600" />
+                <div className="p-2 bg-serai-gold-100 rounded-lg">
+                  <Users className="h-6 w-6 text-serai-gold-600" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">Traveler Clubs</h3>
@@ -964,11 +964,11 @@ export default function BadgesPage() {
                 {clubs.filter(club => club.userType === 'traveler').map((club) => (
                   <div
                     key={club.id}
-                    className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
+                    className={`bg-serai-cream-50 rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                       club.status === 'member' 
                         ? 'border-gray-300 shadow-sm' 
                         : club.status === 'invited'
-                        ? 'border-blue-200 shadow-sm'
+                        ? 'border-serai-navy-200 shadow-sm'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -976,9 +976,9 @@ export default function BadgesPage() {
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-2 rounded-lg ${
                         club.status === 'member' 
-                          ? 'bg-red-100 text-red-600' 
+                          ? 'bg-serai-red-100 text-serai-red-600' 
                           : club.status === 'invited'
-                          ? 'bg-blue-100 text-blue-600'
+                          ? 'bg-serai-navy-100 text-serai-navy-600'
                           : 'bg-gray-100 text-gray-400'
                       }`}>
                         {club.icon}
@@ -1021,8 +1021,8 @@ export default function BadgesPage() {
             {/* Host Clubs Section */}
             <div className="mb-8">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Shield className="h-6 w-6 text-blue-600" />
+                <div className="p-2 bg-serai-navy-100 rounded-lg">
+                  <Shield className="h-6 w-6 text-serai-navy-600" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">Host Clubs</h3>
@@ -1034,11 +1034,11 @@ export default function BadgesPage() {
                 {clubs.filter(club => club.userType === 'host').map((club) => (
                   <div
                     key={club.id}
-                    className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
+                    className={`bg-serai-cream-50 rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                       club.status === 'member' 
                         ? 'border-gray-300 shadow-sm' 
                         : club.status === 'invited'
-                        ? 'border-blue-200 shadow-sm'
+                        ? 'border-serai-navy-200 shadow-sm'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -1046,9 +1046,9 @@ export default function BadgesPage() {
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-2 rounded-lg ${
                         club.status === 'member' 
-                          ? 'bg-red-100 text-red-600' 
+                          ? 'bg-serai-red-100 text-serai-red-600' 
                           : club.status === 'invited'
-                          ? 'bg-blue-100 text-blue-600'
+                          ? 'bg-serai-navy-100 text-serai-navy-600'
                           : 'bg-gray-100 text-gray-400'
                       }`}>
                         {club.icon}
@@ -1091,8 +1091,8 @@ export default function BadgesPage() {
             {/* Universal Clubs Section */}
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="p-2 bg-red-100 rounded-lg">
-                  <Crown className="h-6 w-6 text-red-600" />
+                <div className="p-2 bg-serai-red-100 rounded-lg">
+                  <Crown className="h-6 w-6 text-serai-red-600" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900">Universal Clubs</h3>
@@ -1104,11 +1104,11 @@ export default function BadgesPage() {
                 {clubs.filter(club => club.userType === 'both').map((club) => (
                   <div
                     key={club.id}
-                    className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
+                    className={`bg-serai-cream-50 rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                       club.status === 'member' 
                         ? 'border-gray-300 shadow-sm' 
                         : club.status === 'invited'
-                        ? 'border-blue-200 shadow-sm'
+                        ? 'border-serai-navy-200 shadow-sm'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
@@ -1116,9 +1116,9 @@ export default function BadgesPage() {
                     <div className="flex items-center justify-between mb-3">
                       <div className={`p-2 rounded-lg ${
                         club.status === 'member' 
-                          ? 'bg-red-100 text-red-600' 
+                          ? 'bg-serai-red-100 text-serai-red-600' 
                           : club.status === 'invited'
-                          ? 'bg-blue-100 text-blue-600'
+                          ? 'bg-serai-navy-100 text-serai-navy-600'
                           : 'bg-gray-100 text-gray-400'
                       }`}>
                         {club.icon}
@@ -1164,7 +1164,7 @@ export default function BadgesPage() {
         {activeTab === 'badges' && (
           <>
             {/* Progress Overview */}
-            <div className="bg-white rounded-xl p-6 mb-8 shadow-sm border border-gray-200">
+            <div className="bg-serai-cream-50 rounded-xl p-6 mb-8 shadow-sm border border-serai-cream-200">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h2 className="text-lg font-semibold text-gray-900">Your Collection</h2>
@@ -1208,7 +1208,7 @@ export default function BadgesPage() {
           {filteredBadges.map((badge) => (
             <div
               key={badge.id}
-              className={`bg-white rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
+              className={`bg-serai-cream-50 rounded-xl p-5 transition-all duration-200 hover:shadow-md border ${
                 badge.earned 
                   ? 'border-gray-300 shadow-sm' 
                   : 'border-gray-200 hover:border-gray-300'
@@ -1217,7 +1217,7 @@ export default function BadgesPage() {
               {/* Badge Icon and Rarity */}
               <div className="flex items-center justify-between mb-3">
                 <div className={`p-2 rounded-lg ${
-                  badge.earned ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-400'
+                  badge.earned ? 'bg-serai-red-100 text-serai-red-600' : 'bg-gray-100 text-gray-400'
                 }`}>
                   {badge.icon}
                 </div>
@@ -1240,7 +1240,7 @@ export default function BadgesPage() {
                   <div className="w-full bg-gray-200 rounded-full h-1.5">
                     <div 
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        badge.earned ? 'bg-[#4a7c4a]' : 'bg-gray-900'
+                        badge.earned ? 'bg-serai-forest-500' : 'bg-gray-900'
                       }`}
                       style={{ width: `${Math.min((badge.progress / badge.maxProgress) * 100, 100)}%` }}
                     ></div>
@@ -1250,7 +1250,7 @@ export default function BadgesPage() {
 
               {/* Earned Status - Only show for authenticated users */}
               {isAuthenticated && badge.earned && (
-                <div className="flex items-center text-red-600 text-xs font-medium">
+                <div className="flex items-center text-serai-red-600 text-xs font-medium">
                   <Award className="h-3 w-3 mr-1" />
                   Earned
                 </div>

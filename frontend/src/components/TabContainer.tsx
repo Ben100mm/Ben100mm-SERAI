@@ -26,7 +26,7 @@ export default function TabContainer({
   return (
     <div className={`bg-white ${className}`}>
       {/* Tab Navigation */}
-      <div className="border-b border-gray-200">
+      <div className="border-b border-serai-neutral-200">
         <nav className="flex space-x-8 px-6">
           {tabs.map((tab) => (
             <button
@@ -34,7 +34,7 @@ export default function TabContainer({
               onClick={() => setActiveTab(tab.id)}
               className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
                 activeTab === tab.id
-                  ? 'border-red-600 text-red-600'
+                  ? 'border-serai-red-600 text-serai-red-600'
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >

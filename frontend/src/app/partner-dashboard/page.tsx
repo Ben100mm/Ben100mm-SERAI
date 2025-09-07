@@ -255,22 +255,22 @@ export default function PartnerDashboardPage() {
       {
         title: 'Web Application',
         description: 'Direct access via https://serai.com/partner-dashboard',
-        icon: <Globe className="h-6 w-6 text-blue-600" />
+        icon: <Globe className="h-6 w-6 text-gray-700" />
       },
       {
         title: 'Mobile Responsive',
         description: 'Fully responsive design for mobile and tablet access',
-        icon: <Smartphone className="h-6 w-6 text-green-600" />
+        icon: <Smartphone className="h-6 w-6 text-gray-700" />
       },
       {
         title: 'API Integration',
         description: 'REST API endpoints for third-party integrations',
-        icon: <Settings className="h-6 w-6 text-purple-600" />
+        icon: <Settings className="h-6 w-6 text-gray-700" />
       },
       {
         title: 'Role-Based Access',
         description: 'HOST role authentication with secure session management',
-        icon: <Shield className="h-6 w-6 text-red-600" />
+        icon: <Shield className="h-6 w-6 text-gray-700" />
       }
     ];
 
@@ -347,7 +347,7 @@ export default function PartnerDashboardPage() {
 
     return (
       <div className="space-y-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-gray-100 rounded-lg shadow-sm border border-gray-300 p-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h2>
           <p className="text-gray-600 mb-6">{feature.description}</p>
           
@@ -359,8 +359,8 @@ export default function PartnerDashboardPage() {
                 onClick={() => setActiveSubTab(subTab.id)}
                 className={`p-4 text-left border rounded-lg transition-colors ${
                   activeSubTab === subTab.id
-                    ? 'border-red-500 bg-red-50 text-red-900'
-                    : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    ? 'border-gray-500 bg-gray-400 text-gray-900'
+                    : 'border-gray-300 hover:border-gray-400 hover:bg-gray-100'
                 }`}
               >
                 <h3 className="font-semibold text-gray-900 mb-2">{subTab.title}</h3>
@@ -390,23 +390,23 @@ export default function PartnerDashboardPage() {
       case 'rent-payments':
         return (
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+            <div className="flex items-center justify-between p-4 bg-gray-300 rounded-lg">
               <div>
-                <h4 className="font-medium text-green-900">Current Month Status</h4>
-                <p className="text-sm text-green-700">Rent payment received on time</p>
+                <h4 className="font-medium text-gray-900">Current Month Status</h4>
+                <p className="text-sm text-gray-700">Rent payment received on time</p>
               </div>
-              <CheckCircle className="h-8 w-8 text-green-600" />
+              <CheckCircle className="h-8 w-8 text-gray-700" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-white rounded-lg border">
+              <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
                 <h5 className="font-medium text-gray-900">Monthly Rent</h5>
                 <p className="text-2xl font-bold text-gray-900">$8,500</p>
               </div>
-              <div className="p-4 bg-white rounded-lg border">
+              <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
                 <h5 className="font-medium text-gray-900">Due Date</h5>
                 <p className="text-2xl font-bold text-gray-900">1st of Month</p>
               </div>
-              <div className="p-4 bg-white rounded-lg border">
+              <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
                 <h5 className="font-medium text-gray-900">Next Payment</h5>
                 <p className="text-2xl font-bold text-gray-900">Jan 1, 2025</p>
               </div>
@@ -432,7 +432,7 @@ export default function PartnerDashboardPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Dec 1, 2024</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$8,500</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                      <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-200 text-gray-800">
                         Paid
                       </span>
                     </td>
@@ -442,7 +442,7 @@ export default function PartnerDashboardPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Nov 1, 2024</td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">$8,500</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
+                      <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-200 text-gray-800">
                         Paid
                       </span>
                     </td>
@@ -458,19 +458,19 @@ export default function PartnerDashboardPage() {
         return (
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-white rounded-lg border">
+              <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
                 <h5 className="font-medium text-gray-900 mb-2">Last Inspection</h5>
                 <p className="text-sm text-gray-600">December 1, 2024</p>
-                <p className="text-sm text-green-600 font-medium">Excellent Condition</p>
+                <p className="text-sm text-gray-700 font-medium">Excellent Condition</p>
               </div>
-              <div className="p-4 bg-white rounded-lg border">
+              <div className="p-4 bg-gray-100 rounded-lg border border-gray-300">
                 <h5 className="font-medium text-gray-900 mb-2">Next Inspection</h5>
                 <p className="text-sm text-gray-600">March 1, 2025</p>
-                <p className="text-sm text-blue-600 font-medium">Scheduled</p>
+                <p className="text-sm text-gray-700 font-medium">Scheduled</p>
               </div>
             </div>
-            <div className="p-4 bg-blue-50 rounded-lg">
-              <h5 className="font-medium text-blue-900 mb-2">Recent Notes</h5>
+            <div className="p-4 bg-gray-200 rounded-lg">
+              <h5 className="font-medium text-gray-900 mb-2">Recent Notes</h5>
               <p className="text-sm text-blue-700">Property is in excellent condition. All systems functioning properly. No maintenance issues identified.</p>
             </div>
           </div>
@@ -483,11 +483,11 @@ export default function PartnerDashboardPage() {
               <h5 className="font-medium text-gray-900 mb-2">Primary Contact</h5>
               <p className="text-sm text-gray-600">Sarah Johnson - Property Manager</p>
               <div className="flex space-x-4 mt-2">
-                <a href="tel:+1234567890" className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                <a href="tel:+1234567890" className="flex items-center text-sm text-gray-700 hover:text-gray-800">
                   <Phone className="h-4 w-4 mr-1" />
                   (123) 456-7890
                 </a>
-                <a href="mailto:sarah.johnson@serai.com" className="flex items-center text-sm text-blue-600 hover:text-blue-800">
+                <a href="mailto:sarah.johnson@serai.com" className="flex items-center text-sm text-gray-700 hover:text-gray-800">
                   <Mail className="h-4 w-4 mr-1" />
                   sarah.johnson@serai.com
                 </a>
@@ -496,7 +496,7 @@ export default function PartnerDashboardPage() {
             <div className="p-4 bg-white rounded-lg border">
               <h5 className="font-medium text-gray-900 mb-2">Emergency Contact</h5>
               <p className="text-sm text-gray-600">24/7 Emergency Hotline</p>
-              <a href="tel:+1234567891" className="flex items-center text-sm text-red-600 hover:text-red-800 mt-1">
+              <a href="tel:+1234567891" className="flex items-center text-sm text-gray-700 hover:text-gray-800 mt-1">
                 <Phone className="h-4 w-4 mr-1" />
                 (123) 456-7891
               </a>
@@ -527,7 +527,7 @@ export default function PartnerDashboardPage() {
       case 'overview':
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-gray-100 rounded-lg shadow-sm border border-gray-300 p-6">
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900">Welcome to Your Partner Dashboard</h2>
@@ -536,11 +536,11 @@ export default function PartnerDashboardPage() {
                   </p>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-500">Partnership Model:</span>
+                  <span className="text-sm text-gray-600">Partnership Model:</span>
                   <select
                     value={partnershipModel}
                     onChange={(e) => setPartnershipModel(e.target.value as PartnershipModel)}
-                    className="px-3 py-1 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="px-3 py-1 border border-gray-400 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-gray-500"
                   >
                     <option value="Master Lease">Master Lease</option>
                     <option value="Hybrid Lease">Hybrid Lease</option>
@@ -552,14 +552,14 @@ export default function PartnerDashboardPage() {
               </div>
               
               {/* Partnership Model Info */}
-              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+              <div className="bg-gray-200 border border-gray-400 rounded-lg p-4 mb-6">
                 <div className="flex items-start space-x-3">
-                  <Shield className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <Shield className="h-5 w-5 text-gray-700 mt-0.5" />
                   <div>
-                    <h3 className="text-sm font-medium text-blue-900">
+                    <h3 className="text-sm font-medium text-gray-900">
                       {partnershipModel} Partnership
                     </h3>
-                    <p className="text-sm text-blue-700 mt-1">
+                    <p className="text-sm text-gray-700 mt-1">
                       {partnershipModel === 'Master Lease' && 'Guaranteed fixed rent with Serai managing all operations and pricing.'}
                       {partnershipModel === 'Hybrid Lease' && 'Base rent plus revenue share with limited pricing controls.'}
                       {partnershipModel === 'Revenue Share' && 'Full revenue sharing with complete pricing and channel control.'}
@@ -572,34 +572,50 @@ export default function PartnerDashboardPage() {
               
               {/* Quick Stats */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                {getQuickStats().map((stat, index) => (
-                  <div key={index} className={`bg-${stat.color}-50 p-4 rounded-lg`}>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className={`text-sm text-${stat.color}-600`}>{stat.label}</p>
-                        <p className={`text-2xl font-bold text-${stat.color}-900`}>{stat.value}</p>
-                      </div>
-                      <div className={`text-${stat.color}-600`}>
-                        {stat.icon}
+                {getQuickStats().map((stat, index) => {
+                  const greyShades = ['bg-gray-100', 'bg-gray-200', 'bg-gray-300', 'bg-gray-400'];
+                  const borderShades = ['border-gray-300', 'border-gray-400', 'border-gray-500', 'border-gray-600'];
+                  const textShades = ['text-gray-600', 'text-gray-600', 'text-gray-700', 'text-gray-700'];
+                  const valueShades = ['text-gray-900', 'text-gray-900', 'text-gray-900', 'text-gray-900'];
+                  const iconShades = ['text-gray-700', 'text-gray-700', 'text-gray-800', 'text-gray-800'];
+                  
+                  return (
+                    <div key={index} className={`${greyShades[index % 4]} ${borderShades[index % 4]} border p-4 rounded-lg`}>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className={`text-sm ${textShades[index % 4]}`}>{stat.label}</p>
+                          <p className={`text-2xl font-bold ${valueShades[index % 4]}`}>{stat.value}</p>
+                        </div>
+                        <div className={iconShades[index % 4]}>
+                          {stat.icon}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* Access Methods */}
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">Available Access Methods</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {getAccessMethods().map((method, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-4 bg-gray-50 rounded-lg">
-                      {method.icon}
-                      <div>
-                        <h4 className="font-medium text-gray-900">{method.title}</h4>
-                        <p className="text-sm text-gray-600">{method.description}</p>
+                  {getAccessMethods().map((method, index) => {
+                    const greyShades = ['bg-gray-100', 'bg-gray-200', 'bg-gray-300', 'bg-gray-400'];
+                    const borderShades = ['border-gray-300', 'border-gray-400', 'border-gray-500', 'border-gray-600'];
+                    const iconShades = ['text-gray-700', 'text-gray-700', 'text-gray-800', 'text-gray-800'];
+                    
+                    return (
+                      <div key={index} className={`flex items-start space-x-3 p-4 ${greyShades[index % 4]} ${borderShades[index % 4]} border rounded-lg`}>
+                        <div className={iconShades[index % 4]}>
+                          {method.icon}
+                        </div>
+                        <div>
+                          <h4 className="font-medium text-gray-900">{method.title}</h4>
+                          <p className="text-sm text-gray-600">{method.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -610,17 +626,17 @@ export default function PartnerDashboardPage() {
         const isLimitedPropertyManagement = partnershipRestrictions[partnershipModel].limitedFeatures.includes('property-management');
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-gray-100 rounded-lg shadow-sm border border-gray-300 p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Property Management</h2>
               <p className="text-gray-600 mb-6">Manage your property portfolio, details, and performance analytics.</p>
               
               {/* Partnership-specific notice */}
               {isLimitedPropertyManagement && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-6">
                   <div className="flex items-start space-x-3">
-                    <Shield className="h-5 w-5 text-yellow-600 mt-0.5" />
+                    <Shield className="h-5 w-5 text-gray-700 mt-0.5" />
                     <div>
-                      <h3 className="text-sm font-medium text-yellow-900">Limited Access</h3>
+                      <h3 className="text-sm font-medium text-gray-900">Limited Access</h3>
                       <p className="text-sm text-yellow-700 mt-1">
                         Under your {partnershipModel} agreement, you have view-only access to property information. 
                         Serai manages property operations and updates.
@@ -631,8 +647,8 @@ export default function PartnerDashboardPage() {
               )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <Building2 className="h-8 w-8 text-blue-600 mb-3" />
+                <div className="p-4 bg-gray-100 border border-gray-300 rounded-lg">
+                  <Building2 className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Property Portfolio</h3>
                   <p className="text-sm text-gray-600">
                     {isLimitedPropertyManagement 
@@ -641,8 +657,8 @@ export default function PartnerDashboardPage() {
                     }
                   </p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <Settings className="h-8 w-8 text-green-600 mb-3" />
+                <div className="p-4 bg-gray-200 border border-gray-400 rounded-lg">
+                  <Settings className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Property Details</h3>
                   <p className="text-sm text-gray-600">
                     {isLimitedPropertyManagement 
@@ -651,13 +667,13 @@ export default function PartnerDashboardPage() {
                     }
                   </p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <BarChart3 className="h-8 w-8 text-purple-600 mb-3" />
+                <div className="p-4 bg-gray-300 border border-gray-500 rounded-lg">
+                  <BarChart3 className="h-8 w-8 text-gray-800 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Performance Analytics</h3>
                   <p className="text-sm text-gray-600">Track RevPAR, occupancy trends, and property-specific performance metrics.</p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <Shield className="h-8 w-8 text-red-600 mb-3" />
+                <div className="p-4 bg-gray-400 border border-gray-600 rounded-lg">
+                  <Shield className="h-8 w-8 text-gray-800 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Status Management</h3>
                   <p className="text-sm text-gray-600">
                     {isLimitedPropertyManagement 
@@ -666,8 +682,8 @@ export default function PartnerDashboardPage() {
                     }
                   </p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <Smartphone className="h-8 w-8 text-yellow-600 mb-3" />
+                <div className="p-4 bg-gray-100 border border-gray-300 rounded-lg">
+                  <Smartphone className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Media Management</h3>
                   <p className="text-sm text-gray-600">
                     {isLimitedPropertyManagement 
@@ -676,8 +692,8 @@ export default function PartnerDashboardPage() {
                     }
                   </p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <FileText className="h-8 w-8 text-indigo-600 mb-3" />
+                <div className="p-4 bg-gray-200 border border-gray-400 rounded-lg">
+                  <FileText className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Certification</h3>
                   <p className="text-sm text-gray-600">Track Serai certification status and compliance requirements.</p>
                 </div>
@@ -691,17 +707,17 @@ export default function PartnerDashboardPage() {
         const isMasterLease = partnershipModel === 'Master Lease';
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-gray-100 rounded-lg shadow-sm border border-gray-300 p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Revenue & Financial Management</h2>
               <p className="text-gray-600 mb-6">Track earnings, manage pricing, and access comprehensive financial reports.</p>
               
               {/* Partnership-specific notices */}
               {isMasterLease && (
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-6">
                   <div className="flex items-start space-x-3">
-                    <Shield className="h-5 w-5 text-yellow-600 mt-0.5" />
+                    <Shield className="h-5 w-5 text-gray-700 mt-0.5" />
                     <div>
-                      <h3 className="text-sm font-medium text-yellow-900">Master Lease - Fixed Rent</h3>
+                      <h3 className="text-sm font-medium text-gray-900">Master Lease - Fixed Rent</h3>
                       <p className="text-sm text-yellow-700 mt-1">
                         Under your Master Lease agreement, you receive a guaranteed fixed rent. 
                         Serai manages all pricing and revenue optimization.
@@ -712,11 +728,11 @@ export default function PartnerDashboardPage() {
               )}
               
               {isLimitedRevenue && !isMasterLease && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <div className="bg-gray-200 border border-gray-400 rounded-lg p-4 mb-6">
                   <div className="flex items-start space-x-3">
-                    <Shield className="h-5 w-5 text-blue-600 mt-0.5" />
+                    <Shield className="h-5 w-5 text-gray-700 mt-0.5" />
                     <div>
-                      <h3 className="text-sm font-medium text-blue-900">Limited Revenue Controls</h3>
+                      <h3 className="text-sm font-medium text-gray-900">Limited Revenue Controls</h3>
                       <p className="text-sm text-blue-700 mt-1">
                         Under your {partnershipModel} agreement, you have limited control over pricing. 
                         Serai manages pricing with your oversight.
@@ -727,8 +743,8 @@ export default function PartnerDashboardPage() {
               )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <BarChart3 className="h-8 w-8 text-green-600 mb-3" />
+                <div className="p-4 bg-gray-100 border border-gray-300 rounded-lg">
+                  <BarChart3 className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">
                     {isMasterLease ? 'Fixed Rent Tracking' : 'Real-time Revenue'}
                   </h3>
@@ -739,13 +755,13 @@ export default function PartnerDashboardPage() {
                     }
                   </p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <TrendingUp className="h-8 w-8 text-blue-600 mb-3" />
+                <div className="p-4 bg-gray-200 border border-gray-400 rounded-lg">
+                  <TrendingUp className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Revenue Analytics</h3>
                   <p className="text-sm text-gray-600">Historical trends, seasonal analysis, and market comparisons.</p>
                 </div>
-                <div className="p-4 border border-gray-200 rounded-lg">
-                  <Settings className="h-8 w-8 text-purple-600 mb-3" />
+                <div className="p-4 bg-gray-300 border border-gray-500 rounded-lg">
+                  <Settings className="h-8 w-8 text-gray-800 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Pricing Management</h3>
                   <p className="text-sm text-gray-600">
                     {isMasterLease 
@@ -757,17 +773,17 @@ export default function PartnerDashboardPage() {
                   </p>
                 </div>
                 <div className="p-4 border border-gray-200 rounded-lg">
-                  <FileText className="h-8 w-8 text-yellow-600 mb-3" />
+                  <FileText className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Payment Tracking</h3>
                   <p className="text-sm text-gray-600">Payout schedules, payment history, and transaction details.</p>
                 </div>
                 <div className="p-4 border border-gray-200 rounded-lg">
-                  <BarChart3 className="h-8 w-8 text-red-600 mb-3" />
+                  <BarChart3 className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Financial Reports</h3>
                   <p className="text-sm text-gray-600">Monthly/quarterly summaries and tax document generation.</p>
                 </div>
                 <div className="p-4 border border-gray-200 rounded-lg">
-                  <Users className="h-8 w-8 text-indigo-600 mb-3" />
+                  <Users className="h-8 w-8 text-gray-700 mb-3" />
                   <h3 className="font-semibold text-gray-900 mb-2">Revenue Share</h3>
                   <p className="text-sm text-gray-600">
                     {isMasterLease 
@@ -784,7 +800,7 @@ export default function PartnerDashboardPage() {
       default:
         return (
           <div className="space-y-6">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-gray-100 rounded-lg shadow-sm border border-gray-300 p-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
                 {getVisibleFeatures().find(f => f.id === activeSection)?.title || 'Feature'}
               </h2>
@@ -806,7 +822,7 @@ export default function PartnerDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Partner Top App Bar */}
       <PartnerTopAppBar 
         backHref="/tabs"
@@ -833,7 +849,7 @@ export default function PartnerDashboardPage() {
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <div className="flex-shrink-0 px-4">
                   <div className="flex items-center">
-                    <Building2 className="h-8 w-8 text-red-600" />
+                    <Building2 className="h-8 w-8 text-gray-700" />
                     <span className="ml-2 text-xl font-bold text-gray-900">Partner Dashboard</span>
                   </div>
                   <div className="mt-2">
@@ -855,14 +871,14 @@ export default function PartnerDashboardPage() {
                         }}
                         className={`w-full group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
                           activeSection === feature.id
-                            ? 'bg-red-100 text-red-900'
+                            ? 'bg-gray-200 text-gray-900'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                         }`}
                       >
                         {feature.icon}
                         <span className="ml-3 flex-1 text-left">{feature.title}</span>
                         {isLimited && (
-                          <span className="ml-2 text-xs text-yellow-600 bg-yellow-100 px-2 py-1 rounded">
+                          <span className="ml-2 text-xs text-gray-700 bg-gray-100 px-2 py-1 rounded">
                             Limited
                           </span>
                         )}
@@ -882,7 +898,7 @@ export default function PartnerDashboardPage() {
               <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div className="flex-shrink-0 px-4">
                   <div className="flex items-center">
-                    <Building2 className="h-8 w-8 text-red-600" />
+                    <Building2 className="h-8 w-8 text-gray-700" />
                     <span className="ml-2 text-xl font-bold text-gray-900">Partner Dashboard</span>
                   </div>
                   <div className="mt-2">
@@ -901,14 +917,14 @@ export default function PartnerDashboardPage() {
                         onClick={() => setActiveSection(feature.id)}
                         className={`w-full group flex items-center px-2 py-2 text-sm font-medium rounded-md ${
                           activeSection === feature.id
-                            ? 'bg-red-100 text-red-900'
+                            ? 'bg-gray-200 text-gray-900'
                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                         }`}
                       >
                         {feature.icon}
                         <span className="ml-3 flex-1 text-left">{feature.title}</span>
                         {isLimited && (
-                          <span className="ml-2 text-xs text-yellow-600 bg-yellow-100 px-2 py-1 rounded">
+                          <span className="ml-2 text-xs text-gray-700 bg-gray-100 px-2 py-1 rounded">
                             Limited
                           </span>
                         )}
@@ -927,7 +943,7 @@ export default function PartnerDashboardPage() {
           <div className="lg:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
             <button
               type="button"
-              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500"
+              className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-serai-serai-red-500"
               onClick={() => setSidebarOpen(true)}
             >
               <Menu className="h-6 w-6" />

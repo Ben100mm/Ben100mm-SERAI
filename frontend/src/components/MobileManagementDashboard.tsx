@@ -123,18 +123,18 @@ export default function MobileManagementDashboard({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Mobile Header */}
       <div className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
         <div className="px-4 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Building2 className="h-6 w-6 text-red-600" />
+              <Building2 className="h-6 w-6 text-serai-red-600" />
               <span className="ml-2 text-lg font-bold text-gray-900">Serai Management</span>
             </div>
             <div className="flex items-center space-x-2">
               {/* Connection Status */}
-              <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`}></div>
+              <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-serai-forest-500' : 'bg-serai-serai-red-500'}`}></div>
               <button
                 onClick={onSync}
                 disabled={syncStatus.isSyncing}
@@ -205,8 +205,8 @@ export default function MobileManagementDashboard({
         <h3 className="text-lg font-semibold text-gray-900 mb-3">Recent Activity</h3>
         <div className="space-y-3">
           <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200">
-            <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-              <CheckCircle className="h-4 w-4 text-green-600" />
+            <div className="w-8 h-8 bg-serai-forest-100 rounded-full flex items-center justify-center">
+              <CheckCircle className="h-4 w-4 text-serai-forest-600" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-gray-900">Property Updated</p>
@@ -216,8 +216,8 @@ export default function MobileManagementDashboard({
           </div>
           
           <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <Users className="h-4 w-4 text-blue-600" />
+            <div className="w-8 h-8 bg-serai-navy-100 rounded-full flex items-center justify-center">
+              <Users className="h-4 w-4 text-serai-navy-600" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-gray-900">New Partner Added</p>
@@ -227,8 +227,8 @@ export default function MobileManagementDashboard({
           </div>
           
           <div className="flex items-center space-x-3 p-3 bg-white rounded-lg border border-gray-200">
-            <div className="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-              <AlertTriangle className="h-4 w-4 text-yellow-600" />
+            <div className="w-8 h-8 bg-serai-cream-100 rounded-full flex items-center justify-center">
+              <AlertTriangle className="h-4 w-4 text-serai-cream-600" />
             </div>
             <div className="flex-1">
               <p className="text-sm font-medium text-gray-900">Maintenance Alert</p>

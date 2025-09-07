@@ -100,7 +100,7 @@ export default function PrivacyTab() {
             <select
               value={privacySettings.profileVisibility}
               onChange={(e) => handleSettingChange('profileVisibility', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
             >
               <option value="private">Private - Only you can see your profile</option>
               <option value="friends">Friends - Only your connections can see your profile</option>
@@ -127,7 +127,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleDataSharingChange('analytics', !privacySettings.dataSharing.analytics)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.dataSharing.analytics ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.dataSharing.analytics ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -146,7 +146,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleDataSharingChange('marketing', !privacySettings.dataSharing.marketing)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.dataSharing.marketing ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.dataSharing.marketing ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -165,7 +165,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleDataSharingChange('thirdParty', !privacySettings.dataSharing.thirdParty)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.dataSharing.thirdParty ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.dataSharing.thirdParty ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -184,7 +184,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleDataSharingChange('locationTracking', !privacySettings.dataSharing.locationTracking)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.dataSharing.locationTracking ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.dataSharing.locationTracking ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -203,7 +203,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleDataSharingChange('personalizedAds', !privacySettings.dataSharing.personalizedAds)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.dataSharing.personalizedAds ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.dataSharing.personalizedAds ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -231,7 +231,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleListingsChange('readReceipts', !privacySettings.listings.readReceipts)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.listings.readReceipts ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.listings.readReceipts ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -250,7 +250,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleListingsChange('includeInSearchEngines', !privacySettings.listings.includeInSearchEngines)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.listings.includeInSearchEngines ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.listings.includeInSearchEngines ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -278,7 +278,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleReviewsChange('showHomeCity', !privacySettings.reviews.showHomeCity)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.reviews.showHomeCity ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.reviews.showHomeCity ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -297,7 +297,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleReviewsChange('showTripType', !privacySettings.reviews.showTripType)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.reviews.showTripType ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.reviews.showTripType ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -316,7 +316,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleReviewsChange('showLengthOfStay', !privacySettings.reviews.showLengthOfStay)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.reviews.showLengthOfStay ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.reviews.showLengthOfStay ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -335,7 +335,7 @@ export default function PrivacyTab() {
               <button
                 onClick={() => handleReviewsChange('showBookedServices', !privacySettings.reviews.showBookedServices)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  privacySettings.reviews.showBookedServices ? 'bg-red-600' : 'bg-gray-200'
+                  privacySettings.reviews.showBookedServices ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -365,7 +365,7 @@ export default function PrivacyTab() {
                   ...prev,
                   dataRetention: { ...prev.dataRetention, accountData: e.target.value }
                 }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
               >
                 <option value="indefinite">Keep indefinitely</option>
                 <option value="5-years">Delete after 5 years of inactivity</option>
@@ -384,7 +384,7 @@ export default function PrivacyTab() {
                   ...prev,
                   dataRetention: { ...prev.dataRetention, bookingHistory: e.target.value }
                 }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
               >
                 <option value="7-years">Keep for 7 years</option>
                 <option value="5-years">Keep for 5 years</option>
@@ -403,7 +403,7 @@ export default function PrivacyTab() {
                   ...prev,
                   dataRetention: { ...prev.dataRetention, searchHistory: e.target.value }
                 }))}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
               >
                 <option value="2-years">Keep for 2 years</option>
                 <option value="1-year">Keep for 1 year</option>
@@ -421,7 +421,7 @@ export default function PrivacyTab() {
             Data Management
           </h3>
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between p-4 bg-serai-cream-50 rounded-lg border border-serai-cream-200">
               <div className="flex items-center">
                 <Download className="h-5 w-5 text-gray-400 mr-3" />
                 <div>
@@ -437,9 +437,9 @@ export default function PrivacyTab() {
               </button>
             </div>
 
-            <div className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between p-4 bg-serai-cream-50 rounded-lg border border-serai-cream-200">
               <div className="flex items-center">
-                <Trash2 className="h-5 w-5 text-red-400 mr-3" />
+                <Trash2 className="h-5 w-5 text-serai-red-400 mr-3" />
                 <div>
                   <div className="text-sm font-medium text-gray-900">Delete Account</div>
                   <div className="text-sm text-gray-500">Permanently delete your account and all data</div>
@@ -447,7 +447,7 @@ export default function PrivacyTab() {
               </div>
               <button
                 onClick={() => handleDataRequest('delete')}
-                className="px-4 py-2 text-sm font-medium text-red-600 bg-white border border-red-300 rounded-lg hover:bg-red-50"
+                className="px-4 py-2 text-sm font-medium text-serai-red-600 bg-white border border-serai-red-300 rounded-lg hover:bg-serai-red-50"
               >
                 Delete Account
               </button>
@@ -456,20 +456,20 @@ export default function PrivacyTab() {
         </div>
 
         {/* Privacy Policy & Terms */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="text-lg font-medium text-blue-900 mb-3">Privacy Information</h3>
-          <div className="space-y-2 text-sm text-blue-800">
+        <div className="bg-serai-navy-50 border border-serai-navy-200 rounded-lg p-6">
+          <h3 className="text-lg font-medium text-serai-navy-900 mb-3">Privacy Information</h3>
+          <div className="space-y-2 text-sm text-serai-navy-800">
             <p>
               We are committed to protecting your privacy and personal data. Your information is encrypted and stored securely.
             </p>
             <div className="flex space-x-4 mt-4">
-              <a href="#" className="text-blue-600 hover:text-blue-700 underline">
+              <a href="#" className="text-serai-navy-600 hover:text-blue-700 underline">
                 Privacy Policy
               </a>
-              <a href="#" className="text-blue-600 hover:text-blue-700 underline">
+              <a href="#" className="text-serai-navy-600 hover:text-blue-700 underline">
                 Terms of Service
               </a>
-              <a href="#" className="text-blue-600 hover:text-blue-700 underline">
+              <a href="#" className="text-serai-navy-600 hover:text-blue-700 underline">
                 Cookie Policy
               </a>
             </div>

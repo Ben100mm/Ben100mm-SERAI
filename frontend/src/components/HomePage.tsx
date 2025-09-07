@@ -121,7 +121,7 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
                   date ? 'text-gray-900' : 'text-transparent cursor-default'
                 } ${
                   date && date.toDateString() === new Date().toDateString() 
-                    ? 'bg-blue-100 text-blue-600 font-semibold' 
+                    ? 'bg-serai-navy-100 text-serai-navy-600 font-semibold' 
                     : ''
                 }`}
               >
@@ -160,7 +160,7 @@ export default function HomePage() {
   return (
     <div className="relative h-screen overflow-hidden">
       {/* Hero Image Background */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-purple-900 via-blue-900 to-serai-navy-900">
         <Image
           src="/images/serai-images/quebec2.jpg"
           alt="Quebec City Skyline"

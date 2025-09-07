@@ -188,10 +188,10 @@ export default function MembershipsPage() {
       case 'blue':
         return {
           bg: 'bg-amber-50',
-          border: 'border-amber-200',
-          text: 'text-amber-900',
-          accent: 'text-amber-600',
-          button: 'bg-amber-600 hover:bg-amber-700 text-white'
+          border: 'border-serai-gold-200',
+          text: 'text-serai-gold-900',
+          accent: 'text-serai-gold-600',
+          button: 'bg-serai-gold-600 hover:bg-serai-gold-700 text-white'
         };
       case 'purple':
         return {
@@ -199,7 +199,7 @@ export default function MembershipsPage() {
           border: 'border-gray-300',
           text: 'text-gray-900',
           accent: 'text-gray-600',
-          button: 'bg-red-600 hover:bg-red-700 text-white'
+          button: 'bg-serai-red-600 hover:bg-serai-red-700 text-white'
         };
       default:
         return {
@@ -219,9 +219,9 @@ export default function MembershipsPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-serai-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading memberships...</p>
         </div>
       </div>
@@ -231,7 +231,7 @@ export default function MembershipsPage() {
   // Allow non-authenticated users to view the page
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       <TopAppBar />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -256,7 +256,7 @@ export default function MembershipsPage() {
               >
                 {tier.isCurrent && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-amber-500 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center">
+                    <span className="bg-serai-gold-500 text-white px-4 py-2 rounded-full text-sm font-medium flex items-center">
                       <Check className="h-4 w-4 mr-1" />
                       Current Plan
                     </span>
@@ -323,7 +323,7 @@ export default function MembershipsPage() {
                         <span className="font-medium text-gray-900">Exclusive Deals</span>
                       </div>
                       {tier.features.exclusiveDeals ? (
-                        <Check className="h-5 w-5 text-green-500" />
+                        <Check className="h-5 w-5 text-serai-forest-500" />
                       ) : (
                         <X className="h-5 w-5 text-gray-400" />
                       )}
@@ -336,7 +336,7 @@ export default function MembershipsPage() {
                     <div className="space-y-3">
                       {tier.features.additionalFeatures.map((feature, index) => (
                         <div key={index} className="flex items-start">
-                          <div className="text-green-500 mr-3 mt-0.5">
+                          <div className="text-serai-forest-500 mr-3 mt-0.5">
                             {feature.icon}
                           </div>
                           <div>

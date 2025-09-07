@@ -29,10 +29,11 @@ This document defines the official color palette and usage guidelines for Serai'
 ## Secondary Colors
 
 ### Cream (#f5f5dc)
-- **Purpose**: Inviting background, hospitality warmth
+- **Purpose**: Card backgrounds, hospitality warmth accents
 - **Psychology**: Warmth, comfort, approachability
-- **Usage**: Cards, backgrounds, hospitality collateral
+- **Usage**: Card backgrounds, subtle accents, hospitality collateral
 - **Tailwind Class**: `serai-cream-500`
+- **Note**: NOT used for page backgrounds - all pages must have white backgrounds
 
 ### Charcoal (#36454f)
 - **Purpose**: Text + subtle UI elements
@@ -49,8 +50,9 @@ This document defines the official color palette and usage guidelines for Serai'
 ## Neutrals
 
 ### White (#ffffff)
-- **Usage**: Primary backgrounds, high contrast text
+- **Usage**: ALL page backgrounds, primary backgrounds, high contrast text
 - **Tailwind Class**: `serai-neutral-50`
+- **Rule**: Every page must have a white background
 
 ### Light Gray (#f8f9fa)
 - **Usage**: Secondary backgrounds, subtle dividers
@@ -67,10 +69,15 @@ This document defines the official color palette and usage guidelines for Serai'
 ## Color Hierarchy & Usage Rules
 
 ### 1. Distribution Guidelines
-- **60%** Neutrals/Cream (backgrounds, cards, room interiors)
+- **60%** Neutrals/White (page backgrounds, cards, room interiors)
 - **25%** Primary Red/Navy (headers, CTAs, key UI elements)
 - **10%** Gold/Green accents (badges, eco-services, luxury highlights)
 - **5%** Other colors for specific use cases
+
+### 1.1. Page Background Rule
+- **ALL pages must have white backgrounds** (`bg-white`)
+- Cream (#f5f5dc) is reserved for card backgrounds and subtle accents only
+- No page should use cream, gray, or any other color as the main background
 
 ### 2. Typography Pairing
 - **Headers**: Luxury Serif (Playfair Display, Cormorant Garamond)
@@ -109,6 +116,15 @@ color: #ffffff;
 
 /* Tailwind Classes */
 bg-serai-navy-500 text-white
+```
+
+### Page Backgrounds
+```css
+/* Page Background - REQUIRED for all pages */
+background: #ffffff;
+
+/* Tailwind Classes */
+bg-white
 ```
 
 ### Cards & Backgrounds
@@ -188,13 +204,15 @@ color: #adb5bd; /* serai-neutral-400 */
 - ✅ Use red (#660f0f) for all primary CTAs
 - ✅ Use navy (#1a1a2e) for headers and navigation
 - ✅ Use gold (#d4af37) sparingly for premium elements
-- ✅ Use cream (#f5f5dc) for hospitality-focused backgrounds
+- ✅ Use cream (#f5f5dc) for card backgrounds and subtle accents
+- ✅ Use white (#ffffff) for ALL page backgrounds
 - ✅ Maintain consistent contrast ratios
 
 ### Don'ts
 - ❌ Don't use red for non-action elements
 - ❌ Don't overuse gold (keep it premium and special)
 - ❌ Don't use colors that aren't in the brand palette
+- ❌ Don't use cream, gray, or any color other than white for page backgrounds
 - ❌ Don't compromise on accessibility for aesthetic reasons
 
 ## File Structure

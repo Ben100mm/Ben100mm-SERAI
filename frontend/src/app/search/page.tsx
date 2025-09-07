@@ -192,7 +192,7 @@ function SearchResultsPageContent() {
           height: 20px;
           width: 20px;
           border-radius: 50%;
-          background: #dc2626;
+          background: #660f0f;
           cursor: pointer;
           border: 2px solid #ffffff;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -202,7 +202,7 @@ function SearchResultsPageContent() {
           height: 20px;
           width: 20px;
           border-radius: 50%;
-          background: #dc2626;
+          background: #660f0f;
           cursor: pointer;
           border: 2px solid #ffffff;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -222,7 +222,7 @@ function SearchResultsPageContent() {
         }
         
         .modal-content::-webkit-scrollbar-track {
-          background: #f1f5f9;
+          background: #f5f5dc;
           border-radius: 4px;
         }
         
@@ -301,7 +301,7 @@ function SearchResultsPageContent() {
               
               {/* Search Button */}
               <div className="px-6 py-3">
-                <Link href="/" className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200 inline-flex items-center">
+                <Link href="/" className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200 inline-flex items-center">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
@@ -344,7 +344,7 @@ function SearchResultsPageContent() {
                       height={200}
                       className="w-full h-48 object-cover"
                     />
-                    <button className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow">
+                    <button className="absolute top-3 right-3 p-2 bg-serai-cream-50 rounded-full shadow-md hover:shadow-lg transition-shadow border border-serai-cream-200">
                       <Heart className="h-4 w-4 text-gray-600" />
                     </button>
                   </div>
@@ -371,7 +371,7 @@ function SearchResultsPageContent() {
                         <div className="text-lg font-semibold text-gray-900">{property.price}</div>
                         <div className="text-sm text-gray-600">{property.totalPrice}</div>
                       </div>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                      <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
                         View Details
                       </button>
                     </div>
@@ -397,7 +397,7 @@ function SearchResultsPageContent() {
             <div className="absolute top-4 right-4 flex flex-col space-y-2">
               <button
                 onClick={() => setIsMapFullscreen(!isMapFullscreen)}
-                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900"
+                className="p-2 bg-serai-cream-50 rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900 border border-serai-cream-200"
               >
                 <Maximize2 className="h-4 w-4" />
               </button>
@@ -406,13 +406,13 @@ function SearchResultsPageContent() {
             <div className="absolute bottom-4 right-4 flex flex-col space-y-2">
               <button
                 onClick={handleZoomIn}
-                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900"
+                className="p-2 bg-serai-cream-50 rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900 border border-serai-cream-200"
               >
                 <Plus className="h-4 w-4" />
               </button>
               <button
                 onClick={handleZoomOut}
-                className="p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900"
+                className="p-2 bg-serai-cream-50 rounded-full shadow-md hover:shadow-lg transition-shadow text-gray-700 hover:text-gray-900 border border-serai-cream-200"
               >
                 <Minus className="h-4 w-4" />
               </button>
@@ -430,12 +430,12 @@ function SearchResultsPageContent() {
               >
                 <div className="relative group">
                   {/* Price Bubble */}
-                  <div className="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg cursor-pointer hover:bg-red-700 transition-colors">
+                  <div className="bg-serai-red-600 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg cursor-pointer hover:bg-serai-red-700 transition-colors">
                     {property.price}
                   </div>
                   
                   {/* Property Info Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 bg-serai-cream-50 rounded-lg shadow-xl border border-serai-cream-200 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-10">
                     <div className="p-3">
                       <Image
                         src={property.image}
@@ -522,7 +522,7 @@ function SearchResultsPageContent() {
                         onChange={(e) => setPriceRange({...priceRange, max: parseInt(e.target.value)})}
                         className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
                         style={{
-                          background: `linear-gradient(to right, #dc2626 0%, #dc2626 ${(priceRange.max / 70000) * 100}%, #e5e7eb ${(priceRange.max / 70000) * 100}%, #e5e7eb 100%)`
+                          background: `linear-gradient(to right, #660f0f 0%, #660f0f ${(priceRange.max / 70000) * 100}%, #e5e7eb ${(priceRange.max / 70000) * 100}%, #e5e7eb 100%)`
                         }}
                       />
                       <div className="flex justify-between text-xs text-gray-500 mt-2">
@@ -546,7 +546,7 @@ function SearchResultsPageContent() {
                     <select
                       value={bedrooms}
                       onChange={(e) => setBedrooms(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-900 bg-white"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 text-gray-900 bg-white"
                     >
                       <option value="" className="text-gray-900">Any</option>
                       <option value="0" className="text-gray-900">Studio</option>
@@ -562,7 +562,7 @@ function SearchResultsPageContent() {
                     <select
                       value={beds}
                       onChange={(e) => setBeds(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-900 bg-white"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 text-gray-900 bg-white"
                     >
                       <option value="" className="text-gray-900">Any</option>
                       <option value="1" className="text-gray-900">1</option>
@@ -577,7 +577,7 @@ function SearchResultsPageContent() {
                     <select
                       value={bathrooms}
                       onChange={(e) => setBathrooms(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 text-gray-900 bg-white"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 text-gray-900 bg-white"
                     >
                       <option value="" className="text-gray-900">Any</option>
                       <option value="1" className="text-gray-900">1</option>
@@ -677,7 +677,7 @@ function SearchResultsPageContent() {
                 </button>
                 <button
                   onClick={() => setIsFilterModalOpen(false)}
-                  className="px-6 py-2 bg-gradient-to-r from-red-800 to-red-900 text-white rounded-lg font-medium hover:from-red-900 hover:to-red-950 transition-all"
+                  className="px-6 py-2 bg-gradient-to-r from-serai-red-800 to-serai-red-900 text-white rounded-lg font-medium hover:from-serai-red-900 hover:to-serai-red-950 transition-all"
                 >
                   Show results
                 </button>
@@ -695,7 +695,7 @@ export default function SearchResultsPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-serai-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>

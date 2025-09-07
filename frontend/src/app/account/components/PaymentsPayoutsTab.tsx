@@ -245,11 +245,11 @@ export default function PaymentsPayoutsTab() {
       case 'confirmed':
       case 'completed':
       case 'processed':
-        return 'text-green-600 bg-green-100';
+        return 'text-serai-forest-600 bg-serai-forest-100';
       case 'pending':
-        return 'text-yellow-600 bg-yellow-100';
+        return 'text-serai-cream-600 bg-serai-cream-100';
       case 'cancelled':
-        return 'text-red-600 bg-red-100';
+        return 'text-serai-red-600 bg-serai-red-100';
       default:
         return 'text-gray-600 bg-gray-100';
     }
@@ -258,7 +258,7 @@ export default function PaymentsPayoutsTab() {
   return (
     <div className="space-y-6">
       {/* Section Toggle */}
-      <div className="bg-white rounded-lg p-6 border border-gray-200">
+      <div className="bg-serai-cream-50 rounded-lg p-6 border border-serai-cream-200">
         <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
           <button
             onClick={() => setActiveSection('traveling')}
@@ -297,7 +297,7 @@ export default function PaymentsPayoutsTab() {
               </h3>
               <button
                 onClick={handleAddPaymentMethod}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-serai-red-600 hover:bg-serai-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serai-red-500"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Payment Method
@@ -316,7 +316,7 @@ export default function PaymentsPayoutsTab() {
                             {method.type.charAt(0).toUpperCase() + method.type.slice(1)} •••• {method.last4}
                           </span>
                           {method.isDefault && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-serai-red-100 text-serai-red-800">
                               Default
                             </span>
                           )}
@@ -338,7 +338,7 @@ export default function PaymentsPayoutsTab() {
                       </button>
                       <button
                         onClick={() => handleDeletePaymentMethod(method.id)}
-                        className="p-2 text-gray-400 hover:text-red-600"
+                        className="p-2 text-gray-400 hover:text-serai-red-600"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -415,7 +415,7 @@ export default function PaymentsPayoutsTab() {
                       <p className="text-sm text-gray-500">Processed: {refund.processedDate}</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-semibold text-green-600">
+                      <div className="text-lg font-semibold text-serai-forest-600">
                         +${refund.amount.toFixed(2)}
                       </div>
                     </div>
@@ -438,7 +438,7 @@ export default function PaymentsPayoutsTab() {
                 <h4 className="text-md font-medium text-gray-900">Gift Cards</h4>
                 <button
                   onClick={handleAddGiftCard}
-                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-serai-red-600 hover:bg-serai-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serai-serai-red-500"
                 >
                   <Plus className="h-4 w-4 mr-1" />
                   Add Gift Card
@@ -457,7 +457,7 @@ export default function PaymentsPayoutsTab() {
                               Gift Card {card.cardNumber}
                             </span>
                             {card.isActive ? (
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-serai-forest-100 text-serai-forest-800">
                                 Active
                               </span>
                             ) : (
@@ -478,7 +478,7 @@ export default function PaymentsPayoutsTab() {
                         {card.isActive && card.balance > 0 && (
                           <button
                             onClick={() => handleRedeemGiftCard(card.id)}
-                            className="text-sm text-red-600 hover:text-red-700 font-medium"
+                            className="text-sm text-serai-red-600 hover:text-serai-red-700 font-medium"
                           >
                             Use Now
                           </button>
@@ -496,7 +496,7 @@ export default function PaymentsPayoutsTab() {
                 <h4 className="text-md font-medium text-gray-900">Coupons</h4>
                 <button
                   onClick={handleAddCoupon}
-                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-serai-red-600 hover:bg-serai-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serai-serai-red-500"
                 >
                   <Plus className="h-4 w-4 mr-1" />
                   Add Coupon
@@ -519,7 +519,7 @@ export default function PaymentsPayoutsTab() {
                                 Used
                               </span>
                             ) : (
-                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-serai-forest-100 text-serai-forest-800">
                                 Available
                               </span>
                             )}
@@ -543,7 +543,7 @@ export default function PaymentsPayoutsTab() {
                         {!coupon.isUsed && (
                           <button
                             onClick={() => handleUseCoupon(coupon.id)}
-                            className="text-sm text-red-600 hover:text-red-700 font-medium"
+                            className="text-sm text-serai-red-600 hover:text-serai-red-700 font-medium"
                           >
                             Use Now
                           </button>
@@ -583,7 +583,7 @@ export default function PaymentsPayoutsTab() {
               </div>
               <div className="bg-white rounded-lg p-4 border border-gray-200">
                 <div className="text-sm font-medium text-gray-500">Pending Payout</div>
-                <div className="text-2xl font-bold text-yellow-600">${listingData.earnings.pendingPayout.toFixed(2)}</div>
+                <div className="text-2xl font-bold text-serai-cream-600">${listingData.earnings.pendingPayout.toFixed(2)}</div>
               </div>
             </div>
           </div>
@@ -597,7 +597,7 @@ export default function PaymentsPayoutsTab() {
               </h3>
               <button
                 onClick={handleAddPayoutMethod}
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-serai-red-600 hover:bg-serai-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serai-red-500"
               >
                 <Plus className="h-4 w-4 mr-2" />
                 Add Payout Method
@@ -616,7 +616,7 @@ export default function PaymentsPayoutsTab() {
                             {method.type === 'bank' ? method.bankName : 'PayPal'}
                           </span>
                           {method.isDefault && (
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-serai-red-100 text-serai-red-800">
                               Default
                             </span>
                           )}
@@ -643,7 +643,7 @@ export default function PaymentsPayoutsTab() {
                       </button>
                       <button
                         onClick={() => handleDeletePaymentMethod(method.id)}
-                        className="p-2 text-gray-400 hover:text-red-600"
+                        className="p-2 text-gray-400 hover:text-serai-red-600"
                       >
                         <Trash2 className="h-4 w-4" />
                       </button>
@@ -676,7 +676,7 @@ export default function PaymentsPayoutsTab() {
                       <p className="text-sm text-gray-500">Date: {payout.date}</p>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-semibold text-green-600">
+                      <div className="text-lg font-semibold text-serai-forest-600">
                         +${payout.amount.toFixed(2)}
                       </div>
                     </div>
@@ -699,7 +699,7 @@ export default function PaymentsPayoutsTab() {
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Business Type
                   </label>
-                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                  <select className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500 focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent">
                     <option value="individual">Individual</option>
                     <option value="business">Business</option>
                     <option value="corporation">Corporation</option>
@@ -712,7 +712,7 @@ export default function PaymentsPayoutsTab() {
                   <input
                     type="text"
                     value={listingData.taxSettings.taxId}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                   />
                 </div>
               </div>
@@ -726,31 +726,31 @@ export default function PaymentsPayoutsTab() {
                     type="text"
                     placeholder="Street Address"
                     value={listingData.taxSettings.address.street}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                   />
                   <input
                     type="text"
                     placeholder="City"
                     value={listingData.taxSettings.address.city}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                   />
                   <input
                     type="text"
                     placeholder="Province/State"
                     value={listingData.taxSettings.address.province}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                   />
                   <input
                     type="text"
                     placeholder="Postal Code"
                     value={listingData.taxSettings.address.postalCode}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                   />
                 </div>
               </div>
               
               <div className="mt-4 flex items-center justify-end">
-                <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-serai-red-600 hover:bg-serai-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serai-serai-red-500">
                   Save Tax Settings
                 </button>
               </div>
@@ -776,7 +776,7 @@ export default function PaymentsPayoutsTab() {
                       value="single"
                       checked={listingData.serviceFee.feeType === 'single'}
                       onChange={() => handleServiceFeeChange('single')}
-                      className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300"
+                      className="mt-1 h-4 w-4 text-serai-red-600 focus:ring-serai-serai-red-500 border-gray-300"
                     />
                     <div className="flex-1">
                       <label htmlFor="single-fee" className="block text-sm font-medium text-gray-900 cursor-pointer">
@@ -803,7 +803,7 @@ export default function PaymentsPayoutsTab() {
                       value="split"
                       checked={listingData.serviceFee.feeType === 'split'}
                       onChange={() => handleServiceFeeChange('split')}
-                      className="mt-1 h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300"
+                      className="mt-1 h-4 w-4 text-serai-red-600 focus:ring-serai-serai-red-500 border-gray-300"
                     />
                     <div className="flex-1">
                       <label htmlFor="split-fee" className="block text-sm font-medium text-gray-900 cursor-pointer">
@@ -838,7 +838,7 @@ export default function PaymentsPayoutsTab() {
               </div>
 
               <div className="mt-4 flex items-center justify-end">
-                <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                <button className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-serai-red-600 hover:bg-serai-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-serai-serai-red-500">
                   Save Service Fee Settings
                 </button>
               </div>

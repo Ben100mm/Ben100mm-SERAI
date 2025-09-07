@@ -117,7 +117,7 @@ export default function PreferencesTab() {
               <select
                 value={preferences.language}
                 onChange={(e) => handlePreferenceChange('language', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
               >
                 {languages.map((lang) => (
                   <option key={lang} value={lang}>{lang}</option>
@@ -131,7 +131,7 @@ export default function PreferencesTab() {
               <select
                 value={preferences.timezone}
                 onChange={(e) => handlePreferenceChange('timezone', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
               >
                 {timezones.map((tz) => (
                   <option key={tz} value={tz}>{tz.replace('_', ' ')}</option>
@@ -154,7 +154,7 @@ export default function PreferencesTab() {
             <select
               value={preferences.currency}
               onChange={(e) => handlePreferenceChange('currency', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
             >
               {currencies.map((currency) => (
                 <option key={currency} value={currency}>{currency}</option>
@@ -182,7 +182,7 @@ export default function PreferencesTab() {
               <button
                 onClick={() => handleNotificationChange('email', !preferences.notifications.email)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  preferences.notifications.email ? 'bg-red-600' : 'bg-gray-200'
+                  preferences.notifications.email ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -201,7 +201,7 @@ export default function PreferencesTab() {
               <button
                 onClick={() => handleNotificationChange('sms', !preferences.notifications.sms)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  preferences.notifications.sms ? 'bg-red-600' : 'bg-gray-200'
+                  preferences.notifications.sms ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -220,7 +220,7 @@ export default function PreferencesTab() {
               <button
                 onClick={() => handleNotificationChange('push', !preferences.notifications.push)}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  preferences.notifications.push ? 'bg-red-600' : 'bg-gray-200'
+                  preferences.notifications.push ? 'bg-serai-red-600' : 'bg-gray-200'
                 }`}
               >
                 <span
@@ -244,7 +244,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('hostingInsights', !preferences.notifications.hostingInsights)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.hostingInsights ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.hostingInsights ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -263,7 +263,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('hostingRewards', !preferences.notifications.hostingRewards)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.hostingRewards ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.hostingRewards ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -282,7 +282,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('hostingUpdates', !preferences.notifications.hostingUpdates)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.hostingUpdates ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.hostingUpdates ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -307,7 +307,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('travelTips', !preferences.notifications.travelTips)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.travelTips ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.travelTips ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -326,7 +326,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('travelOffers', !preferences.notifications.travelOffers)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.travelOffers ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.travelOffers ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -345,7 +345,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('seraiUpdates', !preferences.notifications.seraiUpdates)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.seraiUpdates ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.seraiUpdates ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -370,7 +370,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('accountActivity', !preferences.notifications.accountActivity)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.accountActivity ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.accountActivity ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -389,7 +389,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('accountPolicies', !preferences.notifications.accountPolicies)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.accountPolicies ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.accountPolicies ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -408,7 +408,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('reminders', !preferences.notifications.reminders)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.reminders ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.reminders ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -433,7 +433,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('guestMessages', !preferences.notifications.guestMessages)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.guestMessages ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.guestMessages ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -452,7 +452,7 @@ export default function PreferencesTab() {
                 <button
                   onClick={() => handleNotificationChange('hostMessages', !preferences.notifications.hostMessages)}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                    preferences.notifications.hostMessages ? 'bg-red-600' : 'bg-gray-200'
+                    preferences.notifications.hostMessages ? 'bg-serai-red-600' : 'bg-gray-200'
                   }`}
                 >
                   <span
@@ -477,7 +477,7 @@ export default function PreferencesTab() {
                   <button
                     onClick={() => handleNotificationChange('bookingUpdates', !preferences.notifications.bookingUpdates)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      preferences.notifications.bookingUpdates ? 'bg-red-600' : 'bg-gray-200'
+                      preferences.notifications.bookingUpdates ? 'bg-serai-red-600' : 'bg-gray-200'
                     }`}
                   >
                     <span
@@ -496,7 +496,7 @@ export default function PreferencesTab() {
                   <button
                     onClick={() => handleNotificationChange('priceAlerts', !preferences.notifications.priceAlerts)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      preferences.notifications.priceAlerts ? 'bg-red-600' : 'bg-gray-200'
+                      preferences.notifications.priceAlerts ? 'bg-serai-red-600' : 'bg-gray-200'
                     }`}
                   >
                     <span
@@ -515,7 +515,7 @@ export default function PreferencesTab() {
                   <button
                     onClick={() => handleNotificationChange('newOffers', !preferences.notifications.newOffers)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      preferences.notifications.newOffers ? 'bg-red-600' : 'bg-gray-200'
+                      preferences.notifications.newOffers ? 'bg-serai-red-600' : 'bg-gray-200'
                     }`}
                   >
                     <span
@@ -534,7 +534,7 @@ export default function PreferencesTab() {
                   <button
                     onClick={() => handleNotificationChange('marketing', !preferences.notifications.marketing)}
                     className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                      preferences.notifications.marketing ? 'bg-red-600' : 'bg-gray-200'
+                      preferences.notifications.marketing ? 'bg-serai-red-600' : 'bg-gray-200'
                     }`}
                   >
                     <span
@@ -565,7 +565,7 @@ export default function PreferencesTab() {
                   onClick={() => handlePreferenceChange('theme', 'light')}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg border ${
                     preferences.theme === 'light'
-                      ? 'border-red-600 bg-red-50 text-red-700'
+                      ? 'border-serai-red-600 bg-serai-red-50 text-serai-red-700'
                       : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
@@ -576,7 +576,7 @@ export default function PreferencesTab() {
                   onClick={() => handlePreferenceChange('theme', 'dark')}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-lg border ${
                     preferences.theme === 'dark'
-                      ? 'border-red-600 bg-red-50 text-red-700'
+                      ? 'border-serai-red-600 bg-serai-red-50 text-serai-red-700'
                       : 'border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
@@ -594,7 +594,7 @@ export default function PreferencesTab() {
                 <select
                   value={preferences.dateFormat}
                   onChange={(e) => handlePreferenceChange('dateFormat', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="MM/DD/YYYY">MM/DD/YYYY</option>
                   <option value="DD/MM/YYYY">DD/MM/YYYY</option>
@@ -608,7 +608,7 @@ export default function PreferencesTab() {
                 <select
                   value={preferences.timeFormat}
                   onChange={(e) => handlePreferenceChange('timeFormat', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900"
                 >
                   <option value="12-hour">12-hour (AM/PM)</option>
                   <option value="24-hour">24-hour</option>

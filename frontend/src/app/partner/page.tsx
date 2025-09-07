@@ -16,27 +16,27 @@ export default function PartnerPage() {
 
   const benefits = [
     {
-      icon: <Zap className="h-8 w-8 text-red-600" />,
+      icon: <Zap className="h-8 w-8 text-serai-red-600" />,
       title: "Expedited Occupancy",
       description: "Full occupancy from the moment your project launches."
     },
     {
-      icon: <Building2 className="h-8 w-8 text-red-600" />,
+      icon: <Building2 className="h-8 w-8 text-serai-red-600" />,
       title: "No Vacancies",
       description: "Eliminate credit loss, turnover, and leasing commissions."
     },
     {
-      icon: <TrendingUp className="h-8 w-8 text-red-600" />,
+      icon: <TrendingUp className="h-8 w-8 text-serai-red-600" />,
       title: "Predictable Returns",
       description: "Choose between fixed rent or revenue share upside."
     },
     {
-      icon: <Users className="h-8 w-8 text-red-600" />,
+      icon: <Users className="h-8 w-8 text-serai-red-600" />,
       title: "Operational Ease",
       description: "Serai manages every aspect of pricing, bookings, and guest care."
     },
     {
-      icon: <Shield className="h-8 w-8 text-red-600" />,
+      icon: <Shield className="h-8 w-8 text-serai-red-600" />,
       title: "Risk Protection",
       description: "Comprehensive insurance and regulatory compliance handled by Serai."
     }
@@ -76,22 +76,22 @@ export default function PartnerPage() {
 
   const preOpeningServices = [
     {
-      icon: <BarChart3 className="h-6 w-6 text-red-600" />,
+      icon: <BarChart3 className="h-6 w-6 text-serai-red-600" />,
       title: "Feasibility Studies",
       description: "Market demand analysis, occupancy forecasts, and RevPAR modeling."
     },
     {
-      icon: <Building2 className="h-6 w-6 text-red-600" />,
+      icon: <Building2 className="h-6 w-6 text-serai-red-600" />,
       title: "Optimal Unit Mix Design", 
       description: "Room sizes, layouts, and amenities aligned with highest ROI."
     },
     {
-      icon: <Target className="h-6 w-6 text-red-600" />,
+      icon: <Target className="h-6 w-6 text-serai-red-600" />,
       title: "CapEx Planning",
       description: "Guidance on FF&E, technology infrastructure, and sustainability investments."
     },
     {
-      icon: <Award className="h-6 w-6 text-red-600" />,
+      icon: <Award className="h-6 w-6 text-serai-red-600" />,
       title: "Cost Benchmarking",
       description: "Access to Serai's data on comparable projects and best practices."
     }
@@ -99,32 +99,32 @@ export default function PartnerPage() {
 
   const techFeatures = [
     {
-      icon: <BarChart3 className="h-6 w-6 text-red-600" />,
+      icon: <BarChart3 className="h-6 w-6 text-serai-red-600" />,
       title: "Real-time dashboards",
       description: "Earnings, bookings, occupancy, RevPAR"
     },
     {
-      icon: <Globe className="h-6 w-6 text-red-600" />,
+      icon: <Globe className="h-6 w-6 text-serai-red-600" />,
       title: "Channel Manager",
       description: "Serai + OTAs + 10,000 affiliates"
     },
     {
-      icon: <Smartphone className="h-6 w-6 text-red-600" />,
+      icon: <Smartphone className="h-6 w-6 text-serai-red-600" />,
       title: "Booking & Invoice Modules",
       description: "Complete booking management"
     },
     {
-      icon: <Users className="h-6 w-6 text-red-600" />,
+      icon: <Users className="h-6 w-6 text-serai-red-600" />,
       title: "Housekeeping & Maintenance",
       description: "Operational management tools"
     },
     {
-      icon: <TrendingUp className="h-6 w-6 text-red-600" />,
+      icon: <TrendingUp className="h-6 w-6 text-serai-red-600" />,
       title: "Advanced Analytics",
       description: "Property scorecards & insights"
     },
     {
-      icon: <Headphones className="h-6 w-6 text-red-600" />,
+      icon: <Headphones className="h-6 w-6 text-serai-red-600" />,
       title: "24/7 Support",
       description: "Live chat support on all devices"
     }
@@ -132,15 +132,15 @@ export default function PartnerPage() {
 
   const guestTech = [
     {
-      icon: <Lock className="h-6 w-6 text-red-600" />,
+      icon: <Lock className="h-6 w-6 text-serai-red-600" />,
       title: "Keyless entry & in-app check-in"
     },
     {
-      icon: <Wifi className="h-6 w-6 text-red-600" />,
+      icon: <Wifi className="h-6 w-6 text-serai-red-600" />,
       title: "Smart noise & IoT monitoring"
     },
     {
-      icon: <Smartphone className="h-6 w-6 text-red-600" />,
+      icon: <Smartphone className="h-6 w-6 text-serai-red-600" />,
       title: "Virtual concierge"
     }
   ];
@@ -217,7 +217,7 @@ export default function PartnerPage() {
               </div>
             </div>
 
-            <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+            <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
               Contact Us
             </button>
           </div>
@@ -236,22 +236,22 @@ export default function PartnerPage() {
 
           <div className="grid md:grid-cols-3 gap-8 mb-16">
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <TrendingUp className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Increase NOI</h3>
               <p className="text-gray-600">with guaranteed income and optimized operations.</p>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Accelerate lease-ups</h3>
               <p className="text-gray-600">with 100% occupancy on day one.</p>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">De-risk cash flow</h3>
               <p className="text-gray-600">by eliminating vacancies, tenant churn, and commission costs.</p>
@@ -285,7 +285,7 @@ export default function PartnerPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {partnerTypes.map((type, index) => (
               <div key={index} className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-red-600 flex-shrink-0" />
+                <CheckCircle className="h-5 w-5 text-serai-red-600 flex-shrink-0" />
                 <span className="text-gray-700">{type}</span>
               </div>
             ))}
@@ -336,8 +336,8 @@ export default function PartnerPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Lightbulb className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Lightbulb className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">During Development</h3>
               <ul className="text-gray-600 space-y-2">
@@ -347,8 +347,8 @@ export default function PartnerPage() {
               </ul>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Zap className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Post-Completion</h3>
               <ul className="text-gray-600 space-y-2">
@@ -358,8 +358,8 @@ export default function PartnerPage() {
               </ul>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BarChart3 className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Results</h3>
               <ul className="text-gray-600 space-y-2">
@@ -413,29 +413,29 @@ export default function PartnerPage() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Headphones className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Headphones className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">24/7 Local Support</h3>
               <p className="text-gray-600 text-sm">Rapid-response staff with comprehensive training</p>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Dedicated Consultant</h3>
               <p className="text-gray-600 text-sm">Personal partner consultant for each property</p>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Star className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Star className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Review Monitoring</h3>
               <p className="text-gray-600 text-sm">Daily monitoring and improvement of scores</p>
             </div>
             <div className="text-center">
-              <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Shield className="h-8 w-8 text-red-600" />
+              <div className="bg-serai-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Shield className="h-8 w-8 text-serai-red-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Risk & Compliance</h3>
               <p className="text-gray-600 text-sm">Insurance, licensing, and legal handled</p>
@@ -455,7 +455,7 @@ export default function PartnerPage() {
           <div className="grid md:grid-cols-3 gap-8">
             {processSteps.map((step, index) => (
               <div key={index} className="text-center">
-                <div className="bg-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
+                <div className="bg-serai-red-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
                   {step.number}
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">{step.title}</h3>
@@ -484,7 +484,7 @@ export default function PartnerPage() {
             <p className="text-lg text-gray-600 mb-8">
               We're always looking for new partners ready to unlock the next chapter of hospitality.
             </p>
-            <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
+            <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200">
               Contact Us
             </button>
           </div>

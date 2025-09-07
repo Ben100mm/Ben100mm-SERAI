@@ -81,7 +81,7 @@ export default function ProfileTab() {
             </button>
             <button
               onClick={handleSave}
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-white bg-serai-red-600 rounded-lg hover:bg-serai-red-700"
             >
               <Save className="h-4 w-4" />
               <span>Save Changes</span>
@@ -108,7 +108,7 @@ export default function ProfileTab() {
                 value={formData.firstName}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div>
@@ -121,7 +121,7 @@ export default function ProfileTab() {
                 value={formData.lastName}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div>
@@ -134,7 +134,7 @@ export default function ProfileTab() {
                 value={formData.dateOfBirth}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
           </div>
@@ -147,11 +147,11 @@ export default function ProfileTab() {
             Current Membership
           </h3>
           
-          <div className="bg-white rounded-lg p-4 border border-gray-200">
+          <div className="bg-serai-cream-50 rounded-lg p-4 border border-serai-cream-200">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center space-x-3">
-                <div className="p-2 bg-red-100 rounded-lg">
-                  <Star className="h-6 w-6 text-red-600" />
+                <div className="p-2 bg-serai-red-100 rounded-lg">
+                  <Star className="h-6 w-6 text-serai-red-600" />
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-gray-900">SERAI Voyager</h4>
@@ -161,8 +161,8 @@ export default function ProfileTab() {
               <div className="text-right">
                 <div className={`px-3 py-1 rounded-full text-sm font-medium ${
                   formData.membershipStatus === 'active' 
-                    ? 'bg-green-100 text-green-800' 
-                    : 'bg-red-100 text-red-800'
+                    ? 'bg-serai-forest-100 text-serai-forest-800' 
+                    : 'bg-serai-red-100 text-serai-red-800'
                 }`}>
                   {formData.membershipStatus === 'active' ? 'Active' : 'Inactive'}
                 </div>
@@ -188,26 +188,26 @@ export default function ProfileTab() {
               <h5 className="text-sm font-medium text-gray-900 mb-2">Your Benefits</h5>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Zap className="h-4 w-4 text-red-600" />
+                  <Zap className="h-4 w-4 text-serai-red-600" />
                   <span>7% discount on stays</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Zap className="h-4 w-4 text-red-600" />
+                  <Zap className="h-4 w-4 text-serai-red-600" />
                   <span>3% cashback on bookings</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Zap className="h-4 w-4 text-red-600" />
+                  <Zap className="h-4 w-4 text-serai-red-600" />
                   <span>Priority support</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-600">
-                  <Zap className="h-4 w-4 text-red-600" />
+                  <Zap className="h-4 w-4 text-serai-red-600" />
                   <span>Early access to properties</span>
                 </div>
               </div>
             </div>
             
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <button className="flex items-center space-x-2 text-red-600 hover:text-red-700 font-medium text-sm">
+              <button className="flex items-center space-x-2 text-serai-red-600 hover:text-serai-red-700 font-medium text-sm">
                 <span>Manage Membership</span>
                 <ArrowRight className="h-4 w-4" />
               </button>
@@ -232,7 +232,7 @@ export default function ProfileTab() {
                 value={formData.email}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div>
@@ -245,7 +245,7 @@ export default function ProfileTab() {
                 value={formData.phone}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
           </div>
@@ -268,7 +268,7 @@ export default function ProfileTab() {
                 value={formData.address}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -282,7 +282,7 @@ export default function ProfileTab() {
                   value={formData.city}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
               <div>
@@ -295,7 +295,7 @@ export default function ProfileTab() {
                   value={formData.province}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
               <div>
@@ -308,7 +308,7 @@ export default function ProfileTab() {
                   value={formData.postalCode}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
             </div>
@@ -321,7 +321,7 @@ export default function ProfileTab() {
                 value={formData.country}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
               >
                 <option value="Canada">Canada</option>
                 <option value="United States">United States</option>
@@ -352,7 +352,7 @@ export default function ProfileTab() {
                 value={formData.mailingAddress}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -366,7 +366,7 @@ export default function ProfileTab() {
                   value={formData.mailingCity}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
               <div>
@@ -379,7 +379,7 @@ export default function ProfileTab() {
                   value={formData.mailingProvince}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
               <div>
@@ -392,7 +392,7 @@ export default function ProfileTab() {
                   value={formData.mailingPostalCode}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
             </div>
@@ -405,7 +405,7 @@ export default function ProfileTab() {
                 value={formData.mailingCountry}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
               >
                 <option value="Canada">Canada</option>
                 <option value="United States">United States</option>
@@ -436,7 +436,7 @@ export default function ProfileTab() {
                 value={formData.emergencyContactName}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div>
@@ -448,7 +448,7 @@ export default function ProfileTab() {
                 value={formData.emergencyContactRelationship}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
               >
                 <option value="Spouse">Spouse</option>
                 <option value="Parent">Parent</option>
@@ -468,7 +468,7 @@ export default function ProfileTab() {
                 value={formData.emergencyContactPhone}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             <div>
@@ -481,7 +481,7 @@ export default function ProfileTab() {
                 value={formData.emergencyContactEmail}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
           </div>
@@ -499,8 +499,8 @@ export default function ProfileTab() {
             <div className="flex items-center space-x-3 mb-4">
               <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg ${
                 formData.identityVerified 
-                  ? 'bg-green-100 text-green-800' 
-                  : 'bg-yellow-100 text-yellow-800'
+                  ? 'bg-serai-forest-100 text-serai-forest-800' 
+                  : 'bg-serai-cream-100 text-serai-cream-800'
               }`}>
                 {formData.identityVerified ? (
                   <CheckCircle className="h-5 w-5" />
@@ -531,7 +531,7 @@ export default function ProfileTab() {
                   value={formData.idType}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent bg-white text-gray-900 disabled:bg-gray-100 disabled:text-gray-500"
                 >
                   <option value="Driver License">Driver License</option>
                   <option value="Passport">Passport</option>
@@ -550,7 +550,7 @@ export default function ProfileTab() {
                   value={formData.idNumber}
                   onChange={handleInputChange}
                   disabled={!isEditing}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
                 />
               </div>
             </div>
@@ -564,7 +564,7 @@ export default function ProfileTab() {
                 value={formData.idExpiryDate}
                 onChange={handleInputChange}
                 disabled={!isEditing}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent disabled:bg-gray-100 disabled:text-gray-500"
               />
             </div>
             
@@ -580,7 +580,7 @@ export default function ProfileTab() {
                 </p>
                 <button
                   type="button"
-                  className="px-4 py-2 text-sm font-medium text-red-600 border border-red-600 rounded-lg hover:bg-red-50"
+                  className="px-4 py-2 text-sm font-medium text-serai-red-600 border border-serai-red-600 rounded-lg hover:bg-serai-red-50"
                 >
                   Choose File
                 </button>

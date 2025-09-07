@@ -60,40 +60,40 @@ function PropertiesPageContent() {
     switch (activeNavTab) {
       case 'silk-route':
   return (
-          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center bg-white border border-serai-neutral-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
             {/* Itinerary Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Itinerary</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Itinerary</label>
               <input
                 type="text"
                 placeholder="Plan your journey"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
         </div>
         
             {/* Duration Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Duration</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Duration</label>
               <input
                 type="text"
                 placeholder="7-14 days"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
           />
         </div>
         
             {/* Interests, Experiences & Essentials Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Interests, Experiences & Essentials</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Interests, Experiences & Essentials</label>
               <input
                 type="text"
                 placeholder="Culture, nature, food"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
               </div>
             
             {/* Search Button */}
             <div className="px-6 py-3">
-              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+              <button className="bg-gradient-to-r from-serai-red-500 to-serai-red-600 hover:from-serai-red-600 hover:to-serai-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -104,20 +104,20 @@ function PropertiesPageContent() {
       
       case 'serais':
         return (
-          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center bg-white border border-serai-neutral-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
             {/* Where Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative" ref={whereDropdownRef}>
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Where</label>
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Where</label>
               <input
                 type="text"
                 placeholder="Search destinations"
                 value={whereValue}
                 onChange={(e) => setWhereValue(e.target.value)}
                 onFocus={() => setIsWhereDropdownOpen(true)}
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                 {isWhereDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-serai-cream-50 border border-serai-cream-200 rounded-lg shadow-lg z-50">
                   <div className="p-2">
                     <div className="text-sm text-gray-500 mb-2">Popular destinations</div>
                     {['Montreal', 'Toronto', 'Vancouver', 'Quebec City', 'Ottawa'].map((city) => (
@@ -139,45 +139,45 @@ function PropertiesPageContent() {
             
             {/* Check In Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative" ref={checkInDropdownRef}>
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Check in</label>
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Check in</label>
               <input
                 type="text"
                 placeholder="Add date"
                 value={checkInValue}
                 onChange={(e) => setCheckInValue(e.target.value)}
                 onFocus={() => setIsCheckInDropdownOpen(true)}
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
             </div>
             
             {/* Check Out Field */}
             <div className="flex-1 px-6 py-3 border-r border-gray-300 relative" ref={checkOutDropdownRef}>
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Check out</label>
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Check out</label>
               <input
                 type="text"
                 placeholder="Add date"
                 value={checkOutValue}
                 onChange={(e) => setCheckOutValue(e.target.value)}
                 onFocus={() => setIsCheckOutDropdownOpen(true)}
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                       </div>
 
             {/* Who Field */}
             <div className="flex-1 px-6 py-3">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Who</label>
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Who</label>
               <input
                 type="text"
                 placeholder="Add guests"
                 value={guestsValue}
                 onChange={(e) => setGuestsValue(e.target.value)}
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
             </div>
             
             {/* Search Button */}
             <div className="px-6 py-3">
-              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+              <button className="bg-gradient-to-r from-serai-red-500 to-serai-red-600 hover:from-serai-red-600 hover:to-serai-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -188,50 +188,50 @@ function PropertiesPageContent() {
       
       case 'bazaar':
                                 return (
-          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center bg-white border border-serai-neutral-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
             {/* Experience Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Experience</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Experience</label>
               <input
                 type="text"
                 placeholder="Search experience"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                             </div>
             
             {/* Location Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Location</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Location</label>
               <input
                 type="text"
                 placeholder="Search destinations"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                                 </div>
                                 
             {/* Date Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Date</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Date</label>
               <input
                 type="text"
                 placeholder="Add date"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
             </div>
             
             {/* Group Size Field */}
             <div className="flex-1 px-6 py-3">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Group</label>
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Group</label>
               <input
                 type="text"
                 placeholder="Add guests"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                             </div>
                             
             {/* Search Button */}
             <div className="px-6 py-3">
-              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+              <button className="bg-gradient-to-r from-serai-red-500 to-serai-red-600 hover:from-serai-red-600 hover:to-serai-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -242,50 +242,50 @@ function PropertiesPageContent() {
       
       case 'essentials':
         return (
-          <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-center bg-white border border-serai-neutral-300 rounded-full shadow-sm hover:shadow-md transition-shadow">
             {/* Service Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Service</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Service</label>
               <input
                 type="text"
                 placeholder="Search essentials"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                                 </div>
                                 
             {/* Location Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Location</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Location</label>
               <input
                 type="text"
                 placeholder="Search destinations"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
             </div>
             
             {/* Date Field */}
-            <div className="flex-1 px-6 py-3 border-r border-gray-300 relative">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Date</label>
+            <div className="flex-1 px-6 py-3 border-r border-serai-neutral-300 relative">
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Date</label>
               <input
                 type="text"
                 placeholder="Add date"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
                 />
             </div>
             
             {/* Time Field */}
             <div className="flex-1 px-6 py-3">
-              <label className="block text-xs font-semibold text-gray-900 mb-1">Time</label>
+              <label className="block text-xs font-semibold text-serai-charcoal-500 mb-1">Time</label>
               <input
                 type="text"
                 placeholder="Add time"
-                className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+                className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent"
               />
                       </div>
 
             {/* Search Button */}
             <div className="px-6 py-3">
-              <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200">
+              <button className="bg-gradient-to-r from-serai-red-500 to-serai-red-600 hover:from-serai-red-600 hover:to-serai-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200">
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -553,7 +553,7 @@ function PropertiesPageContent() {
                         <div className="text-lg font-semibold text-gray-900">{route.price}</div>
                         <div className="text-sm text-gray-500">{route.duration}</div>
                   </div>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200 mt-auto">
+                      <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200 mt-auto">
                         View Details
                     </button>
                   </div>
@@ -597,7 +597,7 @@ function PropertiesPageContent() {
                       <div>
                         <div className="text-lg font-semibold text-gray-900">{property.price}</div>
                     </div>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                      <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
                       View Details
                     </button>
                   </div>
@@ -644,7 +644,7 @@ function PropertiesPageContent() {
                       <div>
                         <div className="text-lg font-semibold text-gray-900">{experience.price}</div>
                 </div>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                      <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
                         View Details
                     </button>
                   </div>
@@ -688,7 +688,7 @@ function PropertiesPageContent() {
                       <div>
                         <div className="text-lg font-semibold text-gray-900">{service.price}</div>
                     </div>
-                      <button className="bg-gradient-to-r from-red-800 to-red-900 hover:from-red-900 hover:to-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                      <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
                         View Details
                     </button>
                   </div>
@@ -708,7 +708,7 @@ export default function PropertiesPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-serai-red-600 mx-auto"></div>
           <p className="mt-4 text-gray-600">Loading...</p>
         </div>
       </div>

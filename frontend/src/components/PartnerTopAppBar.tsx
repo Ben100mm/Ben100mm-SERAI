@@ -75,7 +75,7 @@ export default function PartnerTopAppBar({
           {/* Notifications */}
           <button className="p-2 hover:bg-gray-100 rounded-full relative">
             <Bell className="h-5 w-5 text-gray-600" />
-            <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
+            <span className="absolute top-1 right-1 h-2 w-2 bg-serai-serai-red-500 rounded-full"></span>
           </button>
           
           {showLanguageButton && (

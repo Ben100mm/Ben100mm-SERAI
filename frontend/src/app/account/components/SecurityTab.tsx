@@ -102,7 +102,7 @@ export default function SecurityTab() {
                     name="currentPassword"
                     value={passwordForm.currentPassword}
                     onChange={handlePasswordChange}
-                    className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                     required
                   />
                   <button
@@ -125,7 +125,7 @@ export default function SecurityTab() {
                     name="newPassword"
                     value={passwordForm.newPassword}
                     onChange={handlePasswordChange}
-                    className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                     required
                   />
                   <button
@@ -148,7 +148,7 @@ export default function SecurityTab() {
                     name="confirmPassword"
                     value={passwordForm.confirmPassword}
                     onChange={handlePasswordChange}
-                    className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="w-full px-3 py-2 pr-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-serai-serai-red-500 focus:border-transparent"
                     required
                   />
                   <button
@@ -164,7 +164,7 @@ export default function SecurityTab() {
               <div className="flex space-x-3">
                 <button
                   type="submit"
-                  className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700"
+                  className="px-4 py-2 text-sm font-medium text-white bg-serai-red-600 rounded-lg hover:bg-serai-red-700"
                 >
                   Update Password
                 </button>
@@ -200,7 +200,7 @@ export default function SecurityTab() {
             <button
               onClick={toggleTwoFactor}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                twoFactorEnabled ? 'bg-red-600' : 'bg-gray-200'
+                twoFactorEnabled ? 'bg-serai-red-600' : 'bg-gray-200'
               }`}
             >
               <span
@@ -212,12 +212,12 @@ export default function SecurityTab() {
           </div>
 
           {twoFactorEnabled && (
-            <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+            <div className="mt-4 p-4 bg-serai-forest-50 border border-serai-forest-200 rounded-lg">
               <div className="flex items-center">
-                <CheckCircle className="h-5 w-5 text-green-600 mr-2" />
+                <CheckCircle className="h-5 w-5 text-serai-forest-600 mr-2" />
                 <div>
-                  <div className="text-sm font-medium text-green-800">Two-Factor Authentication Enabled</div>
-                  <div className="text-sm text-green-600">Your account is now protected with 2FA</div>
+                  <div className="text-sm font-medium text-serai-forest-800">Two-Factor Authentication Enabled</div>
+                  <div className="text-sm text-serai-forest-600">Your account is now protected with 2FA</div>
                 </div>
               </div>
             </div>
@@ -233,11 +233,11 @@ export default function SecurityTab() {
           
           <div className="space-y-4">
             {loginHistory.map((login) => (
-              <div key={login.id} className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200">
+              <div key={login.id} className="flex items-center justify-between p-4 bg-serai-cream-50 rounded-lg border border-serai-cream-200">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
                     <div className={`w-3 h-3 rounded-full ${
-                      login.status === 'success' ? 'bg-green-500' : 'bg-red-500'
+                      login.status === 'success' ? 'bg-serai-forest-500' : 'bg-serai-red-500'
                     }`} />
                   </div>
                   <div>
@@ -250,7 +250,7 @@ export default function SecurityTab() {
                   </div>
                 </div>
                 <div className={`text-xs font-medium ${
-                  login.status === 'success' ? 'text-green-600' : 'text-red-600'
+                  login.status === 'success' ? 'text-serai-forest-600' : 'text-serai-red-600'
                 }`}>
                   {login.status === 'success' ? 'Success' : 'Failed'}
                 </div>
@@ -258,15 +258,15 @@ export default function SecurityTab() {
             ))}
           </div>
 
-          <button className="mt-4 text-sm text-red-600 hover:text-red-700 font-medium">
+          <button className="mt-4 text-sm text-serai-red-600 hover:text-serai-red-700 font-medium">
             View All Login History
           </button>
         </div>
 
         {/* Security Recommendations */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h3 className="text-lg font-medium text-blue-900 mb-3">Security Recommendations</h3>
-          <ul className="space-y-2 text-sm text-blue-800">
+        <div className="bg-serai-navy-50 border border-serai-navy-200 rounded-lg p-6">
+          <h3 className="text-lg font-medium text-serai-navy-900 mb-3">Security Recommendations</h3>
+          <ul className="space-y-2 text-sm text-serai-navy-800">
             <li className="flex items-start">
               <CheckCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
               Use a strong, unique password for your account
