@@ -21,6 +21,7 @@ const bookingRoutes = require('./routes/bookings');
 const reviewRoutes = require('./routes/reviews');
 const searchRoutes = require('./routes/search');
 const notificationRoutes = require('./routes/notifications');
+const managementRoutes = require('./routes/management');
 
 const app = express();
 
@@ -97,6 +98,7 @@ app.use('/api/bookings', bookingRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/notifications', notificationRoutes);
+app.use('/api/management', managementRoutes);
 
 // 404 handler
 app.use(notFound);

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
-import { ArrowLeft, Globe, Menu, ChevronDown } from 'lucide-react';
+import { ArrowLeft, Globe, Menu, ChevronDown, Bell } from 'lucide-react';
 
 interface TopAppBarProps {
   backHref?: string;
@@ -12,6 +12,7 @@ interface TopAppBarProps {
   showLanguageButton?: boolean;
   showMenuButton?: boolean;
   className?: string;
+  hiddenDropdownItems?: string[];
 }
 
 export default function TopAppBar({
@@ -20,7 +21,8 @@ export default function TopAppBar({
   showListingButton = true,
   showLanguageButton = true,
   showMenuButton = true,
-  className = ''
+  className = '',
+  hiddenDropdownItems = []
 }: TopAppBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
@@ -57,7 +59,7 @@ export default function TopAppBar({
   return (
     <>
       {/* Header */}
-      <header className={`flex items-center justify-between p-4 border-b border-gray-200 ${className}`}>
+      <header className={`fixed top-0 left-0 right-0 w-full flex items-center justify-between px-4 py-4 border-b border-gray-200 bg-white z-50 ${className}`}>
         <div className="flex items-center">
           <Link href={backHref} className="flex items-center space-x-2 text-gray-600 hover:text-gray-800">
             <ArrowLeft className="h-5 w-5" />
@@ -88,6 +90,12 @@ export default function TopAppBar({
             </button>
           )}
           
+          {/* Notifications */}
+          <button className="p-2 hover:bg-gray-100 rounded-full relative">
+            <Bell className="h-5 w-5 text-gray-600" />
+            <span className="absolute top-1 right-1 h-2 w-2 bg-red-500 rounded-full"></span>
+          </button>
+          
           {showLanguageButton && (
             <button 
               onClick={() => setIsLanguageModalOpen(true)}
@@ -107,16 +115,26 @@ export default function TopAppBar({
                 <ChevronDown className={`h-4 w-4 text-gray-600 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} />
               </button>
               
-              {/* Dropdown Menu */}
-              {isMenuOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
-                  <Link 
-                    href="/account" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Account
-                  </Link>
+                        {/* Dropdown Menu */}
+                        {isMenuOpen && (
+                          <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                            <Link 
+                              href="/account" 
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              Account
+                            </Link>
+                            
+                            <Link 
+                              href="/help" 
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              onClick={() => setIsMenuOpen(false)}
+                            >
+                              Help Center
+                            </Link>
+
+                  {/* Additional Features */}
                   <Link 
                     href="/dev-settings" 
                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" 
@@ -124,37 +142,46 @@ export default function TopAppBar({
                   >
                     Dev Settings
                   </Link>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    Gift Cards
-                  </a>
-                  <Link 
-                    href="/badges" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Clubs & Badges
-                  </Link>
-                  <Link 
-                    href="/memberships" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Memberships
-                  </Link>
-                  <Link 
-                    href="/partner" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Partner with SERAI
-                  </Link>
-                  <Link 
-                    href="/help" 
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Help
-                  </Link>
+                  
+                  {!hiddenDropdownItems.includes('Gift Cards') && (
+                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                      Gift Cards
+                    </a>
+                  )}
+                  
+                  {!hiddenDropdownItems.includes('Clubs & Badges') && (
+                    <Link 
+                      href="/badges" 
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Clubs & Badges
+                    </Link>
+                  )}
+                  
+                  {!hiddenDropdownItems.includes('Memberships') && (
+                    <Link 
+                      href="/memberships" 
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Memberships
+                    </Link>
+                  )}
+                  
+                  {!hiddenDropdownItems.includes('Partner with SERAI') && (
+                    <Link 
+                      href="/partner" 
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Partner with SERAI
+                    </Link>
+                  )}
+
+                  {/* Divider */}
+                  <div className="border-t border-gray-100 my-2"></div>
+                  
                   <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                     Sign out
                   </a>
@@ -418,3 +445,4 @@ export default function TopAppBar({
     </>
   );
 }
+

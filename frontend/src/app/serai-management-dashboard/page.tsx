@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useDashboardSync } from '../../hooks/useDashboardSync';
 import MobileManagementDashboard from '../../components/MobileManagementDashboard';
+import TopAppBar from '../../components/TopAppBar';
 import { 
   Building2, 
   BarChart3, 
@@ -139,7 +140,7 @@ import {
   EyeOff,
   Search as SearchIcon,
   Filter as FilterIcon,
-  Sort as SortIcon,
+  ArrowUpDown as SortIcon,
   ArrowUp,
   ArrowDown,
   ArrowLeft,
@@ -1437,43 +1438,16 @@ export default function SeraiManagementDashboardPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Management Top App Bar */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Building className="h-8 w-8 text-serai-red-600" />
-              <span className="ml-2 text-xl font-bold text-gray-900">Serai Management</span>
-            </div>
-              <div className="flex items-center space-x-4">
-                {/* Real-time sync status */}
-                <div className="flex items-center space-x-2">
-                  <div className={`w-2 h-2 rounded-full ${
-                    isConnected ? 'bg-serai-forest-500' : 'bg-serai-serai-red-500'
-                  }`}></div>
-                  <span className="text-xs text-gray-500">
-                    {isConnected ? 'Connected' : 'Disconnected'}
-                  </span>
-                </div>
-                
-                {/* Sync button */}
-                <button
-                  onClick={syncAllData}
-                  disabled={syncStatus.isSyncing}
-                  className="px-3 py-1 text-xs bg-serai-navy-100 hover:bg-serai-navy-200 text-serai-navy-700 rounded-md transition-colors disabled:opacity-50"
-                >
-                  {syncStatus.isSyncing ? 'Syncing...' : 'Sync'}
-                </button>
-                
-                <Bell className="h-6 w-6 text-gray-500" />
-                <User className="h-6 w-6 text-gray-500" />
-                <LogOut className="h-6 w-6 text-gray-500" />
-              </div>
-          </div>
-        </div>
-      </div>
+      <TopAppBar 
+        backHref="/tabs" 
+        logoHref="/tabs" 
+        showListingButton={false} 
+        showLanguageButton={true} 
+        showMenuButton={true}
+        hiddenDropdownItems={['Gift Cards', 'Clubs & Badges', 'Memberships', 'Partner with SERAI']}
+      />
 
-      <div className="flex">
+      <div className="flex pt-16">
         {/* Mobile Sidebar Overlay */}
         {sidebarOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
@@ -1491,7 +1465,7 @@ export default function SeraiManagementDashboardPage() {
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <div className="flex-shrink-0 px-4">
                   <div className="flex items-center">
-                    <Building className="h-8 w-8 text-serai-red-600" />
+                    <Building className="h-8 w-8" style={{ color: '#660f0f' }} />
                     <span className="ml-2 text-xl font-bold text-gray-900">Management Dashboard</span>
                   </div>
                   <div className="mt-2">
@@ -1499,7 +1473,7 @@ export default function SeraiManagementDashboardPage() {
                     <div className="text-sm font-medium text-gray-700">{managementRole.replace('_', ' ')}</div>
                   </div>
                 </div>
-                <nav className="mt-5 px-2 space-y-1">
+                <nav className="mt-5 px-2 space-y-3">
                   {getVisibleFeatures().map((feature) => {
                     const isHidden = managementRestrictions[managementRole].hiddenFeatures.includes(feature.id);
                     const isLimited = managementRestrictions[managementRole].limitedFeatures.includes(feature.id);
@@ -1540,7 +1514,7 @@ export default function SeraiManagementDashboardPage() {
               <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div className="flex-shrink-0 px-4">
                   <div className="flex items-center">
-                    <Building className="h-8 w-8 text-serai-red-600" />
+                    <Building className="h-8 w-8" style={{ color: '#660f0f' }} />
                     <span className="ml-2 text-xl font-bold text-gray-900">Management Dashboard</span>
                   </div>
                   <div className="mt-2">
@@ -1548,7 +1522,7 @@ export default function SeraiManagementDashboardPage() {
                     <div className="text-sm font-medium text-gray-700">{managementRole.replace('_', ' ')}</div>
                   </div>
                 </div>
-                <nav className="mt-5 flex-1 px-2 space-y-1">
+                <nav className="mt-5 flex-1 px-2 space-y-3">
                   {getVisibleFeatures().map((feature) => {
                     const isHidden = managementRestrictions[managementRole].hiddenFeatures.includes(feature.id);
                     const isLimited = managementRestrictions[managementRole].limitedFeatures.includes(feature.id);
@@ -1594,7 +1568,7 @@ export default function SeraiManagementDashboardPage() {
 
           {/* Page Content */}
           <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-            <div className="py-6">
+            <div className="pt-8 pb-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {renderDashboardContent()}
               </div>

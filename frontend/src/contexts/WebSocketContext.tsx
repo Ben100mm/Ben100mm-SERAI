@@ -124,7 +124,7 @@ export const WebSocketProvider: React.FC<WebSocketProviderProps> = ({
   }, [socket]);
 
   const subscribe = useCallback((callback: (message: WebSocketMessage) => void) => {
-    setSubscribers(prev => new Set([...prev, callback]));
+    setSubscribers(prev => new Set(Array.from(prev).concat(callback)));
     
     // Return unsubscribe function
     return () => {

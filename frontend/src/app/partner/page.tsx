@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { ChevronDown, CheckCircle, Building2, Users, TrendingUp, Shield, Zap, Globe, ArrowRight, Star, Award, BarChart3, Smartphone, Wifi, Lock, Headphones, Target, Lightbulb, Handshake } from 'lucide-react';
+import { ChevronDown, CheckCircle, Building2, Users, TrendingUp, Shield, Zap, Globe, ArrowRight, Star, Award, BarChart3, Smartphone, Wifi, Lock, Headphones, Target, Lightbulb } from 'lucide-react';
 import TopAppBar from '@/components/TopAppBar';
 
 export default function PartnerPage() {

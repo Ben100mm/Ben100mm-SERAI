@@ -12,10 +12,10 @@ const {
   updatePartnerData,
   updatePropertyData
 } = require('../controllers/managementController');
-const { authenticateToken } = require('../middleware/auth');
+const { auth } = require('../middleware/auth-simple');
 
 // Apply authentication middleware to all routes
-router.use(authenticateToken);
+router.use(auth);
 
 // Dashboard Overview
 router.get('/overview', getDashboardOverview);

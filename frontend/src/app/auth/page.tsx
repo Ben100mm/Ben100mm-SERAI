@@ -99,7 +99,7 @@ export default function AuthPage() {
       />
 
       {/* Main Content */}
-      <main className="flex items-center justify-center min-h-[calc(100vh-80px)] p-4">
+      <main className="flex items-center justify-center min-h-[calc(100vh-80px)] p-4 pt-24">
         <div className="w-full max-w-md">
           {/* Auth Card */}
           <div className="bg-white rounded-2xl shadow-lg border border-serai-neutral-200 p-8">

@@ -464,7 +464,7 @@ function PropertiesPageContent() {
       />
 
       {/* Navigation Tabs */}
-      <div className="bg-white">
+      <div className="bg-white pt-20">
         <div className="max-w-7xl mx-auto px-4">
           <nav className="flex space-x-8 justify-center">
                                   <button

@@ -36,7 +36,7 @@ export default function PartnerTopAppBar({
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setIsMenuOpen(false);
       }
-      if (languageModalRef.current && !languageModalRef.contains(event.target as Node)) {
+      if (languageModalRef.current && !languageModalRef.current.contains(event.target as Node)) {
         setIsLanguageModalOpen(false);
       }
     }

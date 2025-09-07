@@ -810,7 +810,7 @@ export default function BadgesPage() {
       />
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-4 py-6">
+      <main className="max-w-6xl mx-auto px-4 pt-20 pb-6">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Clubs & Badges</h1>
