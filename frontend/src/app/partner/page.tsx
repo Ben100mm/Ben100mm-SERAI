@@ -220,219 +220,145 @@ export default function PartnerPage() {
     {
       id: '1',
       label: 'How it works',
-      description: 'Serai leases your property at a pre-agreed fixed rent. We take full operational control and assume all demand/operating risk.'
+      description: 'Serai rents the property and takes full responsibility.'
     },
     {
       id: '2',
-      label: 'Sign-up',
-      description: 'Property inspection → compliance check → multi-year lease agreement → onboarding (brand, tech, SOPs).'
+      label: 'Owner receives',
+      description: 'Fixed monthly rent (guaranteed)'
     },
     {
       id: '3',
-      label: 'Commission & charges',
-      description: 'None to owner. Serai pays fixed rent and covers operating expenses as specified in the lease.'
+      label: 'Owner risk',
+      description: 'None'
     },
     {
       id: '4',
-      label: 'Payment frequency',
-      description: 'Fixed rent paid monthly (or quarterly per contract).'
+      label: 'Serai risk',
+      description: 'Full (Serai pays rent even if the property is empty)'
     },
     {
       id: '5',
-      label: 'Photography & branding',
-      description: 'Serai supplies pro photography and listing assets at no cost.'
-    },
-    {
-      id: '6',
-      label: 'Pricing policy',
-      description: 'Serai controls pricing via dynamic pricing engine to maximize RevPAR.'
+      label: 'Best for',
+      description: 'Owners who want steady income with no involvement'
     }
   ];
-
-  const masterLeaseMoneyFlow = {
-    gbv: 100,
-    lines: [
-      { label: 'Owner receives guaranteed fixed rent', value: 'Fixed amount' },
-      { label: 'Serai covers all OTA and payment fees', value: 'Serai pays' },
-      { label: 'Serai handles all operational costs', value: 'Serai covers' }
-    ]
-  };
 
   // Hybrid Lease Modal Configuration
   const hybridLeaseSteps = [
     {
       id: '1',
       label: 'How it works',
-      description: 'Owner receives a guaranteed base rent. Above that, revenues are shared per agreement, aligning incentives.'
+      description: 'Owner gets a smaller base rent plus a share of profits.'
     },
     {
       id: '2',
-      label: 'Sign-up',
-      description: 'Property audit & benchmarking → hybrid lease contract → onboarding (brand + tech).'
+      label: 'Owner receives',
+      description: 'Base rent + percentage of profits'
     },
     {
       id: '3',
-      label: 'Commission & charges',
-      description: 'Base rent + 10–30% revenue share to Serai (varies by market).'
+      label: 'Owner risk',
+      description: 'Low'
     },
     {
       id: '4',
-      label: 'Payment frequency',
-      description: 'Base rent paid monthly; revenue-share payout quarterly with reports.'
+      label: 'Serai risk',
+      description: 'Moderate (Serai covers operations, but owner shares some performance risk)'
     },
     {
       id: '5',
-      label: 'Photography & branding',
-      description: 'Serai provides photos/videos and brand assets.'
-    },
-    {
-      id: '6',
-      label: 'Pricing policy',
-      description: 'Serai manages AI-driven dynamic pricing; owner receives transparent performance dashboards.'
+      label: 'Best for',
+      description: 'Owners who want some upside without full risk'
     }
   ];
-
-  const hybridLeaseMoneyFlow = {
-    gbv: 100,
-    lines: [
-      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
-      { label: 'Operating costs', value: 'Covered by Serai' },
-      { label: 'Revenue share to Serai', value: 'Percentage of net revenue' },
-      { label: 'Owner receives base rent + remaining net', value: 'Guaranteed + upside' }
-    ]
-  };
 
   // Revenue Share Modal Configuration
   const revenueShareSteps = [
     {
       id: '1',
       label: 'How it works',
-      description: 'No fixed rent. Revenues are split between owner and Serai per agreed ratio after base costs.'
+      description: 'Serai runs everything and splits profits with the owner.'
     },
     {
       id: '2',
-      label: 'Sign-up',
-      description: 'Onboarding form → inspection → revenue-share agreement → go-live.'
+      label: 'Owner receives',
+      description: 'A percentage of net profits'
     },
     {
       id: '3',
-      label: 'Commission & charges',
-      description: 'Typical split 60/40 or 70/30 in the owner\'s favor (post base costs).'
+      label: 'Owner risk',
+      description: 'Shared (earnings depend on how well the property performs)'
     },
     {
       id: '4',
-      label: 'Payment frequency',
-      description: 'Monthly payouts on collected revenue; detailed statements included.'
+      label: 'Serai risk',
+      description: 'Shared'
     },
     {
       id: '5',
-      label: 'Photography & branding',
-      description: 'Included at no cost; optional premium media packs at cost.'
-    },
-    {
-      id: '6',
-      label: 'Pricing policy',
-      description: 'Serai sets pricing strategy; owner has live dashboard access.'
+      label: 'Best for',
+      description: 'Owners who want higher potential income and are okay with variability'
     }
   ];
-
-  const revenueShareMoneyFlow = {
-    gbv: 100,
-    lines: [
-      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
-      { label: 'Base operating costs', value: 'Covered by Serai' },
-      { label: 'Split to Owner', value: 'Percentage of net revenue' },
-      { label: 'Split to Serai', value: 'Percentage of net revenue' }
-    ]
-  };
 
   // Management Agreement Modal Configuration
   const managementAgreementSteps = [
     {
       id: '1',
       label: 'How it works',
-      description: 'Serai manages day-to-day operations while the owner retains revenue upside and ownership.'
+      description: 'Owner hires Serai to operate the property for a fixed fee.'
     },
     {
       id: '2',
-      label: 'Sign-up',
-      description: 'Owner application → evaluation → management agreement → team & tech integration.'
+      label: 'Owner receives',
+      description: 'Full revenue minus expenses and Serai\'s management fee'
     },
     {
       id: '3',
-      label: 'Commission & charges',
-      description: '8–15% management fee on gross revenue; pass-through expenses per contract.'
+      label: 'Owner risk',
+      description: 'Full (covers all costs, earns more if the property performs well)'
     },
     {
       id: '4',
-      label: 'Payment frequency',
-      description: 'Gross revenue flows to the owner monthly; Serai fee is deducted/ invoiced monthly.'
+      label: 'Serai risk',
+      description: 'None (gets paid regardless of performance)'
     },
     {
       id: '5',
-      label: 'Photography & branding',
-      description: 'Owner may fund; Serai can arrange preferred vendors or bundle at cost.'
-    },
-    {
-      id: '6',
-      label: 'Pricing policy',
-      description: 'Serai recommends AI-driven dynamic pricing; owner may request overrides.'
+      label: 'Best for',
+      description: 'Owners who want to stay in control but need expert help'
     }
   ];
-
-  const managementAgreementMoneyFlow = {
-    gbv: 100,
-    lines: [
-      { label: 'Management fee to Serai', value: 'Percentage of gross revenue' },
-      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
-      { label: 'Operating costs', value: 'Owner\'s account' },
-      { label: 'Owner net after costs and fees', value: 'Remaining revenue' }
-    ]
-  };
 
   // Franchise Model Modal Configuration
   const franchiseModelSteps = [
     {
       id: '1',
       label: 'How it works',
-      description: 'Owner keeps local ops while adopting Serai brand standards, training, and tech stack.'
+      description: 'Owner runs the property under the SERAI brand and pays a royalty.'
     },
     {
       id: '2',
-      label: 'Sign-up',
-      description: 'Franchise application → compliance audit → franchise/license agreement → brand & tech deployment.'
+      label: 'Owner receives',
+      description: 'Full control over revenue after paying fees'
     },
     {
       id: '3',
-      label: 'Commission & charges',
-      description: 'One-time franchise fee + 15–25% royalty/commission on booking revenue.'
+      label: 'Owner risk',
+      description: 'Full'
     },
     {
       id: '4',
-      label: 'Payment frequency',
-      description: 'Owner collects revenue; Serai invoices royalties monthly.'
+      label: 'Serai risk',
+      description: 'None'
     },
     {
       id: '5',
-      label: 'Photography & branding',
-      description: 'Must meet brand standards; owner funds or Serai arranges at cost.'
-    },
-    {
-      id: '6',
-      label: 'Pricing policy',
-      description: 'Serai provides pricing engine + guardrails; owner executes locally with oversight.'
+      label: 'Best for',
+      description: 'Experienced operators who want branding, tools, and support'
     }
   ];
-
-  const franchiseModelMoneyFlow = {
-    gbv: 100,
-    lines: [
-      { label: 'Royalty/commission to Serai', value: 'Percentage of booking revenue' },
-      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
-      { label: 'Owner operating costs', value: 'Owner covers' },
-      { label: 'Owner net after royalty and costs', value: 'Remaining revenue' }
-    ]
-  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -852,7 +778,6 @@ export default function PartnerPage() {
         title="Master Lease"
         subtitle="Fixed rent. Zero risk. Guaranteed income."
         steps={masterLeaseSteps}
-        moneyFlow={masterLeaseMoneyFlow}
         cta={{
           primary: 'Request a Master Lease Proposal',
           secondary: 'Download Sample Lease'
@@ -867,7 +792,6 @@ export default function PartnerPage() {
         title="Hybrid Lease"
         subtitle="Base rent + shared upside."
         steps={hybridLeaseSteps}
-        moneyFlow={hybridLeaseMoneyFlow}
         cta={{
           primary: 'Model My Hybrid Terms',
           secondary: 'See Sample Report'
@@ -882,7 +806,6 @@ export default function PartnerPage() {
         title="Revenue Share"
         subtitle="Aligned interests. Flexible revenue splits."
         steps={revenueShareSteps}
-        moneyFlow={revenueShareMoneyFlow}
         cta={{
           primary: 'Request Revenue Share Proposal',
           secondary: 'Compare With Other Models'
@@ -897,7 +820,6 @@ export default function PartnerPage() {
         title="Management Agreement"
         subtitle="You own, we operate."
         steps={managementAgreementSteps}
-        moneyFlow={managementAgreementMoneyFlow}
         cta={{
           primary: 'See Management Proposal',
           secondary: 'View SOP & Playbooks'
@@ -912,7 +834,6 @@ export default function PartnerPage() {
         title="Franchise Model"
         subtitle="Operate under the Serai brand & tech suite."
         steps={franchiseModelSteps}
-        moneyFlow={franchiseModelMoneyFlow}
         cta={{
           primary: 'Apply for a Franchise',
           secondary: 'Download Brand Standards'
