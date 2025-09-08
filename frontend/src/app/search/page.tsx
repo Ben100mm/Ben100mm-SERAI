@@ -85,7 +85,7 @@ function SearchResultsPageContent() {
       location: "Vancouver, Canada",
       price: "$280/night",
       totalPrice: "$1,960 for 7 nights",
-      image: "/images/serai-images/Historic Downtown Inn.jpg",
+      image: "/images/serai-images/Coastal Retreat Villa Vancouver, Canada.jpeg",
       rating: 4.9,
       reviews: 156,
       type: "Luxury Villa",
@@ -99,7 +99,7 @@ function SearchResultsPageContent() {
       location: "Toronto, Canada",
       price: "$165/night",
       totalPrice: "$1,155 for 7 nights",
-      image: "/images/serai-images/Mountain View Lodge.jpg",
+      image: "/images/serai-images/Urban Loft Apartment Toronto, Canada.jpg",
       rating: 4.4,
       reviews: 78,
       type: "Modern Apartment",
@@ -113,7 +113,7 @@ function SearchResultsPageContent() {
       location: "Quebec City, Canada",
       price: "$195/night",
       totalPrice: "$1,365 for 7 nights",
-      image: "/images/serai-images/Desert Oasis Resort.jpg",
+      image: "/images/serai-images/Lakeside Cottage Quebec City, Canada.jpg",
       rating: 4.7,
       reviews: 92,
       type: "Charming Cottage",
@@ -246,7 +246,7 @@ function SearchResultsPageContent() {
       />
 
       {/* Search Bar */}
-      <div className="bg-white border-b border-gray-200 py-4 flex-shrink-0">
+      <div className="bg-white border-b border-gray-200 py-4 flex-shrink-0 pt-20">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between">
             {/* Search Form */}
