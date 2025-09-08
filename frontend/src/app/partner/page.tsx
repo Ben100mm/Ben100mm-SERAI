@@ -94,23 +94,23 @@ export default function PartnerPage() {
   const partnershipModels = [
     {
       title: "Master Lease",
-      description: "Serai rents the property and takes full responsibility. Owner receives: Fixed monthly rent (guaranteed). Owner risk: None. Serai risk: Full (Serai pays rent even if the property is empty). Best for: Owners who want steady income with no involvement."
+      description: "Guaranteed fixed rent, fully de-risked."
     },
     {
       title: "Hybrid Lease", 
-      description: "Owner gets a smaller base rent plus a share of profits. Owner receives: Base rent + percentage of profits. Owner risk: Low. Serai risk: Moderate (Serai covers operations, but owner shares some performance risk). Best for: Owners who want some upside without full risk."
+      description: "Base rent + revenue share upside."
     },
     {
       title: "Revenue Share",
-      description: "Serai runs everything and splits profits with the owner. Owner receives: A percentage of net profits. Owner risk: Shared (earnings depend on how well the property performs). Serai risk: Shared. Best for: Owners who want higher potential income and are okay with variability."
+      description: "Align interests with flexible revenue split."
     },
     {
       title: "Management Agreement",
-      description: "Owner hires Serai to operate the property for a fixed fee. Owner receives: Full revenue minus expenses and Serai's management fee. Owner risk: Full (covers all costs, earns more if the property performs well). Serai risk: None (gets paid regardless of performance). Best for: Owners who want to stay in control but need expert help."
+      description: "Serai operates, owner retains upside."
     },
     {
       title: "Franchise Model",
-      description: "Owner runs the property under the SERAI brand and pays a royalty. Owner receives: Full control over revenue after paying fees. Owner risk: Full. Serai risk: None. Best for: Experienced operators who want branding, tools, and support."
+      description: "Operate under the Serai brand & tech suite."
     }
   ];
 
