@@ -1590,15 +1590,15 @@ export default function ManagementMessages() {
                   Quick Actions
                 </h4>
                 <div className="grid grid-cols-2 gap-2">
-                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 text-sm">
+                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 text-sm">
                     <Phone className="h-4 w-4" />
                     <span>Call</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-forest-500 text-white rounded-lg hover:bg-serai-forest-600 text-sm">
+                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 text-sm">
                     <Mail className="h-4 w-4" />
                     <span>Email</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-gold-500 text-white rounded-lg hover:bg-serai-gold-600 text-sm">
+                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 text-sm">
                     <Flag className="h-4 w-4" />
                     <span>Escalate</span>
                   </button>

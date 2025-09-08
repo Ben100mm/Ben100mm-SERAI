@@ -1275,15 +1275,15 @@ export default function SeraiManagementDashboardPage() {
                         <Send className="h-4 w-4" />
                         <span>Send Announcement</span>
                       </button>
-                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-forest-600 text-white rounded-lg hover:bg-serai-forest-700 transition-colors">
+                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
                         <MessageCircle className="h-4 w-4" />
                         <span>Start Group Chat</span>
                       </button>
-                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-gold-600 text-white rounded-lg hover:bg-serai-gold-700 transition-colors">
+                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
                         <Bell className="h-4 w-4" />
                         <span>Send Notification</span>
                       </button>
-                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
                         <FileText className="h-4 w-4" />
                         <span>Create Report</span>
                       </button>
