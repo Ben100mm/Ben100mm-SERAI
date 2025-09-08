@@ -565,7 +565,10 @@ export default function PartnerPage() {
       {/* Partnership Models */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Partnership Models</h2>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">How It Works</h2>
+          <p className="text-xl text-gray-600 text-center mb-16 max-w-4xl mx-auto">
+            Choose the partnership model that best fits your goals and risk tolerance. Each model is designed to maximize your returns while providing the level of involvement you prefer.
+          </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {partnershipModels.map((model, index) => {
