@@ -120,22 +120,6 @@ export default function TopAppBar({
                             </Link>
 
                             <Link 
-                              href="/saved" 
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              Saved
-                            </Link>
-
-                            <Link 
-                              href="/trips" 
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                              onClick={() => setIsMenuOpen(false)}
-                            >
-                              Trips
-                            </Link>
-
-                            <Link 
                               href="/guest/messages" 
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                               onClick={() => setIsMenuOpen(false)}

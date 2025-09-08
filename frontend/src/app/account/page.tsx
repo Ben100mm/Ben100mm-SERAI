@@ -10,6 +10,8 @@ import PreferencesTab from './components/PreferencesTab';
 import SecurityTab from './components/SecurityTab';
 import PrivacyTab from './components/PrivacyTab';
 import PaymentsPayoutsTab from './components/PaymentsPayoutsTab';
+import SavedTab from './components/SavedTab';
+import TripsTab from './components/TripsTab';
 
 export default function AccountPage() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -42,6 +44,16 @@ export default function AccountPage() {
       id: 'profile',
       label: 'Profile',
       content: <ProfileTab />
+    },
+    {
+      id: 'saved',
+      label: 'Saved',
+      content: <SavedTab />
+    },
+    {
+      id: 'trips',
+      label: 'Trips',
+      content: <TripsTab />
     },
     {
       id: 'preferences',
