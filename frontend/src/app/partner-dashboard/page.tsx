@@ -232,7 +232,7 @@ export default function PartnerDashboardPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="h-screen bg-white overflow-hidden">
       <TopAppBar 
         backHref="/tabs" 
         logoHref="/tabs" 
@@ -242,7 +242,7 @@ export default function PartnerDashboardPage() {
         hiddenDropdownItems={['Gift Cards', 'Clubs & Badges', 'Memberships']}
       />
       
-      <div className="flex pt-16">
+      <div className="flex h-full" style={{ paddingTop: '5rem' }}>
         {/* Mobile sidebar overlay */}
         {sidebarOpen && (
           <div className="fixed inset-0 flex z-40 md:hidden">
@@ -359,8 +359,8 @@ export default function PartnerDashboardPage() {
         </div>
 
         {/* Main content */}
-        <div className="md:pl-64 flex flex-col flex-1">
-          <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100">
+        <div className="md:pl-64 flex flex-col flex-1 h-full">
+          <div className="sticky top-0 z-10 md:hidden pl-1 pt-5 sm:pl-3 sm:pt-3 bg-gray-100">
             <button
               type="button"
               className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-serai-serai-red-500"
@@ -371,11 +371,11 @@ export default function PartnerDashboardPage() {
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+          <main className={`flex-1 relative z-0 focus:outline-none ${activeSection === 'communication' ? 'overflow-hidden' : 'overflow-y-auto'}`}>
             {activeSection === 'communication' ? (
               renderDashboardContent()
             ) : (
-              <div className="pt-8 pb-6">
+              <div className="pt-4 pb-6">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                   {renderDashboardContent()}
                 </div>

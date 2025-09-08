@@ -1181,7 +1181,7 @@ export default function SeraiManagementDashboardPage() {
         {/* Tab Content */}
         <div className="flex-1 overflow-hidden">
           {communicationHubTab === 'communication-hub' && (
-            <div className="h-full overflow-y-auto p-6" style={{ maxHeight: 'calc(100vh - 200px)' }}>
+            <div className="h-full overflow-y-auto p-6" style={{ maxHeight: 'calc(100vh - 240px)' }}>
               <div className="space-y-6">
                 {/* Communication Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -1476,7 +1476,7 @@ export default function SeraiManagementDashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="h-screen bg-white overflow-hidden">
       <TopAppBar 
         backHref="/tabs" 
         logoHref="/tabs" 
@@ -1486,7 +1486,7 @@ export default function SeraiManagementDashboardPage() {
         hiddenDropdownItems={[]}
       />
 
-      <div className="flex pt-20">
+      <div className="flex h-full" style={{ paddingTop: '5rem' }}>
         {/* Mobile Sidebar Overlay */}
         {sidebarOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
@@ -1593,7 +1593,7 @@ export default function SeraiManagementDashboardPage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 h-full">
           {/* Mobile header */}
           <div className="lg:hidden pl-1 pt-5 sm:pl-3 sm:pt-5">
             <button
@@ -1606,7 +1606,7 @@ export default function SeraiManagementDashboardPage() {
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none" style={{ maxHeight: 'calc(100vh - 80px)' }}>
+          <main className={`flex-1 relative z-0 focus:outline-none ${activeSection === 'communication-hub' && communicationHubTab === 'messages' ? 'overflow-hidden' : 'overflow-y-auto'}`}>
             {activeSection === 'communication-hub' && communicationHubTab === 'messages' ? (
               <div className="h-full">
                 <ManagementMessages />

@@ -721,11 +721,11 @@ export default function Messages() {
   );
 
   return (
-    <div className="h-screen bg-white flex overflow-hidden">
+    <div className="h-full flex bg-white">
       {/* Left Panel - Conversations List */}
-      <div className="w-80 border-r border-gray-200 flex flex-col sticky top-0 h-screen">
+      <div className="w-80 border-r border-gray-200 flex flex-col">
         {/* Header */}
-        <div className="p-4 border-b border-gray-200">
+        <div className="p-4 border-b border-gray-200 flex-shrink-0">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Messages</h2>
             <div className="flex items-center space-x-2">
@@ -764,7 +764,7 @@ export default function Messages() {
         </div>
 
         {/* Conversations List */}
-        <div className="flex-1 overflow-y-auto min-h-0">
+        <div className="flex-1 overflow-y-auto">
           {filteredConversations.map((conversation) => (
             <div
               key={conversation.id}
@@ -819,11 +819,11 @@ export default function Messages() {
       </div>
 
       {/* Middle Panel - Active Conversation */}
-      <div className="flex-1 flex flex-col sticky top-0 h-screen">
+      <div className="flex-1 flex flex-col">
         {selectedConversation ? (
           <>
             {/* Chat Header */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-serai-navy-100 rounded-full flex items-center justify-center">
@@ -857,7 +857,7 @@ export default function Messages() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -882,7 +882,7 @@ export default function Messages() {
             </div>
 
             {/* Message Input */}
-            <div className="p-4 border-t border-serai-neutral-200">
+            <div className="p-4 border-t border-serai-neutral-200 flex-shrink-0">
               <div className="flex items-center space-x-2">
                 <button className="p-2 hover:bg-serai-cream-100 rounded">
                   <Paperclip className="h-5 w-5 text-serai-neutral-500" />
@@ -923,11 +923,11 @@ export default function Messages() {
       </div>
 
       {/* Right Panel - Guest Details */}
-      <div className="w-80 border-l border-serai-neutral-200 flex flex-col sticky top-0 h-screen overflow-y-auto">
+      <div className="w-80 border-l border-serai-neutral-200 flex flex-col overflow-y-auto">
         {selectedConversation ? (
-          <>
+          <div>
             {/* Guest Header */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <div className="flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-serai-charcoal-900">Reservation</h3>
                 <button className="p-1 hover:bg-serai-cream-100 rounded">
@@ -937,7 +937,7 @@ export default function Messages() {
             </div>
 
             {/* Guest Info */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <div className="flex items-center space-x-3 mb-4">
                 <div className="w-12 h-12 bg-serai-navy-100 rounded-full flex items-center justify-center">
                   <span className="text-lg font-medium text-serai-navy-700">
@@ -981,7 +981,7 @@ export default function Messages() {
             </div>
 
             {/* Action Buttons */}
-            <div className="p-4 border-b border-serai-neutral-200 space-y-2">
+            <div className="p-4 border-b border-serai-neutral-200 space-y-2 flex-shrink-0">
               <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 <CreditCard className="h-4 w-4" />
                 <span>Send or request money</span>
@@ -993,7 +993,7 @@ export default function Messages() {
             </div>
 
             {/* Booking Details */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <h4 className="text-sm font-semibold text-serai-charcoal-900 mb-3">Booking Details</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -1027,7 +1027,7 @@ export default function Messages() {
             </div>
 
             {/* Payment Breakdown */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <h4 className="text-sm font-semibold text-serai-charcoal-900 mb-3">Guest Paid</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -1054,7 +1054,7 @@ export default function Messages() {
             </div>
 
             {/* Host Payout */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <h4 className="text-sm font-semibold text-serai-charcoal-900 mb-3">Host Payout</h4>
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
@@ -1083,7 +1083,7 @@ export default function Messages() {
             </div>
 
             {/* Calendar Note */}
-            <div className="p-4 border-b border-serai-neutral-200">
+            <div className="p-4 border-b border-serai-neutral-200 flex-shrink-0">
               <h4 className="text-sm font-semibold text-serai-charcoal-900 mb-3">
                 Add a private reminder for these dates that only you can view
               </h4>
@@ -1098,7 +1098,7 @@ export default function Messages() {
             </div>
 
             {/* Support Options */}
-            <div className="p-4 space-y-3">
+            <div className="p-4 space-y-3 flex-shrink-0">
               <div className="bg-serai-navy-50 p-3 rounded">
                 <h4 className="text-sm font-semibold text-serai-navy-900 mb-2">Host Protection</h4>
                 <p className="text-xs text-serai-navy-700 mb-2">
@@ -1130,7 +1130,7 @@ export default function Messages() {
                 Refund your guest
               </button>
             </div>
-          </>
+          </div>
         ) : (
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
