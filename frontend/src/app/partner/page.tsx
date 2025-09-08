@@ -250,13 +250,12 @@ export default function PartnerPage() {
   ];
 
   const masterLeaseMoneyFlow = {
-    gbv: 100,
     lines: [
-      { label: 'Serai rents the property and takes full responsibility', value: 'Full responsibility' },
-      { label: 'Owner receives: Fixed monthly rent (guaranteed)', value: 'Guaranteed income' },
-      { label: 'Owner risk: None', value: 'Zero risk' },
-      { label: 'Serai risk: Full (Serai pays rent even if the property is empty)', value: 'Full risk' },
-      { label: 'Best for: Owners who want steady income with no involvement', value: 'Passive income' }
+      { label: 'Serai takes full operational control', value: 'Full responsibility' },
+      { label: 'Owner receives fixed monthly rent', value: 'Guaranteed income' },
+      { label: 'Owner risk level', value: 'Zero risk' },
+      { label: 'Serai risk level', value: 'Full risk' },
+      { label: 'Best for', value: 'Passive income seekers' }
     ]
   };
 
@@ -295,13 +294,12 @@ export default function PartnerPage() {
   ];
 
   const hybridLeaseMoneyFlow = {
-    gbv: 100,
     lines: [
-      { label: 'Owner gets a smaller base rent plus a share of profits', value: 'Base + upside' },
-      { label: 'Owner receives: Base rent + percentage of profits', value: 'Guaranteed + percentage' },
-      { label: 'Owner risk: Low', value: 'Low risk' },
-      { label: 'Serai risk: Moderate (Serai covers operations, but owner shares some performance risk)', value: 'Moderate risk' },
-      { label: 'Best for: Owners who want some upside without full risk', value: 'Balanced approach' }
+      { label: 'Owner gets base rent + profit share', value: 'Base + upside' },
+      { label: 'Owner receives base rent + percentage', value: 'Guaranteed + percentage' },
+      { label: 'Owner risk level', value: 'Low risk' },
+      { label: 'Serai risk level', value: 'Moderate risk' },
+      { label: 'Best for', value: 'Balanced approach' }
     ]
   };
 
@@ -340,13 +338,12 @@ export default function PartnerPage() {
   ];
 
   const revenueShareMoneyFlow = {
-    gbv: 100,
     lines: [
-      { label: 'Serai runs everything and splits profits with the owner', value: 'Shared operations' },
-      { label: 'Owner receives: A percentage of net profits', value: 'Percentage of profits' },
-      { label: 'Owner risk: Shared (earnings depend on how well the property performs)', value: 'Shared risk' },
-      { label: 'Serai risk: Shared', value: 'Shared risk' },
-      { label: 'Best for: Owners who want higher potential income and are okay with variability', value: 'High potential' }
+      { label: 'Serai runs operations, splits profits', value: 'Shared operations' },
+      { label: 'Owner receives percentage of profits', value: 'Percentage of profits' },
+      { label: 'Owner risk level', value: 'Shared risk' },
+      { label: 'Serai risk level', value: 'Shared risk' },
+      { label: 'Best for', value: 'High potential seekers' }
     ]
   };
 
@@ -385,13 +382,12 @@ export default function PartnerPage() {
   ];
 
   const managementAgreementMoneyFlow = {
-    gbv: 100,
     lines: [
-      { label: 'Owner hires Serai to operate the property for a fixed fee', value: 'Fixed fee service' },
-      { label: 'Owner receives: Full revenue minus expenses and Serai\'s management fee', value: 'Full revenue minus fees' },
-      { label: 'Owner risk: Full (covers all costs, earns more if the property performs well)', value: 'Full risk' },
-      { label: 'Serai risk: None (gets paid regardless of performance)', value: 'No risk' },
-      { label: 'Best for: Owners who want to stay in control but need expert help', value: 'Expert help' }
+      { label: 'Owner hires Serai for fixed fee', value: 'Fixed fee service' },
+      { label: 'Owner receives full revenue minus fees', value: 'Full revenue minus fees' },
+      { label: 'Owner risk level', value: 'Full risk' },
+      { label: 'Serai risk level', value: 'No risk' },
+      { label: 'Best for', value: 'Expert help seekers' }
     ]
   };
 
@@ -430,13 +426,12 @@ export default function PartnerPage() {
   ];
 
   const franchiseModelMoneyFlow = {
-    gbv: 100,
     lines: [
-      { label: 'Owner runs the property under the SERAI brand and pays a royalty', value: 'Brand + royalty' },
-      { label: 'Owner receives: Full control over revenue after paying fees', value: 'Full control' },
-      { label: 'Owner risk: Full', value: 'Full risk' },
-      { label: 'Serai risk: None', value: 'No risk' },
-      { label: 'Best for: Experienced operators who want branding, tools, and support', value: 'Experienced operators' }
+      { label: 'Owner runs under Serai brand, pays royalty', value: 'Brand + royalty' },
+      { label: 'Owner receives full control after fees', value: 'Full control' },
+      { label: 'Owner risk level', value: 'Full risk' },
+      { label: 'Serai risk level', value: 'No risk' },
+      { label: 'Best for', value: 'Experienced operators' }
     ]
   };
 
