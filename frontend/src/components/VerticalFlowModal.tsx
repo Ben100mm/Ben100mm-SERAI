@@ -198,7 +198,7 @@ export default function VerticalFlowModal({
                 {showCompareButton && !showComparison && (
                   <button
                     onClick={() => setShowComparison(true)}
-                    className="flex items-center space-x-1 px-3 py-1.5 text-sm text-serai-red-600 hover:text-serai-red-700 hover:bg-serai-red-50 rounded-lg transition-colors"
+                    className="flex items-center space-x-1 px-3 py-1.5 text-sm text-serai-navy-600 hover:text-serai-navy-700 hover:bg-serai-navy-50 rounded-lg transition-colors font-medium"
                   >
                     <BarChart3 className="h-4 w-4" />
                     <span>Compare Models</span>
@@ -207,7 +207,7 @@ export default function VerticalFlowModal({
                 {showComparison && (
                   <button
                     onClick={() => setShowComparison(false)}
-                    className="flex items-center space-x-1 px-3 py-1.5 text-sm text-gray-600 hover:text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
+                    className="flex items-center space-x-1 px-3 py-1.5 text-sm text-serai-charcoal-600 hover:text-serai-charcoal-700 hover:bg-serai-charcoal-50 rounded-lg transition-colors font-medium"
                   >
                     <BarChart3 className="h-4 w-4" />
                     <span>Back to Flow</span>
@@ -215,7 +215,7 @@ export default function VerticalFlowModal({
                 )}
                 <button
                   onClick={onClose}
-                  className="flex-shrink-0 p-1 text-gray-400 hover:text-gray-600 transition-colors"
+                  className="flex-shrink-0 p-1 text-serai-charcoal-400 hover:text-serai-charcoal-600 transition-colors"
                   aria-label="Close modal"
                 >
                   <X className="h-5 w-5" />
@@ -231,28 +231,28 @@ export default function VerticalFlowModal({
             {showComparison ? (
               /* Comparison Table View */
               <div className="space-y-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Partnership Models Comparison</h3>
+                <h3 className="text-lg font-semibold text-serai-navy-900 mb-4">Partnership Models Comparison</h3>
                 
                 {/* Desktop Table */}
                 <div className="hidden lg:block overflow-x-auto">
                   <div className="min-w-full">
                     <div className="grid grid-cols-6 gap-6 mb-3">
-                      <div className="font-semibold text-gray-900 p-3 bg-gray-50 rounded-lg text-center">Model</div>
-                      <div className="font-semibold text-gray-900 p-3 bg-gray-50 rounded-lg text-center">Sign-Up</div>
-                      <div className="font-semibold text-gray-900 p-3 bg-gray-50 rounded-lg text-center">Charges</div>
-                      <div className="font-semibold text-gray-900 p-3 bg-gray-50 rounded-lg text-center">Payment Frequency</div>
-                      <div className="font-semibold text-gray-900 p-3 bg-gray-50 rounded-lg text-center">Photography</div>
-                      <div className="font-semibold text-gray-900 p-3 bg-gray-50 rounded-lg text-center">Pricing</div>
+                      <div className="font-semibold text-serai-navy-900 p-3 bg-serai-cream-100 rounded-lg text-center">Model</div>
+                      <div className="font-semibold text-serai-navy-900 p-3 bg-serai-cream-100 rounded-lg text-center">Sign-Up</div>
+                      <div className="font-semibold text-serai-navy-900 p-3 bg-serai-cream-100 rounded-lg text-center">Charges</div>
+                      <div className="font-semibold text-serai-navy-900 p-3 bg-serai-cream-100 rounded-lg text-center">Payment Frequency</div>
+                      <div className="font-semibold text-serai-navy-900 p-3 bg-serai-cream-100 rounded-lg text-center">Photography</div>
+                      <div className="font-semibold text-serai-navy-900 p-3 bg-serai-cream-100 rounded-lg text-center">Pricing</div>
                     </div>
                     
                     {Object.entries(comparisonData).map(([modelName, data]) => (
-                      <div key={modelName} className="grid grid-cols-6 gap-6 py-4 border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                        <div className="font-semibold text-gray-900 p-3 sticky left-0 bg-white border-r border-gray-200 min-w-[140px]">{modelName}</div>
-                        <div className="text-sm text-gray-600 p-3">{data['Sign-Up']}</div>
-                        <div className="text-sm text-gray-600 p-3">{data['Charges']}</div>
-                        <div className="text-sm text-gray-600 p-3">{data['Payment Frequency']}</div>
-                        <div className="text-sm text-gray-600 p-3">{data['Photography']}</div>
-                        <div className="text-sm text-gray-600 p-3">{data['Pricing']}</div>
+                      <div key={modelName} className="grid grid-cols-6 gap-6 py-4 border-b border-serai-neutral-200 hover:bg-serai-cream-50 transition-colors">
+                        <div className="font-semibold text-serai-navy-900 p-3 sticky left-0 bg-white border-r border-serai-neutral-200 min-w-[140px]">{modelName}</div>
+                        <div className="text-sm text-serai-charcoal-600 p-3">{data['Sign-Up']}</div>
+                        <div className="text-sm text-serai-charcoal-600 p-3">{data['Charges']}</div>
+                        <div className="text-sm text-serai-charcoal-600 p-3">{data['Payment Frequency']}</div>
+                        <div className="text-sm text-serai-charcoal-600 p-3">{data['Photography']}</div>
+                        <div className="text-sm text-serai-charcoal-600 p-3">{data['Pricing']}</div>
                       </div>
                     ))}
                   </div>
@@ -261,32 +261,32 @@ export default function VerticalFlowModal({
                 {/* Mobile Cards */}
                 <div className="lg:hidden space-y-4">
                   {Object.entries(comparisonData).map(([modelName, data]) => (
-                    <div key={modelName} className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-3">{modelName}</h4>
+                    <div key={modelName} className="bg-serai-cream-50 rounded-lg p-4 border border-serai-neutral-200">
+                      <h4 className="font-semibold text-serai-navy-900 mb-3">{modelName}</h4>
                       <div className="space-y-2">
                         <div>
-                          <span className="text-sm font-medium text-gray-700">Sign-Up:</span>
-                          <p className="text-sm text-gray-600">{data['Sign-Up']}</p>
+                          <span className="text-sm font-medium text-serai-navy-700">Sign-Up:</span>
+                          <p className="text-sm text-serai-charcoal-600">{data['Sign-Up']}</p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-700">Charges:</span>
-                          <p className="text-sm text-gray-600">{data['Charges']}</p>
+                          <span className="text-sm font-medium text-serai-navy-700">Charges:</span>
+                          <p className="text-sm text-serai-charcoal-600">{data['Charges']}</p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-700">Payment Frequency:</span>
-                          <p className="text-sm text-gray-600">{data['Payment Frequency']}</p>
+                          <span className="text-sm font-medium text-serai-navy-700">Payment Frequency:</span>
+                          <p className="text-sm text-serai-charcoal-600">{data['Payment Frequency']}</p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-700">Photography:</span>
-                          <p className="text-sm text-gray-600">{data['Photography']}</p>
+                          <span className="text-sm font-medium text-serai-navy-700">Photography:</span>
+                          <p className="text-sm text-serai-charcoal-600">{data['Photography']}</p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-700">Pricing:</span>
-                          <p className="text-sm text-gray-600">{data['Pricing']}</p>
+                          <span className="text-sm font-medium text-serai-navy-700">Pricing:</span>
+                          <p className="text-sm text-serai-charcoal-600">{data['Pricing']}</p>
                         </div>
                         <div>
-                          <span className="text-sm font-medium text-gray-700">Revenue to Serai:</span>
-                          <p className="text-sm text-gray-600">{data['Revenue to Serai']}</p>
+                          <span className="text-sm font-medium text-serai-navy-700">Revenue to Serai:</span>
+                          <p className="text-sm text-serai-charcoal-600">{data['Revenue to Serai']}</p>
                         </div>
                       </div>
                     </div>
@@ -296,82 +296,111 @@ export default function VerticalFlowModal({
             ) : (
               /* Original Flow View */
               <div className="space-y-6">
-                {/* Money Flow Card */}
+                {/* Financial Breakdown Card */}
                 {moneyFlow && (
-                  <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="text-sm font-medium text-gray-900">$100 Booking Flow</h3>
-                      <span className="text-lg font-semibold text-gray-900">
-                        ${moneyFlow?.gbv?.toFixed(2) || '100.00'} GBV
-                      </span>
-                    </div>
+                  <div className="bg-serai-cream-50 rounded-lg p-6 border border-serai-neutral-200">
+                    <h3 className="text-lg font-semibold text-serai-navy-900 mb-4">Financial Breakdown</h3>
                     
-                    <div className="space-y-2 mb-4">
-                      {moneyFlow?.lines?.map((line, index) => (
-                        <div key={index} className="flex justify-between text-sm">
-                          <span className={`${line.value >= 0 ? 'text-gray-700' : 'text-red-600'}`}>
-                            {line.label}
-                          </span>
-                          <span className={`font-medium ${line.value >= 0 ? 'text-gray-900' : 'text-red-600'}`}>
-                            {isNaN(line.value) 
-                              ? (line.label.includes('Operating costs') || line.label.includes('Base operating costs') || line.label.includes('owner\'s account') ? '-x' : 
-                                 line.label.includes('Revenue share to Serai') ? '-y' : 
-                                 line.label.includes('Owner receives') ? '+z' :
-                                 line.label.includes('Split to Owner') ? '+a' :
-                                 line.label.includes('Split to Serai') ? '+b' :
-                                 line.label.includes('Owner net') ? '+y' : '-x')
-                              : `${line.value >= 0 ? '+' : ''}$${line.value.toFixed(2)}`
-                            }
-                          </span>
+                    {title === 'Master Lease' && (
+                      <div className="space-y-3">
+                        <div className="bg-white p-4 rounded-lg border border-serai-neutral-200">
+                          <h4 className="font-semibold text-serai-navy-700 mb-2">Master Lease</h4>
+                          <p className="text-sm text-serai-charcoal-600 mb-3">Serai rents the property and takes full responsibility.</p>
+                          <div className="space-y-2 text-sm">
+                            <div><span className="font-medium text-serai-navy-600">Owner receives:</span> <span className="text-serai-charcoal-600">Fixed monthly rent (guaranteed)</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Owner risk:</span> <span className="text-serai-charcoal-600">None</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Serai risk:</span> <span className="text-serai-charcoal-600">Full (Serai pays rent even if the property is empty)</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Best for:</span> <span className="text-serai-charcoal-600">Owners who want steady income with no involvement</span></div>
+                          </div>
                         </div>
-                      ))}
-                    </div>
-                    
-                    <div className="border-t border-gray-300 pt-2">
-                      <div className="flex justify-between text-sm font-semibold">
-                        <span className="text-gray-900">
-                          {hasNaNValue ? 'Profit margin' : 'Owner Net'}
-                        </span>
-                        <span className={`${ownerNet >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          {hasNaNValue 
-                            ? (moneyFlow?.lines?.some(line => line.label.includes('Owner net')) 
-                               ? 'varies by revenue & operating costs'
-                               : moneyFlow?.lines?.some(line => line.label.includes('Split to Owner')) 
-                               ? 'varies by revenue & split ratio'
-                               : moneyFlow?.lines?.some(line => line.label.includes('Revenue share')) 
-                               ? 'varies by performance & terms'
-                               : 'remainder to Serai after rent & ops')
-                            : `${ownerNet >= 0 ? '+' : ''}$${ownerNet.toFixed(2)}`
-                          }
-                        </span>
                       </div>
-                    </div>
+                    )}
+
+                    {title === 'Hybrid Lease' && (
+                      <div className="space-y-3">
+                        <div className="bg-white p-4 rounded-lg border border-serai-neutral-200">
+                          <h4 className="font-semibold text-serai-navy-700 mb-2">Hybrid Lease</h4>
+                          <p className="text-sm text-serai-charcoal-600 mb-3">Owner gets a smaller base rent plus a share of profits.</p>
+                          <div className="space-y-2 text-sm">
+                            <div><span className="font-medium text-serai-navy-600">Owner receives:</span> <span className="text-serai-charcoal-600">Base rent + percentage of profits</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Owner risk:</span> <span className="text-serai-charcoal-600">Low</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Serai risk:</span> <span className="text-serai-charcoal-600">Moderate (Serai covers operations, but owner shares some performance risk)</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Best for:</span> <span className="text-serai-charcoal-600">Owners who want some upside without full risk</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {title === 'Revenue Share' && (
+                      <div className="space-y-3">
+                        <div className="bg-white p-4 rounded-lg border border-serai-neutral-200">
+                          <h4 className="font-semibold text-serai-navy-700 mb-2">Revenue Share</h4>
+                          <p className="text-sm text-serai-charcoal-600 mb-3">Serai runs everything and splits profits with the owner.</p>
+                          <div className="space-y-2 text-sm">
+                            <div><span className="font-medium text-serai-navy-600">Owner receives:</span> <span className="text-serai-charcoal-600">A percentage of net profits</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Owner risk:</span> <span className="text-serai-charcoal-600">Shared (earnings depend on how well the property performs)</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Serai risk:</span> <span className="text-serai-charcoal-600">Shared</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Best for:</span> <span className="text-serai-charcoal-600">Owners who want higher potential income and are okay with variability</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {title === 'Management Agreement' && (
+                      <div className="space-y-3">
+                        <div className="bg-white p-4 rounded-lg border border-serai-neutral-200">
+                          <h4 className="font-semibold text-serai-navy-700 mb-2">Management Agreement</h4>
+                          <p className="text-sm text-serai-charcoal-600 mb-3">Owner hires Serai to operate the property for a fixed fee.</p>
+                          <div className="space-y-2 text-sm">
+                            <div><span className="font-medium text-serai-navy-600">Owner receives:</span> <span className="text-serai-charcoal-600">Full revenue minus expenses and Serai's management fee</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Owner risk:</span> <span className="text-serai-charcoal-600">Full (covers all costs, earns more if the property performs well)</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Serai risk:</span> <span className="text-serai-charcoal-600">None (gets paid regardless of performance)</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Best for:</span> <span className="text-serai-charcoal-600">Owners who want to stay in control but need expert help</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {title === 'Franchise Model' && (
+                      <div className="space-y-3">
+                        <div className="bg-white p-4 rounded-lg border border-serai-neutral-200">
+                          <h4 className="font-semibold text-serai-navy-700 mb-2">Franchise Model</h4>
+                          <p className="text-sm text-serai-charcoal-600 mb-3">Owner runs the property under the SERAI brand and pays a royalty.</p>
+                          <div className="space-y-2 text-sm">
+                            <div><span className="font-medium text-serai-navy-600">Owner receives:</span> <span className="text-serai-charcoal-600">Full control over revenue after paying fees</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Owner risk:</span> <span className="text-serai-charcoal-600">Full</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Serai risk:</span> <span className="text-serai-charcoal-600">None</span></div>
+                            <div><span className="font-medium text-serai-navy-600">Best for:</span> <span className="text-serai-charcoal-600">Experienced operators who want branding, tools, and support</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {/* Steps Timeline */}
                 <div className="relative">
                   {/* Timeline Line */}
-                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200" />
+                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-serai-neutral-200" />
                   
                   <div className="space-y-6">
                     {steps.map((step, index) => (
                       <div key={step.id} className="relative flex items-start">
                         {/* Timeline Dot */}
-                        <div className="flex-shrink-0 w-8 h-8 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center relative z-10">
+                        <div className="flex-shrink-0 w-8 h-8 bg-white border-2 border-serai-navy-200 rounded-full flex items-center justify-center relative z-10">
                           {index < steps.length - 1 ? (
-                            <Circle className="h-4 w-4 text-gray-400" />
+                            <Circle className="h-4 w-4 text-serai-navy-400" />
                           ) : (
-                            <CheckCircle className="h-4 w-4 text-serai-red-600" />
+                            <CheckCircle className="h-4 w-4 text-serai-navy-600" />
                           )}
                         </div>
                         
                         {/* Step Content */}
                         <div className="ml-4 flex-1">
-                          <h4 className="text-base font-semibold text-gray-900 mb-1">
+                          <h4 className="text-base font-semibold text-serai-navy-900 mb-1">
                             {step.label}
                           </h4>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-sm text-serai-charcoal-600">
                             {step.description}
                           </p>
                         </div>
@@ -385,19 +414,19 @@ export default function VerticalFlowModal({
 
           {/* Footer - CTA Buttons */}
           {cta && !showComparison && (
-            <div className="sticky bottom-0 bg-white border-t border-gray-200 px-6 py-4 rounded-b-lg">
+            <div className="sticky bottom-0 bg-white border-t border-serai-neutral-200 px-6 py-4 rounded-b-lg">
               <div className="flex flex-col sm:flex-row gap-3">
                 {cta.secondary && (
                   <button
                     onClick={onClose}
-                    className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="flex-1 px-4 py-2 border border-serai-navy-300 text-serai-navy-600 rounded-lg hover:bg-serai-navy-50 transition-colors font-medium"
                   >
                     {cta.secondary}
                   </button>
                 )}
                 <button
                   onClick={onClose}
-                  className={`flex-1 px-4 py-2 bg-serai-red-600 text-white rounded-lg hover:bg-serai-red-700 transition-colors ${
+                  className={`flex-1 px-4 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 transition-colors font-medium ${
                     !cta.secondary ? 'sm:max-w-xs sm:ml-auto' : ''
                   }`}
                 >

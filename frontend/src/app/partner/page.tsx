@@ -250,12 +250,11 @@ export default function PartnerPage() {
   ];
 
   const masterLeaseMoneyFlow = {
+    gbv: 100,
     lines: [
-      { label: 'Serai takes full operational control', value: 'Full responsibility' },
-      { label: 'Owner receives fixed monthly rent', value: 'Guaranteed income' },
-      { label: 'Owner risk level', value: 'Zero risk' },
-      { label: 'Serai risk level', value: 'Full risk' },
-      { label: 'Best for', value: 'Passive income seekers' }
+      { label: 'Owner fixed rent (already guaranteed)', value: 0 },
+      { label: 'Serai covers OTA + payment fees', value: -5 },
+      { label: 'Serai ops costs', value: NaN } // This will show as "-x" in UI
     ]
   };
 
@@ -294,12 +293,12 @@ export default function PartnerPage() {
   ];
 
   const hybridLeaseMoneyFlow = {
+    gbv: 100,
     lines: [
-      { label: 'Owner gets base rent + profit share', value: 'Base + upside' },
-      { label: 'Owner receives base rent + percentage', value: 'Guaranteed + percentage' },
-      { label: 'Owner risk level', value: 'Low risk' },
-      { label: 'Serai risk level', value: 'Moderate risk' },
-      { label: 'Best for', value: 'Balanced approach' }
+      { label: 'OTA + payment fees (~5%)', value: -5 },
+      { label: 'Operating costs (illustrative)', value: NaN }, // Shows as "-x"
+      { label: 'Revenue share to Serai (e.g., 20% of net)', value: NaN }, // Shows as "-y"
+      { label: 'Owner receives: base rent + remaining net', value: NaN } // Shows as "+z"
     ]
   };
 
@@ -338,12 +337,12 @@ export default function PartnerPage() {
   ];
 
   const revenueShareMoneyFlow = {
+    gbv: 100,
     lines: [
-      { label: 'Serai runs operations, splits profits', value: 'Shared operations' },
-      { label: 'Owner receives percentage of profits', value: 'Percentage of profits' },
-      { label: 'Owner risk level', value: 'Shared risk' },
-      { label: 'Serai risk level', value: 'Shared risk' },
-      { label: 'Best for', value: 'High potential seekers' }
+      { label: 'OTA + payment fees (~5%)', value: -5 },
+      { label: 'Base operating costs', value: NaN }, // Shows as "-x"
+      { label: 'Split to Owner (e.g., 70% of remaining)', value: NaN }, // Shows as "+a"
+      { label: 'Split to Serai (e.g., 30% of remaining)', value: NaN } // Shows as "+b"
     ]
   };
 
@@ -382,12 +381,12 @@ export default function PartnerPage() {
   ];
 
   const managementAgreementMoneyFlow = {
+    gbv: 100,
     lines: [
-      { label: 'Owner hires Serai for fixed fee', value: 'Fixed fee service' },
-      { label: 'Owner receives full revenue minus fees', value: 'Full revenue minus fees' },
-      { label: 'Owner risk level', value: 'Full risk' },
-      { label: 'Serai risk level', value: 'No risk' },
-      { label: 'Best for', value: 'Expert help seekers' }
+      { label: 'Management fee to Serai (e.g., 10–15%)', value: -12 },
+      { label: 'OTA + payment fees (~5%)', value: -5 },
+      { label: 'Operating costs (owner\'s account)', value: NaN }, // Shows as "-x"
+      { label: 'Owner net (after costs & fee)', value: NaN } // Shows as "+y"
     ]
   };
 
@@ -426,12 +425,12 @@ export default function PartnerPage() {
   ];
 
   const franchiseModelMoneyFlow = {
+    gbv: 100,
     lines: [
-      { label: 'Owner runs under Serai brand, pays royalty', value: 'Brand + royalty' },
-      { label: 'Owner receives full control after fees', value: 'Full control' },
-      { label: 'Owner risk level', value: 'Full risk' },
-      { label: 'Serai risk level', value: 'No risk' },
-      { label: 'Best for', value: 'Experienced operators' }
+      { label: 'Royalty/commission to Serai (e.g., 20%)', value: -20 },
+      { label: 'OTA + payment fees (~5%)', value: -5 },
+      { label: 'Owner operating costs', value: NaN }, // Shows as "-x"
+      { label: 'Owner net (after royalty & costs)', value: NaN } // Shows as "+y"
     ]
   };
 
@@ -565,10 +564,7 @@ export default function PartnerPage() {
       {/* Partnership Models */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">How It Works</h2>
-          <p className="text-xl text-gray-600 text-center mb-16 max-w-4xl mx-auto">
-            Choose the partnership model that best fits your goals and risk tolerance. Each model is designed to maximize your returns while providing the level of involvement you prefer.
-          </p>
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-16">Partnership Models</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {partnershipModels.map((model, index) => {

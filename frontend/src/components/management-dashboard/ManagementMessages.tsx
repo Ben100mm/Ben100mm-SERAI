@@ -1153,7 +1153,7 @@ export default function ManagementMessages() {
   };
 
   return (
-    <div className="h-full bg-white flex" style={{ height: 'calc(100vh - 5rem)', maxHeight: 'calc(100vh - 5rem)' }}>
+    <div className="h-full bg-white flex">
       {/* Left Panel - Conversations List */}
       <div className="w-80 border-r border-serai-neutral-200 flex flex-col h-full">
         {/* Header */}
@@ -1196,7 +1196,7 @@ export default function ManagementMessages() {
         </div>
 
         {/* Conversations List */}
-        <div className="flex-1 overflow-y-auto min-h-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: 'calc(100vh - 5rem - 120px)' }}>
+        <div className="flex-1 overflow-y-auto min-h-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: 'calc(100vh - 200px)' }}>
           {filteredConversations.map((conversation) => (
             <div
               key={conversation.id}
@@ -1278,7 +1278,7 @@ export default function ManagementMessages() {
         </div>
 
         {/* Messages - Scrollable with explicit height */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ height: 'calc(100vh - 5rem - 120px)', maxHeight: 'calc(100vh - 5rem - 120px)' }}>
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ height: 'calc(100vh - 200px)', maxHeight: 'calc(100vh - 200px)' }}>
           {activeMessages.map((message) => (
             <div
               key={message.id}
@@ -1335,7 +1335,7 @@ export default function ManagementMessages() {
       </div>
 
       {/* Right Panel - Enhanced Contact Details */}
-      <div className="w-80 border-l border-serai-neutral-200 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ height: 'calc(100vh - 5rem)', maxHeight: 'calc(100vh - 5rem)' }}>
+      <div className="w-80 border-l border-serai-neutral-200 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: '100vh' }}>
         {activeContact ? (
           <>
             {/* Contact Header */}
@@ -1590,15 +1590,15 @@ export default function ManagementMessages() {
                   Quick Actions
                 </h4>
                 <div className="grid grid-cols-2 gap-2">
-                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 text-sm">
+                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 text-sm">
                     <Phone className="h-4 w-4" />
                     <span>Call</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 text-sm">
+                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-forest-500 text-white rounded-lg hover:bg-serai-forest-600 text-sm">
                     <Mail className="h-4 w-4" />
                     <span>Email</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 text-sm">
+                  <button className="flex items-center justify-center space-x-2 px-3 py-2 bg-serai-gold-500 text-white rounded-lg hover:bg-serai-gold-600 text-sm">
                     <Flag className="h-4 w-4" />
                     <span>Escalate</span>
                   </button>

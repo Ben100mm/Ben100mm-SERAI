@@ -1181,7 +1181,7 @@ export default function SeraiManagementDashboardPage() {
         {/* Tab Content */}
         <div className="flex-1 overflow-hidden">
           {communicationHubTab === 'communication-hub' && (
-            <div className="h-full overflow-y-auto p-6" style={{ maxHeight: 'calc(100vh - 240px)' }}>
+            <div className="h-full overflow-y-auto p-6">
               <div className="space-y-6">
                 {/* Communication Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -1275,15 +1275,15 @@ export default function SeraiManagementDashboardPage() {
                         <Send className="h-4 w-4" />
                         <span>Send Announcement</span>
                       </button>
-                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
+                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-forest-600 text-white rounded-lg hover:bg-serai-forest-700 transition-colors">
                         <MessageCircle className="h-4 w-4" />
                         <span>Start Group Chat</span>
                       </button>
-                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
+                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-gold-600 text-white rounded-lg hover:bg-serai-gold-700 transition-colors">
                         <Bell className="h-4 w-4" />
                         <span>Send Notification</span>
                       </button>
-                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-navy-600 text-white rounded-lg hover:bg-serai-navy-700 transition-colors">
+                      <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
                         <FileText className="h-4 w-4" />
                         <span>Create Report</span>
                       </button>
@@ -1476,7 +1476,7 @@ export default function SeraiManagementDashboardPage() {
   }
 
   return (
-    <div className="h-screen bg-white overflow-hidden">
+    <div className="min-h-screen bg-white">
       <TopAppBar 
         backHref="/tabs" 
         logoHref="/tabs" 
@@ -1486,7 +1486,7 @@ export default function SeraiManagementDashboardPage() {
         hiddenDropdownItems={[]}
       />
 
-      <div className="flex h-full" style={{ paddingTop: '5rem' }}>
+      <div className="flex pt-16">
         {/* Mobile Sidebar Overlay */}
         {sidebarOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
@@ -1593,9 +1593,9 @@ export default function SeraiManagementDashboardPage() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col min-w-0 h-full">
+        <div className="flex-1 flex flex-col min-w-0">
           {/* Mobile header */}
-          <div className="lg:hidden pl-1 pt-5 sm:pl-3 sm:pt-5">
+          <div className="lg:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
             <button
               type="button"
               className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-serai-serai-red-500"
@@ -1606,13 +1606,13 @@ export default function SeraiManagementDashboardPage() {
           </div>
 
           {/* Page Content */}
-          <main className={`flex-1 relative z-0 focus:outline-none ${activeSection === 'communication-hub' && communicationHubTab === 'messages' ? 'overflow-hidden' : 'overflow-y-auto'}`}>
+          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
             {activeSection === 'communication-hub' && communicationHubTab === 'messages' ? (
               <div className="h-full">
                 <ManagementMessages />
               </div>
             ) : (
-            <div className="pt-4 pb-6">
+            <div className="pt-8 pb-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {renderDashboardContent()}
               </div>

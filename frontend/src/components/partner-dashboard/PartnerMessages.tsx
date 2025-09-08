@@ -740,9 +740,9 @@ export default function PartnerMessages() {
   };
 
   return (
-    <div className="bg-white flex overflow-hidden" style={{ height: 'calc(100vh - 5rem)', maxHeight: 'calc(100vh - 5rem)' }}>
+    <div className="h-screen bg-white flex overflow-hidden">
       {/* Left Panel - Conversations List */}
-      <div className="w-80 border-r border-gray-200 flex flex-col sticky top-0" style={{ height: 'calc(100vh - 5rem)', maxHeight: 'calc(100vh - 5rem)' }}>
+      <div className="w-80 border-r border-gray-200 flex flex-col sticky top-0 h-screen">
         {/* Header */}
         <div className="p-4 border-b border-gray-200">
           <div className="flex items-center justify-between mb-4">
@@ -838,7 +838,7 @@ export default function PartnerMessages() {
         </div>
 
         {/* Conversations List */}
-        <div className="flex-1 overflow-y-auto min-h-0" style={{ maxHeight: 'calc(100vh - 5rem - 120px)' }}>
+        <div className="flex-1 overflow-y-auto min-h-0">
           {filteredConversations.map((conversation) => (
             <div
               key={conversation.id}
@@ -894,7 +894,7 @@ export default function PartnerMessages() {
       </div>
 
       {/* Middle Panel - Active Conversation */}
-      <div className="flex-1 flex flex-col sticky top-0" style={{ height: 'calc(100vh - 5rem)', maxHeight: 'calc(100vh - 5rem)' }}>
+      <div className="flex-1 flex flex-col sticky top-0 h-screen">
         {selectedConversation ? (
           <>
             {/* Chat Header */}
@@ -932,7 +932,7 @@ export default function PartnerMessages() {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0" style={{ height: 'calc(100vh - 5rem - 120px)', maxHeight: 'calc(100vh - 5rem - 120px)' }}>
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
               {messages.map((message) => (
                 <div
                   key={message.id}
@@ -1004,7 +1004,7 @@ export default function PartnerMessages() {
       </div>
 
       {/* Right Panel - Contact Details */}
-      <div className="w-80 border-l border-serai-neutral-200 flex flex-col sticky top-0 overflow-y-auto" style={{ height: 'calc(100vh - 5rem)', maxHeight: 'calc(100vh - 5rem)' }}>
+      <div className="w-80 border-l border-serai-neutral-200 flex flex-col sticky top-0 h-screen overflow-y-auto">
         {selectedConversation ? (
           <>
             {/* Contact Header */}

@@ -263,13 +263,15 @@ export default function HostsDashboardPage() {
 
       case 'messages':
         return (
-          <Suspense fallback={
-            <div className="h-full flex items-center justify-center">
-              <div className="animate-pulse bg-gray-200 h-32 w-full rounded" />
-            </div>
-          }>
-            <Messages />
-          </Suspense>
+          <div className="h-screen">
+            <Suspense fallback={
+              <div className="h-full flex items-center justify-center">
+                <div className="animate-pulse bg-gray-200 h-32 w-full rounded" />
+              </div>
+            }>
+              <Messages />
+            </Suspense>
+          </div>
         );
 
       case 'earnings':
@@ -764,7 +766,7 @@ export default function HostsDashboardPage() {
   };
 
   return (
-    <div className="fixed inset-0 bg-white flex flex-col">
+    <div className="min-h-screen bg-white">
       <TopAppBar 
         backHref="/tabs" 
         logoHref="/tabs" 
@@ -774,7 +776,7 @@ export default function HostsDashboardPage() {
         hiddenDropdownItems={['Gift Cards', 'Clubs & Badges', 'Memberships']}
       />
       
-      <div className="flex flex-1 overflow-hidden" style={{ marginTop: '4rem' }}>
+      <div className="flex pt-16">
         {/* Mobile sidebar overlay */}
         {sidebarOpen && (
           <div className="fixed inset-0 flex z-40 md:hidden">
@@ -842,7 +844,7 @@ export default function HostsDashboardPage() {
         )}
 
         {/* Desktop sidebar */}
-        <div className="hidden md:flex md:w-64 md:flex-col">
+        <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
           <div className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div className="flex-1 flex flex-col pt-20 pb-4 overflow-y-auto">
               <div className="flex items-center flex-shrink-0 px-4">
@@ -891,7 +893,7 @@ export default function HostsDashboardPage() {
         </div>
 
         {/* Main content */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="md:pl-64 flex flex-col flex-1">
           <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100">
             <button
               type="button"
@@ -903,15 +905,13 @@ export default function HostsDashboardPage() {
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 overflow-hidden">
+          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
             {activeSection === 'messages' ? (
               renderDashboardContent()
             ) : (
-              <div className="h-full overflow-y-auto">
-                <div className="pt-8 pb-6">
-                  <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                    {renderDashboardContent()}
-                  </div>
+              <div className="pt-8 pb-6">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                  {renderDashboardContent()}
                 </div>
               </div>
             )}
