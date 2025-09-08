@@ -370,6 +370,306 @@ export default function PartnerMessages() {
   const [translationEnabled, setTranslationEnabled] = useState(false);
   const [contactDetails, setContactDetails] = useState<ContactDetails>(mockContactDetails);
 
+  // Load initial contact details for the first conversation
+  useEffect(() => {
+    if (selectedConversation) {
+      const conversationContactDetails = generateContactDetailsForConversation(selectedConversation.id);
+      setContactDetails(conversationContactDetails);
+    }
+  }, [selectedConversation]);
+
+  // Generate different contact details for each conversation
+  const generateContactDetailsForConversation = (conversationId: string): ContactDetails => {
+    const contactDetailsSets: { [key: string]: ContactDetails } = {
+      '1': { // Sarah Chen, Serai Support Team
+        id: '1',
+        name: 'Sarah Chen',
+        avatar: '',
+        initial: 'S',
+        role: 'Senior Property Performance Specialist',
+        department: 'Partner Success Team',
+        isVerified: true,
+        joinedDate: '2021',
+        phoneNumber: '+1-555-0123',
+        email: 'sarah.chen@serai.com',
+        responseTime: '2 hours',
+        satisfaction: 4.8,
+        ticketDetails: {
+          ticketId: 'SUP-2024-1247',
+          category: 'Property Optimization',
+          priority: 'High',
+          status: 'In Progress',
+          createdDate: 'Dec 14, 2024',
+          lastUpdated: 'Dec 14, 2024 6:00 PM',
+          assignedTo: 'Sarah Chen'
+        },
+        propertyInfo: {
+          propertyName: 'Downtown Penthouse Suite',
+          propertyId: 'PROP-2024-089',
+          address: '123 Financial District, Toronto, ON',
+          propertyType: 'Luxury Apartment'
+        }
+      },
+      '2': { // Michael Rodriguez, Guest
+        id: '2',
+        name: 'Michael Rodriguez',
+        avatar: '',
+        initial: 'M',
+        role: 'Guest',
+        department: 'Guest Services',
+        isVerified: true,
+        joinedDate: '2023',
+        phoneNumber: '+1-555-0234',
+        email: 'michael.rodriguez@email.com',
+        responseTime: '15 minutes',
+        satisfaction: 4.2,
+        ticketDetails: {
+          ticketId: 'GUEST-2024-0891',
+          category: 'Technical Support',
+          priority: 'Urgent',
+          status: 'Escalated',
+          createdDate: 'Dec 14, 2024',
+          lastUpdated: 'Dec 14, 2024 3:45 PM',
+          assignedTo: 'Technical Team'
+        },
+        propertyInfo: {
+          propertyName: 'Penthouse Suite with City Views',
+          propertyId: 'PROP-2024-089',
+          address: '123 Financial District, Toronto, ON',
+          propertyType: 'Luxury Apartment'
+        }
+      },
+      '3': { // Jennifer Kim, Billing Department
+        id: '3',
+        name: 'Jennifer Kim',
+        avatar: '',
+        initial: 'J',
+        role: 'Billing Specialist',
+        department: 'Finance Department',
+        isVerified: true,
+        joinedDate: '2020',
+        phoneNumber: '+1-555-0345',
+        email: 'jennifer.kim@serai.com',
+        responseTime: '4 hours',
+        satisfaction: 4.6,
+        ticketDetails: {
+          ticketId: 'BILL-2024-0456',
+          category: 'Payment Processing',
+          priority: 'Medium',
+          status: 'Closed',
+          createdDate: 'Dec 13, 2024',
+          lastUpdated: 'Dec 13, 2024 5:30 PM',
+          assignedTo: 'Jennifer Kim'
+        }
+      },
+      '4': { // David Park, Property Manager
+        id: '4',
+        name: 'David Park',
+        avatar: '',
+        initial: 'D',
+        role: 'Property Manager',
+        department: 'Property Operations',
+        isVerified: true,
+        joinedDate: '2019',
+        phoneNumber: '+1-555-0456',
+        email: 'david.park@serai.com',
+        responseTime: '1 hour',
+        satisfaction: 4.7,
+        ticketDetails: {
+          ticketId: 'PROP-2024-0789',
+          category: 'Maintenance',
+          priority: 'Medium',
+          status: 'Active',
+          createdDate: 'Dec 12, 2024',
+          lastUpdated: 'Dec 12, 2024 4:20 PM',
+          assignedTo: 'David Park'
+        },
+        propertyInfo: {
+          propertyName: 'Historic Downtown Loft',
+          propertyId: 'PROP-2024-090',
+          address: '456 Heritage Street, Toronto, ON',
+          propertyType: 'Historic Apartment'
+        }
+      },
+      '5': { // Lisa Thompson, Guest
+        id: '5',
+        name: 'Lisa Thompson',
+        avatar: '',
+        initial: 'L',
+        role: 'Guest',
+        department: 'Guest Services',
+        isVerified: true,
+        joinedDate: '2024',
+        phoneNumber: '+1-555-0567',
+        email: 'lisa.thompson@email.com',
+        responseTime: '30 minutes',
+        satisfaction: 5.0,
+        ticketDetails: {
+          ticketId: 'GUEST-2024-1234',
+          category: 'General Feedback',
+          priority: 'Low',
+          status: 'Closed',
+          createdDate: 'Dec 11, 2024',
+          lastUpdated: 'Dec 11, 2024 2:15 PM',
+          assignedTo: 'Guest Services'
+        },
+        propertyInfo: {
+          propertyName: 'Garden Villa with Private Pool',
+          propertyId: 'PROP-2024-091',
+          address: '789 Garden Lane, Toronto, ON',
+          propertyType: 'Luxury Villa'
+        }
+      },
+      '6': { // Robert Wilson, Technical Support
+        id: '6',
+        name: 'Robert Wilson',
+        avatar: '',
+        initial: 'R',
+        role: 'Technical Support Engineer',
+        department: 'Technology Team',
+        isVerified: true,
+        joinedDate: '2021',
+        phoneNumber: '+1-555-0678',
+        email: 'robert.wilson@serai.com',
+        responseTime: '1 hour',
+        satisfaction: 4.9,
+        ticketDetails: {
+          ticketId: 'TECH-2024-2345',
+          category: 'System Upgrade',
+          priority: 'High',
+          status: 'Active',
+          createdDate: 'Dec 10, 2024',
+          lastUpdated: 'Dec 10, 2024 3:30 PM',
+          assignedTo: 'Robert Wilson'
+        },
+        propertyInfo: {
+          propertyName: 'Smart Home Technology Suite',
+          propertyId: 'PROP-2024-092',
+          address: '321 Tech Avenue, Toronto, ON',
+          propertyType: 'Smart Apartment'
+        }
+      },
+      '7': { // Amanda Foster, Guest
+        id: '7',
+        name: 'Amanda Foster',
+        avatar: '',
+        initial: 'A',
+        role: 'Guest',
+        department: 'Guest Services',
+        isVerified: true,
+        joinedDate: '2023',
+        phoneNumber: '+1-555-0789',
+        email: 'amanda.foster@email.com',
+        responseTime: '20 minutes',
+        satisfaction: 4.1,
+        ticketDetails: {
+          ticketId: 'GUEST-2024-3456',
+          category: 'Technical Support',
+          priority: 'High',
+          status: 'Pending',
+          createdDate: 'Dec 9, 2024',
+          lastUpdated: 'Dec 9, 2024 11:45 AM',
+          assignedTo: 'Technical Team'
+        },
+        propertyInfo: {
+          propertyName: 'Executive Business Suite',
+          propertyId: 'PROP-2024-093',
+          address: '654 Business Plaza, Toronto, ON',
+          propertyType: 'Business Suite'
+        }
+      },
+      '8': { // James Liu, Partnership Manager
+        id: '8',
+        name: 'James Liu',
+        avatar: '',
+        initial: 'J',
+        role: 'Partnership Manager',
+        department: 'Business Development',
+        isVerified: true,
+        joinedDate: '2018',
+        phoneNumber: '+1-555-0890',
+        email: 'james.liu@serai.com',
+        responseTime: '3 hours',
+        satisfaction: 4.8,
+        ticketDetails: {
+          ticketId: 'PART-2024-4567',
+          category: 'Partnership Growth',
+          priority: 'High',
+          status: 'Active',
+          createdDate: 'Dec 8, 2024',
+          lastUpdated: 'Dec 8, 2024 2:00 PM',
+          assignedTo: 'James Liu'
+        },
+        propertyInfo: {
+          propertyName: 'Financial District Portfolio',
+          propertyId: 'PROP-2024-094',
+          address: '987 Finance Street, Toronto, ON',
+          propertyType: 'Commercial Complex'
+        }
+      },
+      '9': { // Maria Garcia, Guest
+        id: '9',
+        name: 'Maria Garcia',
+        avatar: '',
+        initial: 'M',
+        role: 'Guest',
+        department: 'Guest Services',
+        isVerified: true,
+        joinedDate: '2024',
+        phoneNumber: '+1-555-0901',
+        email: 'maria.garcia@email.com',
+        responseTime: '45 minutes',
+        satisfaction: 4.5,
+        ticketDetails: {
+          ticketId: 'GUEST-2024-5678',
+          category: 'General Request',
+          priority: 'Low',
+          status: 'Closed',
+          createdDate: 'Dec 7, 2024',
+          lastUpdated: 'Dec 7, 2024 1:30 PM',
+          assignedTo: 'Guest Services'
+        },
+        propertyInfo: {
+          propertyName: 'Art Deco Suite with Balcony',
+          propertyId: 'PROP-2024-095',
+          address: '147 Art District, Toronto, ON',
+          propertyType: 'Historic Apartment'
+        }
+      },
+      '10': { // System Notification
+        id: '10',
+        name: 'System Notification',
+        avatar: '',
+        initial: 'S',
+        role: 'Automated System',
+        department: 'System Operations',
+        isVerified: true,
+        joinedDate: '2020',
+        phoneNumber: 'N/A',
+        email: 'system@serai.com',
+        responseTime: 'Instant',
+        satisfaction: 4.0,
+        ticketDetails: {
+          ticketId: 'SYS-2024-6789',
+          category: 'Performance Report',
+          priority: 'Low',
+          status: 'Closed',
+          createdDate: 'Dec 6, 2024',
+          lastUpdated: 'Dec 6, 2024 9:00 AM',
+          assignedTo: 'System'
+        },
+        propertyInfo: {
+          propertyName: 'All Properties',
+          propertyId: 'PROP-ALL',
+          address: 'Multiple Locations',
+          propertyType: 'Portfolio'
+        }
+      }
+    };
+    
+    return contactDetailsSets[conversationId] || contactDetailsSets['1'];
+  };
+
   const handleConversationSelect = (conversation: Conversation) => {
     setConversations(prev => 
       prev.map(conv => ({
@@ -378,6 +678,10 @@ export default function PartnerMessages() {
       }))
     );
     setSelectedConversation(conversation);
+    
+    // Generate different contact details based on conversation
+    const conversationContactDetails = generateContactDetailsForConversation(conversation.id);
+    setContactDetails(conversationContactDetails);
   };
 
   const handleSendMessage = () => {

@@ -342,6 +342,352 @@ export default function Messages() {
   const [translationEnabled, setTranslationEnabled] = useState(true);
   const [guestDetails, setGuestDetails] = useState<GuestDetails>(mockGuestDetails);
 
+  // Load initial guest details for the first conversation
+  useEffect(() => {
+    if (selectedConversation) {
+      const conversationGuestDetails = generateGuestDetailsForConversation(selectedConversation.id);
+      setGuestDetails(conversationGuestDetails);
+    }
+  }, [selectedConversation]);
+
+  // Generate different guest details for each conversation
+  const generateGuestDetailsForConversation = (conversationId: string): GuestDetails => {
+    const guestDetailsSets: { [key: string]: GuestDetails } = {
+      '1': { // Emma Thompson, Serai Luxury Suites
+        id: '1',
+        name: 'Emma Thompson',
+        avatar: '',
+        initial: 'E',
+        reviews: 1,
+        isVerified: true,
+        joinedDate: '2022',
+        phoneNumber: '+1-555-0123',
+        email: 'emma.thompson@example.com',
+        bookingDetails: {
+          propertyName: 'Penthouse Suite with City Views',
+          checkIn: 'Mon, Dec 16, 2024',
+          checkOut: 'Wed, Dec 18, 2024',
+          guests: 1,
+          totalAmount: 450.00,
+          confirmationCode: 'SERAI2024',
+          bookingDate: 'Sat, Dec 14, 2024',
+          cancellationPolicy: 'Flexible'
+        },
+        paymentBreakdown: {
+          roomFee: 300.00,
+          serviceFee: 45.00,
+          taxes: 105.00,
+          total: 450.00
+        },
+        hostPayout: {
+          roomFee: 300.00,
+          serviceFee: -9.00,
+          taxes: 105.00,
+          total: 396.00
+        }
+      },
+      '2': { // James Rodriguez, Boutique Hotel Collection
+        id: '2',
+        name: 'James Rodriguez',
+        avatar: '',
+        initial: 'J',
+        reviews: 8,
+        isVerified: true,
+        joinedDate: '2021',
+        phoneNumber: '+1-555-0234',
+        email: 'james.rodriguez@example.com',
+        bookingDetails: {
+          propertyName: 'Historic Downtown Loft',
+          checkIn: 'Mon, Dec 9, 2024',
+          checkOut: 'Wed, Dec 11, 2024',
+          guests: 2,
+          totalAmount: 320.00,
+          confirmationCode: 'SERAI2023',
+          bookingDate: 'Fri, Dec 6, 2024',
+          cancellationPolicy: 'Moderate'
+        },
+        paymentBreakdown: {
+          roomFee: 280.00,
+          serviceFee: 40.00,
+          taxes: 0.00,
+          total: 320.00
+        },
+        hostPayout: {
+          roomFee: 280.00,
+          serviceFee: -8.40,
+          taxes: 0.00,
+          total: 271.60
+        }
+      },
+      '3': { // Sophie Chen, Urban Retreat Properties
+        id: '3',
+        name: 'Sophie Chen',
+        avatar: '',
+        initial: 'S',
+        reviews: 12,
+        isVerified: true,
+        joinedDate: '2020',
+        phoneNumber: '+1-555-0345',
+        email: 'sophie.chen@example.com',
+        bookingDetails: {
+          propertyName: 'Modern Studio Apartment',
+          checkIn: 'Wed, Dec 11, 2024',
+          checkOut: 'Fri, Dec 13, 2024',
+          guests: 1,
+          totalAmount: 280.00,
+          confirmationCode: 'SERAI2022',
+          bookingDate: 'Mon, Dec 9, 2024',
+          cancellationPolicy: 'Strict'
+        },
+        paymentBreakdown: {
+          roomFee: 240.00,
+          serviceFee: 40.00,
+          taxes: 0.00,
+          total: 280.00
+        },
+        hostPayout: {
+          roomFee: 240.00,
+          serviceFee: -7.20,
+          taxes: 0.00,
+          total: 232.80
+        }
+      },
+      '4': { // David Kim, Luxury Hospitality Group
+        id: '4',
+        name: 'David Kim',
+        avatar: '',
+        initial: 'D',
+        reviews: 15,
+        isVerified: true,
+        joinedDate: '2019',
+        phoneNumber: '+1-555-0456',
+        email: 'david.kim@example.com',
+        bookingDetails: {
+          propertyName: 'Executive Business Suite',
+          checkIn: 'Tue, Dec 17, 2024',
+          checkOut: 'Thu, Dec 19, 2024',
+          guests: 4,
+          totalAmount: 680.00,
+          confirmationCode: 'SERAI2025',
+          bookingDate: 'Sun, Dec 15, 2024',
+          cancellationPolicy: 'Strict'
+        },
+        paymentBreakdown: {
+          roomFee: 600.00,
+          serviceFee: 80.00,
+          taxes: 0.00,
+          total: 680.00
+        },
+        hostPayout: {
+          roomFee: 600.00,
+          serviceFee: -18.00,
+          taxes: 0.00,
+          total: 582.00
+        }
+      },
+      '5': { // Isabella Martinez, Premium Stays Inc
+        id: '5',
+        name: 'Isabella Martinez',
+        avatar: '',
+        initial: 'I',
+        reviews: 6,
+        isVerified: true,
+        joinedDate: '2023',
+        phoneNumber: '+1-555-0567',
+        email: 'isabella.martinez@example.com',
+        bookingDetails: {
+          propertyName: 'Garden Villa with Private Pool',
+          checkIn: 'Fri, Dec 20, 2024',
+          checkOut: 'Sun, Dec 22, 2024',
+          guests: 2,
+          totalAmount: 520.00,
+          confirmationCode: 'SERAI2026',
+          bookingDate: 'Mon, Dec 16, 2024',
+          cancellationPolicy: 'Flexible'
+        },
+        paymentBreakdown: {
+          roomFee: 400.00,
+          serviceFee: 60.00,
+          taxes: 60.00,
+          total: 520.00
+        },
+        hostPayout: {
+          roomFee: 400.00,
+          serviceFee: -12.00,
+          taxes: 60.00,
+          total: 448.00
+        }
+      },
+      '6': { // Alexander Petrov, Elite Accommodations
+        id: '6',
+        name: 'Alexander Petrov',
+        avatar: '',
+        initial: 'A',
+        reviews: 25,
+        isVerified: true,
+        joinedDate: '2018',
+        phoneNumber: '+1-555-0678',
+        email: 'alexander.petrov@example.com',
+        bookingDetails: {
+          propertyName: 'Rooftop Penthouse with Terrace',
+          checkIn: 'Sat, Dec 7, 2024',
+          checkOut: 'Mon, Dec 9, 2024',
+          guests: 2,
+          totalAmount: 750.00,
+          confirmationCode: 'SERAI2027',
+          bookingDate: 'Wed, Dec 4, 2024',
+          cancellationPolicy: 'Flexible'
+        },
+        paymentBreakdown: {
+          roomFee: 600.00,
+          serviceFee: 75.00,
+          taxes: 75.00,
+          total: 750.00
+        },
+        hostPayout: {
+          roomFee: 600.00,
+          serviceFee: -18.00,
+          taxes: 75.00,
+          total: 657.00
+        }
+      },
+      '7': { // Olivia Williams, Boutique Collection
+        id: '7',
+        name: 'Olivia Williams',
+        avatar: '',
+        initial: 'O',
+        reviews: 10,
+        isVerified: true,
+        joinedDate: '2021',
+        phoneNumber: '+1-555-0789',
+        email: 'olivia.williams@example.com',
+        bookingDetails: {
+          propertyName: 'Art Deco Suite with Balcony',
+          checkIn: 'Wed, Dec 11, 2024',
+          checkOut: 'Fri, Dec 13, 2024',
+          guests: 3,
+          totalAmount: 380.00,
+          confirmationCode: 'SERAI2028',
+          bookingDate: 'Sun, Dec 8, 2024',
+          cancellationPolicy: 'Moderate'
+        },
+        paymentBreakdown: {
+          roomFee: 320.00,
+          serviceFee: 60.00,
+          taxes: 0.00,
+          total: 380.00
+        },
+        hostPayout: {
+          roomFee: 320.00,
+          serviceFee: -9.60,
+          taxes: 0.00,
+          total: 310.40
+        }
+      },
+      '8': { // Marcus Johnson, Urban Luxury Hotels
+        id: '8',
+        name: 'Marcus Johnson',
+        avatar: '',
+        initial: 'M',
+        reviews: 18,
+        isVerified: true,
+        joinedDate: '2020',
+        phoneNumber: '+1-555-0890',
+        email: 'marcus.johnson@example.com',
+        bookingDetails: {
+          propertyName: 'Executive Corner Suite',
+          checkIn: 'Mon, Dec 2, 2024',
+          checkOut: 'Wed, Dec 4, 2024',
+          guests: 1,
+          totalAmount: 280.00,
+          confirmationCode: 'SERAI2029',
+          bookingDate: 'Fri, Nov 29, 2024',
+          cancellationPolicy: 'Strict'
+        },
+        paymentBreakdown: {
+          roomFee: 240.00,
+          serviceFee: 40.00,
+          taxes: 0.00,
+          total: 280.00
+        },
+        hostPayout: {
+          roomFee: 240.00,
+          serviceFee: -7.20,
+          taxes: 0.00,
+          total: 232.80
+        }
+      },
+      '9': { // Charlotte Brown, Serai Hospitality
+        id: '9',
+        name: 'Charlotte Brown',
+        avatar: '',
+        initial: 'C',
+        reviews: 14,
+        isVerified: true,
+        joinedDate: '2021',
+        phoneNumber: '+1-555-0901',
+        email: 'charlotte.brown@example.com',
+        bookingDetails: {
+          propertyName: 'Historic Mansion Suite',
+          checkIn: 'Sat, Dec 14, 2024',
+          checkOut: 'Sun, Dec 15, 2024',
+          guests: 8,
+          totalAmount: 420.00,
+          confirmationCode: 'SERAI2030',
+          bookingDate: 'Wed, Dec 11, 2024',
+          cancellationPolicy: 'Flexible'
+        },
+        paymentBreakdown: {
+          roomFee: 360.00,
+          serviceFee: 60.00,
+          taxes: 0.00,
+          total: 420.00
+        },
+        hostPayout: {
+          roomFee: 360.00,
+          serviceFee: -10.80,
+          taxes: 0.00,
+          total: 349.20
+        }
+      },
+      '10': { // Ryan O'Connor, Premium Properties Ltd
+        id: '10',
+        name: 'Ryan O\'Connor',
+        avatar: '',
+        initial: 'R',
+        reviews: 7,
+        isVerified: true,
+        joinedDate: '2023',
+        phoneNumber: '+1-555-0012',
+        email: 'ryan.oconnor@example.com',
+        bookingDetails: {
+          propertyName: 'Modern Loft with Industrial Design',
+          checkIn: 'Thu, Dec 5, 2024',
+          checkOut: 'Sat, Dec 7, 2024',
+          guests: 4,
+          totalAmount: 480.00,
+          confirmationCode: 'SERAI2031',
+          bookingDate: 'Mon, Dec 2, 2024',
+          cancellationPolicy: 'Moderate'
+        },
+        paymentBreakdown: {
+          roomFee: 400.00,
+          serviceFee: 80.00,
+          taxes: 0.00,
+          total: 480.00
+        },
+        hostPayout: {
+          roomFee: 400.00,
+          serviceFee: -12.00,
+          taxes: 0.00,
+          total: 388.00
+        }
+      }
+    };
+    
+    return guestDetailsSets[conversationId] || guestDetailsSets['1'];
+  };
+
   const handleConversationSelect = (conversation: Conversation) => {
     setConversations(prev => 
       prev.map(conv => ({
@@ -350,6 +696,10 @@ export default function Messages() {
       }))
     );
     setSelectedConversation(conversation);
+    
+    // Generate different guest details based on conversation
+    const conversationGuestDetails = generateGuestDetailsForConversation(conversation.id);
+    setGuestDetails(conversationGuestDetails);
   };
 
   const handleSendMessage = () => {

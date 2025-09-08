@@ -1481,7 +1481,7 @@ export default function SeraiManagementDashboardPage() {
         showListingButton={false} 
         showLanguageButton={true} 
         showMenuButton={true}
-        hiddenDropdownItems={['Gift Cards', 'Clubs & Badges', 'Memberships', 'Partner with SERAI']}
+        hiddenDropdownItems={[]}
       />
 
       <div className="flex pt-16">
