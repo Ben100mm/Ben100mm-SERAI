@@ -3,13 +3,28 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { User, LogIn, Calendar, Search } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 // DatePicker Component
 const DatePicker = ({ label, value, onChange, placeholder }: { label: string; value: string; onChange: (value: string) => void; placeholder: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentDate, setCurrentDate] = useState(new Date());
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   
   const formatDate = (date: Date) => {
     return date.toLocaleDateString('en-US', { 
@@ -39,6 +54,12 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
       days.push(new Date(year, month, day));
     }
     
+    // Add empty cells to complete the grid (6 rows x 7 days = 42 cells)
+    const totalCells = 42;
+    while (days.length < totalCells) {
+      days.push(null);
+    }
+    
     return days;
   };
 
@@ -63,7 +84,7 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
   const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   return (
-    <div className="relative">
+    <div className="relative z-20" ref={containerRef}>
       <label className="block text-sm font-semibold text-white/90 mb-2">
         {label}
       </label>
@@ -80,7 +101,11 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
       </div>
       
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-50 p-4 min-w-[280px]">
+        <>
+          {/* Backdrop overlay */}
+          <div className="fixed inset-0 bg-black/20 z-[99998]" onClick={() => setIsOpen(false)} />
+          {/* Calendar dropdown */}
+          <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 z-[99999] p-4 min-w-[320px]">
           <div className="flex items-center justify-between mb-4">
             <button
               onClick={goToPreviousMonth}
@@ -90,7 +115,7 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
-            <h3 className="font-semibold text-gray-900">
+            <h3 className="font-semibold text-gray-900 text-sm">
               {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
             </h3>
             <button
@@ -117,11 +142,11 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
                 key={index}
                 onClick={() => date && handleDateSelect(date)}
                 disabled={!date}
-                className={`p-2 text-sm rounded hover:bg-gray-100 ${
+                className={`h-8 w-8 text-xs rounded hover:bg-gray-100 flex items-center justify-center ${
                   date ? 'text-gray-900' : 'text-transparent cursor-default'
                 } ${
                   date && date.toDateString() === new Date().toDateString() 
-                    ? 'bg-serai-navy-100 text-serai-navy-600 font-semibold' 
+                    ? 'bg-serai-red-400 text-white font-semibold hover:bg-serai-red-500' 
                     : ''
                 }`}
               >
@@ -129,7 +154,8 @@ const DatePicker = ({ label, value, onChange, placeholder }: { label: string; va
               </button>
             ))}
           </div>
-        </div>
+          </div>
+        </>
       )}
     </div>
   );
@@ -205,8 +231,8 @@ export default function HomePage() {
       {/* Hero Content - Left Positioned Card */}
       <main className="absolute inset-0 z-10 flex items-center justify-start pl-6 lg:pl-12">
         <div className="max-w-sm w-full">
-          {/* Search Card */}
-          <div className="bg-white/2 backdrop-blur-md rounded-2xl shadow-2xl p-6 w-full">
+            {/* Search Card */}
+            <div className="bg-white/2 backdrop-blur-md rounded-2xl shadow-2xl p-6 w-full relative z-10">
                               {/* Card Title */}
                   <div className="mb-6">
                     <h1 className="text-2xl font-bold text-white mb-2">

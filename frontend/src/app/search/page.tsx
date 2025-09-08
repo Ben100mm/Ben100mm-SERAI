@@ -5,6 +5,7 @@ import { useState, useRef, useEffect, Suspense } from 'react';
 import { Heart, Star, MapPin, Calendar, Users, Filter, Maximize2, Plus, Minus, X, Check } from 'lucide-react';
 import Link from 'next/link';
 import TopAppBar from '@/components/TopAppBar';
+import DateRangePicker from '@/components/DateRangePicker';
 import { useSearchParams } from 'next/navigation';
 
 function SearchResultsPageContent() {
@@ -13,10 +14,18 @@ function SearchResultsPageContent() {
   
   // Get search parameters from URL
   const location = searchParams.get('location') || '';
-  const checkIn = searchParams.get('checkIn') || '';
-  const checkOut = searchParams.get('checkOut') || '';
+  const checkInParam = searchParams.get('checkIn') || '';
+  const checkOutParam = searchParams.get('checkOut') || '';
   const adults = searchParams.get('adults') || '2 adults';
   const children = searchParams.get('children') || '0 children';
+
+  // Parse dates from URL parameters
+  const [checkInDate, setCheckInDate] = useState<Date | null>(
+    checkInParam ? new Date(checkInParam) : null
+  );
+  const [checkOutDate, setCheckOutDate] = useState<Date | null>(
+    checkOutParam ? new Date(checkOutParam) : null
+  );
 
   // State for map controls
   const [isMapFullscreen, setIsMapFullscreen] = useState(false);
@@ -263,27 +272,15 @@ function SearchResultsPageContent() {
                 />
               </div>
               
-              {/* Check In Field */}
-              <div className="flex-1 px-6 py-3 border-r border-gray-300">
-                <label className="block text-xs font-semibold text-gray-900 mb-1">Check in</label>
-                <input
-                  type="text"
-                  placeholder="Add date"
-                  value={checkIn}
-                  readOnly
-                  className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
-                />
-              </div>
-              
-              {/* Check Out Field */}
-              <div className="flex-1 px-6 py-3 border-r border-gray-300">
-                <label className="block text-xs font-semibold text-gray-900 mb-1">Check out</label>
-                <input
-                  type="text"
-                  placeholder="Add date"
-                  value={checkOut}
-                  readOnly
-                  className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
+              {/* Date Range Picker */}
+              <div className="flex-2 px-6 py-3 border-r border-gray-300">
+                <DateRangePicker
+                  checkInDate={checkInDate}
+                  checkOutDate={checkOutDate}
+                  onCheckInChange={setCheckInDate}
+                  onCheckOutChange={setCheckOutDate}
+                  placeholder="Add dates"
+                  className="w-full"
                 />
               </div>
 
