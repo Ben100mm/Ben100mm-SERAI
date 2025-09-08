@@ -94,23 +94,23 @@ export default function PartnerPage() {
   const partnershipModels = [
     {
       title: "Master Lease",
-      description: "Guaranteed fixed rent, fully de-risked."
+      description: "Serai rents the property and takes full responsibility. Owner receives: Fixed monthly rent (guaranteed). Owner risk: None. Serai risk: Full (Serai pays rent even if the property is empty). Best for: Owners who want steady income with no involvement."
     },
     {
       title: "Hybrid Lease", 
-      description: "Base rent + revenue share upside."
+      description: "Owner gets a smaller base rent plus a share of profits. Owner receives: Base rent + percentage of profits. Owner risk: Low. Serai risk: Moderate (Serai covers operations, but owner shares some performance risk). Best for: Owners who want some upside without full risk."
     },
     {
       title: "Revenue Share",
-      description: "Align interests with flexible revenue split."
+      description: "Serai runs everything and splits profits with the owner. Owner receives: A percentage of net profits. Owner risk: Shared (earnings depend on how well the property performs). Serai risk: Shared. Best for: Owners who want higher potential income and are okay with variability."
     },
     {
       title: "Management Agreement",
-      description: "Serai operates, owner retains upside."
+      description: "Owner hires Serai to operate the property for a fixed fee. Owner receives: Full revenue minus expenses and Serai's management fee. Owner risk: Full (covers all costs, earns more if the property performs well). Serai risk: None (gets paid regardless of performance). Best for: Owners who want to stay in control but need expert help."
     },
     {
       title: "Franchise Model",
-      description: "Operate under the Serai brand & tech suite."
+      description: "Owner runs the property under the SERAI brand and pays a royalty. Owner receives: Full control over revenue after paying fees. Owner risk: Full. Serai risk: None. Best for: Experienced operators who want branding, tools, and support."
     }
   ];
 
@@ -252,9 +252,9 @@ export default function PartnerPage() {
   const masterLeaseMoneyFlow = {
     gbv: 100,
     lines: [
-      { label: 'Owner fixed rent (already guaranteed)', value: 0 },
-      { label: 'Serai covers OTA + payment fees', value: -5 },
-      { label: 'Serai ops costs', value: NaN } // This will show as "-x" in UI
+      { label: 'Owner receives guaranteed fixed rent', value: 'Fixed amount' },
+      { label: 'Serai covers all OTA and payment fees', value: 'Serai pays' },
+      { label: 'Serai handles all operational costs', value: 'Serai covers' }
     ]
   };
 
@@ -295,10 +295,10 @@ export default function PartnerPage() {
   const hybridLeaseMoneyFlow = {
     gbv: 100,
     lines: [
-      { label: 'OTA + payment fees (~5%)', value: -5 },
-      { label: 'Operating costs (illustrative)', value: NaN }, // Shows as "-x"
-      { label: 'Revenue share to Serai (e.g., 20% of net)', value: NaN }, // Shows as "-y"
-      { label: 'Owner receives: base rent + remaining net', value: NaN } // Shows as "+z"
+      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
+      { label: 'Operating costs', value: 'Covered by Serai' },
+      { label: 'Revenue share to Serai', value: 'Percentage of net revenue' },
+      { label: 'Owner receives base rent + remaining net', value: 'Guaranteed + upside' }
     ]
   };
 
@@ -339,10 +339,10 @@ export default function PartnerPage() {
   const revenueShareMoneyFlow = {
     gbv: 100,
     lines: [
-      { label: 'OTA + payment fees (~5%)', value: -5 },
-      { label: 'Base operating costs', value: NaN }, // Shows as "-x"
-      { label: 'Split to Owner (e.g., 70% of remaining)', value: NaN }, // Shows as "+a"
-      { label: 'Split to Serai (e.g., 30% of remaining)', value: NaN } // Shows as "+b"
+      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
+      { label: 'Base operating costs', value: 'Covered by Serai' },
+      { label: 'Split to Owner', value: 'Percentage of net revenue' },
+      { label: 'Split to Serai', value: 'Percentage of net revenue' }
     ]
   };
 
@@ -383,10 +383,10 @@ export default function PartnerPage() {
   const managementAgreementMoneyFlow = {
     gbv: 100,
     lines: [
-      { label: 'Management fee to Serai (e.g., 10–15%)', value: -12 },
-      { label: 'OTA + payment fees (~5%)', value: -5 },
-      { label: 'Operating costs (owner\'s account)', value: NaN }, // Shows as "-x"
-      { label: 'Owner net (after costs & fee)', value: NaN } // Shows as "+y"
+      { label: 'Management fee to Serai', value: 'Percentage of gross revenue' },
+      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
+      { label: 'Operating costs', value: 'Owner\'s account' },
+      { label: 'Owner net after costs and fees', value: 'Remaining revenue' }
     ]
   };
 
@@ -427,10 +427,10 @@ export default function PartnerPage() {
   const franchiseModelMoneyFlow = {
     gbv: 100,
     lines: [
-      { label: 'Royalty/commission to Serai (e.g., 20%)', value: -20 },
-      { label: 'OTA + payment fees (~5%)', value: -5 },
-      { label: 'Owner operating costs', value: NaN }, // Shows as "-x"
-      { label: 'Owner net (after royalty & costs)', value: NaN } // Shows as "+y"
+      { label: 'Royalty/commission to Serai', value: 'Percentage of booking revenue' },
+      { label: 'OTA and payment fees', value: 'Deducted from revenue' },
+      { label: 'Owner operating costs', value: 'Owner covers' },
+      { label: 'Owner net after royalty and costs', value: 'Remaining revenue' }
     ]
   };
 

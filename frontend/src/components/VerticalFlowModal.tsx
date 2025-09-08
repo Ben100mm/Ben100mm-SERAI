@@ -11,7 +11,7 @@ interface Step {
 
 interface MoneyFlowLine {
   label: string;
-  value: number;
+  value: number | string;
 }
 
 interface MoneyFlow {
@@ -158,16 +158,8 @@ export default function VerticalFlowModal({
   // Don't render if not open
   if (!open) return null;
 
-  // Calculate Owner Net for money flow
-  const calculateOwnerNet = () => {
-    if (!moneyFlow) return 0;
-    return moneyFlow.lines.reduce((sum, line) => {
-      return isNaN(line.value) ? sum : sum + line.value;
-    }, 0);
-  };
-
-  const ownerNet = calculateOwnerNet();
-  const hasNaNValue = moneyFlow?.lines.some(line => isNaN(line.value)) || false;
+  // Check if we have text values instead of numbers
+  const hasTextValues = moneyFlow?.lines.some(line => typeof line.value === 'string') || false;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
@@ -309,18 +301,20 @@ export default function VerticalFlowModal({
                     <div className="space-y-2 mb-4">
                       {moneyFlow.lines.map((line, index) => (
                         <div key={index} className="flex justify-between text-sm">
-                          <span className={`${line.value >= 0 ? 'text-gray-700' : 'text-red-600'}`}>
+                          <span className="text-gray-700">
                             {line.label}
                           </span>
-                          <span className={`font-medium ${line.value >= 0 ? 'text-gray-900' : 'text-red-600'}`}>
-                            {isNaN(line.value) 
-                              ? (line.label.includes('Operating costs') || line.label.includes('Base operating costs') || line.label.includes('owner\'s account') ? '-x' : 
-                                 line.label.includes('Revenue share to Serai') ? '-y' : 
-                                 line.label.includes('Owner receives') ? '+z' :
-                                 line.label.includes('Split to Owner') ? '+a' :
-                                 line.label.includes('Split to Serai') ? '+b' :
-                                 line.label.includes('Owner net') ? '+y' : '-x')
-                              : `${line.value >= 0 ? '+' : ''}$${line.value.toFixed(2)}`
+                          <span className="font-medium text-gray-900">
+                            {typeof line.value === 'string' 
+                              ? line.value
+                              : isNaN(line.value) 
+                                ? (line.label.includes('Operating costs') || line.label.includes('Base operating costs') || line.label.includes('owner\'s account') ? '-x' : 
+                                   line.label.includes('Revenue share to Serai') ? '-y' : 
+                                   line.label.includes('Owner receives') ? '+z' :
+                                   line.label.includes('Split to Owner') ? '+a' :
+                                   line.label.includes('Split to Serai') ? '+b' :
+                                   line.label.includes('Owner net') ? '+y' : '-x')
+                                : `${line.value >= 0 ? '+' : ''}$${line.value.toFixed(2)}`
                             }
                           </span>
                         </div>
@@ -330,18 +324,12 @@ export default function VerticalFlowModal({
                     <div className="border-t border-gray-300 pt-2">
                       <div className="flex justify-between text-sm font-semibold">
                         <span className="text-gray-900">
-                          {hasNaNValue ? 'Profit margin' : 'Owner Net'}
+                          {hasTextValues ? 'Summary' : 'Owner Net'}
                         </span>
-                        <span className={`${ownerNet >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                          {hasNaNValue 
-                            ? (moneyFlow.lines.some(line => line.label.includes('Owner net')) 
-                               ? 'varies by revenue & operating costs'
-                               : moneyFlow.lines.some(line => line.label.includes('Split to Owner')) 
-                               ? 'varies by revenue & split ratio'
-                               : moneyFlow.lines.some(line => line.label.includes('Revenue share')) 
-                               ? 'varies by performance & terms'
-                               : 'remainder to Serai after rent & ops')
-                            : `${ownerNet >= 0 ? '+' : ''}$${ownerNet.toFixed(2)}`
+                        <span className="text-gray-900">
+                          {hasTextValues 
+                            ? 'Simple, transparent structure'
+                            : 'varies by revenue & operating costs'
                           }
                         </span>
                       </div>
