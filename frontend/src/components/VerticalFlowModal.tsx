@@ -11,10 +11,11 @@ interface Step {
 
 interface MoneyFlowLine {
   label: string;
-  value: number | string;
+  value: number;
 }
 
 interface MoneyFlow {
+  gbv: number;
   lines: MoneyFlowLine[];
 }
 
@@ -157,8 +158,16 @@ export default function VerticalFlowModal({
   // Don't render if not open
   if (!open) return null;
 
-  // Check if we have text values instead of numbers
-  const hasTextValues = moneyFlow?.lines.some(line => typeof line.value === 'string') || false;
+  // Calculate Owner Net for money flow
+  const calculateOwnerNet = () => {
+    if (!moneyFlow) return 0;
+    return moneyFlow.lines.reduce((sum, line) => {
+      return isNaN(line.value) ? sum : sum + line.value;
+    }, 0);
+  };
+
+  const ownerNet = calculateOwnerNet();
+  const hasNaNValue = moneyFlow?.lines.some(line => isNaN(line.value)) || false;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
@@ -290,27 +299,51 @@ export default function VerticalFlowModal({
                 {/* Money Flow Card */}
                 {moneyFlow && (
                   <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                    <div className="mb-3">
-                      <h3 className="text-sm font-medium text-gray-900">Partnership Structure</h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="text-sm font-medium text-gray-900">$100 Booking Flow</h3>
+                      <span className="text-lg font-semibold text-gray-900">
+                        ${moneyFlow?.gbv?.toFixed(2) || '100.00'} GBV
+                      </span>
                     </div>
                     
-                    <div className="space-y-3 mb-4">
-                      {moneyFlow.lines.map((line, index) => (
-                        <div key={index} className="flex justify-between items-center py-2 px-3 bg-white rounded border border-gray-200">
-                          <span className="text-gray-700 font-medium">
+                    <div className="space-y-2 mb-4">
+                      {moneyFlow?.lines?.map((line, index) => (
+                        <div key={index} className="flex justify-between text-sm">
+                          <span className={`${line.value >= 0 ? 'text-gray-700' : 'text-red-600'}`}>
                             {line.label}
                           </span>
-                          <span className="text-gray-900 font-semibold">
-                            {line.value}
+                          <span className={`font-medium ${line.value >= 0 ? 'text-gray-900' : 'text-red-600'}`}>
+                            {isNaN(line.value) 
+                              ? (line.label.includes('Operating costs') || line.label.includes('Base operating costs') || line.label.includes('owner\'s account') ? '-x' : 
+                                 line.label.includes('Revenue share to Serai') ? '-y' : 
+                                 line.label.includes('Owner receives') ? '+z' :
+                                 line.label.includes('Split to Owner') ? '+a' :
+                                 line.label.includes('Split to Serai') ? '+b' :
+                                 line.label.includes('Owner net') ? '+y' : '-x')
+                              : `${line.value >= 0 ? '+' : ''}$${line.value.toFixed(2)}`
+                            }
                           </span>
                         </div>
                       ))}
                     </div>
                     
-                    <div className="border-t border-gray-300 pt-3">
+                    <div className="border-t border-gray-300 pt-2">
                       <div className="flex justify-between text-sm font-semibold">
-                        <span className="text-gray-900">Summary</span>
-                        <span className="text-gray-900">Simple, transparent structure</span>
+                        <span className="text-gray-900">
+                          {hasNaNValue ? 'Profit margin' : 'Owner Net'}
+                        </span>
+                        <span className={`${ownerNet >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                          {hasNaNValue 
+                            ? (moneyFlow?.lines?.some(line => line.label.includes('Owner net')) 
+                               ? 'varies by revenue & operating costs'
+                               : moneyFlow?.lines?.some(line => line.label.includes('Split to Owner')) 
+                               ? 'varies by revenue & split ratio'
+                               : moneyFlow?.lines?.some(line => line.label.includes('Revenue share')) 
+                               ? 'varies by performance & terms'
+                               : 'remainder to Serai after rent & ops')
+                            : `${ownerNet >= 0 ? '+' : ''}$${ownerNet.toFixed(2)}`
+                          }
+                        </span>
                       </div>
                     </div>
                   </div>
