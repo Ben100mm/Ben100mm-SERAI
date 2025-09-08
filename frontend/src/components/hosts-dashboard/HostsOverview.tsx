@@ -147,7 +147,7 @@ export default function HostsOverview({ hostType, setHostType }: HostsOverviewPr
       <div className="bg-white rounded-lg border border-gray-200 p-6">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-gray-900">Recent Listings</h3>
-          <button className="text-sm text-gray-600 hover:text-gray-900">View All</button>
+          <button className="text-sm text-serai-navy-600 hover:text-serai-navy-900 font-medium">View All</button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {renderRecentListings()}

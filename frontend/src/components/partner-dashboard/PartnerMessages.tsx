@@ -1057,18 +1057,18 @@ export default function PartnerMessages() {
                 </div>
               </div>
 
-              <button className="w-full mt-4 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200">
+              <button className="w-full mt-4 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 View full profile
               </button>
             </div>
 
             {/* Action Buttons */}
             <div className="p-4 border-b border-serai-neutral-200 space-y-2">
-              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200">
+              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 <Phone className="h-4 w-4" />
                 <span>Call {contactDetails.phoneNumber}</span>
               </button>
-              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200">
+              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 <Mail className="h-4 w-4" />
                 <span>Email {contactDetails.email}</span>
               </button>

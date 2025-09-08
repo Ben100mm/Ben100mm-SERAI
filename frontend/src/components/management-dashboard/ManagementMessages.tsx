@@ -1094,6 +1094,24 @@ export default function ManagementMessages() {
   const activeMessages = mockMessages[activeConversation] || [];
   const activeContact = generateContactDetailsForConversation(activeConversation);
 
+  const handleSendMessage = () => {
+    if (newMessage.trim()) {
+      const message: Message = {
+        id: Date.now().toString(),
+        content: newMessage,
+        sender: 'management',
+        timestamp: new Date().toLocaleString(),
+        isRead: true,
+        priority: 'medium',
+        category: 'general'
+      };
+      
+      // In a real app, this would be handled by proper state management
+      // For now, we'll just clear the input
+      setNewMessage('');
+    }
+  };
+
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'urgent': return 'text-serai-red-800 bg-serai-red-100';
@@ -1135,9 +1153,9 @@ export default function ManagementMessages() {
   };
 
   return (
-    <div className="h-screen bg-white flex overflow-hidden">
+    <div className="h-full bg-white flex">
       {/* Left Panel - Conversations List */}
-      <div className="w-80 border-r border-serai-neutral-200 flex flex-col sticky top-0 h-screen">
+      <div className="w-80 border-r border-serai-neutral-200 flex flex-col h-full">
         {/* Header */}
         <div className="p-4 border-b border-serai-neutral-200">
           <div className="flex items-center justify-between mb-4">
@@ -1178,7 +1196,7 @@ export default function ManagementMessages() {
         </div>
 
         {/* Conversations List */}
-        <div className="flex-1 overflow-y-auto min-h-0">
+        <div className="flex-1 overflow-y-auto min-h-0 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: 'calc(100vh - 240px)' }}>
           {filteredConversations.map((conversation) => (
             <div
               key={conversation.id}
@@ -1228,9 +1246,9 @@ export default function ManagementMessages() {
       </div>
 
       {/* Middle Panel - Active Conversation */}
-      <div className="flex-1 flex flex-col sticky top-0 h-screen">
-        {/* Chat Header */}
-        <div className="p-4 border-b border-serai-neutral-200 bg-white">
+      <div className="flex-1 flex flex-col h-full relative">
+        {/* Chat Header - Fixed */}
+        <div className="flex-shrink-0 p-4 border-b border-serai-neutral-200 bg-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="h-10 w-10 rounded-full bg-serai-navy-100 flex items-center justify-center">
@@ -1259,8 +1277,8 @@ export default function ManagementMessages() {
           </div>
         </div>
 
-        {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
+        {/* Messages - Scrollable with explicit height */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ height: 'calc(100vh - 240px)', maxHeight: 'calc(100vh - 240px)' }}>
           {activeMessages.map((message) => (
             <div
               key={message.id}
@@ -1289,8 +1307,8 @@ export default function ManagementMessages() {
           ))}
         </div>
 
-        {/* Message Input */}
-        <div className="p-4 border-t border-serai-neutral-200 bg-white">
+        {/* Message Input - Sticky at Bottom */}
+        <div className="sticky bottom-0 p-4 border-t border-serai-neutral-200 bg-white z-10">
           <div className="flex items-center space-x-2">
             <button className="p-2 text-serai-neutral-400 hover:text-serai-neutral-600">
               <Paperclip className="h-5 w-5" />
@@ -1299,13 +1317,17 @@ export default function ManagementMessages() {
               type="text"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="Type a message..."
               className="flex-1 px-3 py-2 bg-white border border-serai-neutral-300 rounded-lg focus:ring-2 focus:ring-serai-red-500 focus:border-transparent"
             />
             <button className="p-2 text-serai-neutral-400 hover:text-serai-neutral-600">
               <Smile className="h-5 w-5" />
             </button>
-            <button className="px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600">
+            <button 
+              onClick={handleSendMessage}
+              className="px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600"
+            >
               <Send className="h-4 w-4" />
             </button>
           </div>
@@ -1313,7 +1335,7 @@ export default function ManagementMessages() {
       </div>
 
       {/* Right Panel - Enhanced Contact Details */}
-      <div className="w-80 border-l border-serai-neutral-200 flex flex-col sticky top-0 h-screen overflow-y-auto">
+      <div className="w-80 border-l border-serai-neutral-200 flex flex-col h-full overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100" style={{ maxHeight: '100vh' }}>
         {activeContact ? (
           <>
             {/* Contact Header */}

@@ -475,7 +475,7 @@ export default function SeraiManagementDashboardPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-serai-red-600 hover:text-serai-red-900 mr-3">View</button>
+                      <button className="text-serai-navy-600 hover:text-serai-navy-900 mr-3 font-medium">View</button>
                       <button className="text-serai-navy-600 hover:text-serai-navy-900">Edit</button>
                     </td>
                   </tr>
@@ -504,7 +504,7 @@ export default function SeraiManagementDashboardPage() {
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                      <button className="text-serai-red-600 hover:text-serai-red-900 mr-3">View</button>
+                      <button className="text-serai-navy-600 hover:text-serai-navy-900 mr-3 font-medium">View</button>
                       <button className="text-serai-navy-600 hover:text-serai-navy-900">Edit</button>
                     </td>
                   </tr>
@@ -1181,7 +1181,7 @@ export default function SeraiManagementDashboardPage() {
         {/* Tab Content */}
         <div className="flex-1 overflow-hidden">
           {communicationHubTab === 'communication-hub' && (
-            <div className="h-full overflow-y-auto p-6">
+            <div className="h-full overflow-y-auto p-6" style={{ maxHeight: 'calc(100vh - 200px)' }}>
               <div className="space-y-6">
                 {/* Communication Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
@@ -1294,9 +1294,6 @@ export default function SeraiManagementDashboardPage() {
             </div>
           )}
 
-          {communicationHubTab === 'messages' && (
-            <ManagementMessages />
-          )}
         </div>
       </div>
     );
@@ -1489,7 +1486,7 @@ export default function SeraiManagementDashboardPage() {
         hiddenDropdownItems={[]}
       />
 
-      <div className="flex pt-16">
+      <div className="flex pt-20">
         {/* Mobile Sidebar Overlay */}
         {sidebarOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
@@ -1598,7 +1595,7 @@ export default function SeraiManagementDashboardPage() {
         {/* Main Content */}
         <div className="flex-1 flex flex-col min-w-0">
           {/* Mobile header */}
-          <div className="lg:hidden pl-1 pt-1 sm:pl-3 sm:pt-3">
+          <div className="lg:hidden pl-1 pt-5 sm:pl-3 sm:pt-5">
             <button
               type="button"
               className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-serai-serai-red-500"
@@ -1609,11 +1606,13 @@ export default function SeraiManagementDashboardPage() {
           </div>
 
           {/* Page Content */}
-          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
+          <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none" style={{ maxHeight: 'calc(100vh - 80px)' }}>
             {activeSection === 'communication-hub' && communicationHubTab === 'messages' ? (
-              renderDashboardContent()
+              <div className="h-full">
+                <ManagementMessages />
+              </div>
             ) : (
-            <div className="pt-8 pb-6">
+            <div className="pt-4 pb-6">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
                 {renderDashboardContent()}
               </div>

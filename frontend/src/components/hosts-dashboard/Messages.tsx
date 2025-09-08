@@ -975,18 +975,18 @@ export default function Messages() {
                 </div>
               </div>
 
-              <button className="w-full mt-4 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200">
+              <button className="w-full mt-4 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 Show profile
               </button>
             </div>
 
             {/* Action Buttons */}
             <div className="p-4 border-b border-serai-neutral-200 space-y-2">
-              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200">
+              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 <CreditCard className="h-4 w-4" />
                 <span>Send or request money</span>
               </button>
-              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200">
+              <button className="w-full flex items-center justify-center space-x-2 px-4 py-2 bg-serai-cream-100 text-serai-charcoal-700 rounded-lg hover:bg-serai-cream-200 border border-black">
                 <Phone className="h-4 w-4" />
                 <span>Call {guestDetails.phoneNumber}</span>
               </button>
@@ -1092,7 +1092,7 @@ export default function Messages() {
                 className="w-full p-2 bg-white border border-serai-neutral-300 rounded text-sm resize-none focus:outline-none focus:ring-2 focus:ring-serai-red-500"
                 rows={3}
               />
-              <button className="mt-2 px-3 py-1 bg-serai-cream-100 text-serai-charcoal-700 rounded text-sm hover:bg-serai-cream-200">
+              <button className="mt-2 px-3 py-1 bg-serai-cream-100 text-serai-charcoal-700 rounded text-sm hover:bg-serai-cream-200 border border-black">
                 Save
               </button>
             </div>

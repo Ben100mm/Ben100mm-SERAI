@@ -141,15 +141,15 @@ export default function PropertyManagement({ hostType }: PropertyManagementProps
 
               {/* Action Buttons */}
               <div className="flex items-center space-x-2">
-                <button className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <button className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 border border-serai-navy-300 text-serai-navy-600 rounded-lg hover:bg-serai-navy-50 transition-colors">
                   <Eye className="h-4 w-4" />
-                  <span className="text-sm">View</span>
+                  <span className="text-sm font-medium">View</span>
                 </button>
-                <button className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                <button className="flex-1 flex items-center justify-center space-x-1 px-3 py-2 border border-serai-navy-300 text-serai-navy-600 rounded-lg hover:bg-serai-navy-50 transition-colors">
                   <Edit className="h-4 w-4" />
-                  <span className="text-sm">Edit</span>
+                  <span className="text-sm font-medium">Edit</span>
                 </button>
-                <button className="px-3 py-2 border border-serai-red-300 text-serai-red-500 rounded-lg hover:bg-serai-red-50 transition-colors">
+                <button className="px-3 py-2 border border-serai-red-300 text-serai-red-600 rounded-lg hover:bg-serai-red-50 transition-colors">
                   <Trash2 className="h-4 w-4" />
                 </button>
               </div>

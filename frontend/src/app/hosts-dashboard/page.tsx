@@ -533,7 +533,7 @@ export default function HostsDashboardPage() {
                     <h3 className="text-lg font-semibold text-gray-900">Contact Support</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4 flex-1">Get personalized help from our support team via chat or email.</p>
-                  <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors mt-auto">
+                  <button className="w-full px-4 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 transition-colors mt-auto">
                     Contact Support
                   </button>
                 </div>
@@ -546,7 +546,7 @@ export default function HostsDashboardPage() {
                     <h3 className="text-lg font-semibold text-gray-900">Community Forum</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4 flex-1">Connect with other hosts and share experiences in our community.</p>
-                  <button className="w-full px-4 py-2 bg-serai-forest-500 text-white rounded-lg hover:bg-serai-forest-600 transition-colors mt-auto">
+                  <button className="w-full px-4 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 transition-colors mt-auto">
                     Join Community
                   </button>
                 </div>
@@ -559,7 +559,7 @@ export default function HostsDashboardPage() {
                     <h3 className="text-lg font-semibold text-gray-900">Schedule Call</h3>
                   </div>
                   <p className="text-sm text-gray-600 mb-4 flex-1">Book a one-on-one call with our hosting experts.</p>
-                  <button className="w-full px-4 py-2 bg-serai-gold-500 text-white rounded-lg hover:bg-serai-gold-600 transition-colors mt-auto">
+                  <button className="w-full px-4 py-2 bg-serai-navy-500 text-white rounded-lg hover:bg-serai-navy-600 transition-colors mt-auto">
                     Schedule Call
                   </button>
                 </div>
@@ -653,7 +653,7 @@ export default function HostsDashboardPage() {
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Experience</h3>
                     <p className="text-sm text-gray-600 mb-4 flex-1">Create unique experiences for guests to enjoy.</p>
-                    <button className="w-full px-4 py-2 bg-serai-gold-500 text-white rounded-lg hover:bg-serai-gold-600 transition-colors mt-auto">
+                    <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors mt-auto">
                       Create Experience
                     </button>
                   </div>
@@ -666,7 +666,7 @@ export default function HostsDashboardPage() {
                     </div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">Service</h3>
                     <p className="text-sm text-gray-600 mb-4 flex-1">Offer specialized services to enhance guest stays.</p>
-                    <button className="w-full px-4 py-2 bg-serai-forest-500 text-white rounded-lg hover:bg-serai-forest-600 transition-colors mt-auto">
+                    <button className="w-full px-4 py-2 bg-serai-red-500 text-white rounded-lg hover:bg-serai-red-600 transition-colors mt-auto">
                       Create Service
                     </button>
                   </div>
