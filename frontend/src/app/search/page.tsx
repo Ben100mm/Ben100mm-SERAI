@@ -24,7 +24,7 @@ function SearchResultsPageContent() {
   // Search state management
   const [searchState, setSearchState] = useState({
     location: locationParam,
-    adults: adultsParam
+    adults: adultsParam === '2' ? '' : adultsParam  // Start empty to show placeholder
   });
 
   // Dropdown state for location
@@ -70,6 +70,8 @@ function SearchResultsPageContent() {
     
     if (searchState.adults) {
       searchParams.set('adults', searchState.adults);
+    } else {
+      searchParams.set('adults', '2'); // Default to 2 if empty
     }
     
     // Navigate to search results with parameters
@@ -86,7 +88,10 @@ function SearchResultsPageContent() {
     if (adultsRaw) {
       // Clean up adults parameter to extract just the number
       const adults = adultsRaw.replace(/\s+adults?/i, '').replace(/\s+guests?/i, '');
-      updateSearchState('adults', adults);
+      // Only set if it's not the default value of '2'
+      if (adults !== '2') {
+        updateSearchState('adults', adults);
+      }
     }
   }, [searchParams]);
 
@@ -230,8 +235,8 @@ function SearchResultsPageContent() {
     }
   ];
 
-  // Calculate total guests
-  const totalGuests = searchState.adults;
+  // Calculate total guests - show number if changed from default, otherwise empty for placeholder
+  const totalGuests = searchState.adults && searchState.adults !== '2' ? searchState.adults : '';
 
   // Filter options data
   const placeTypes = [
@@ -417,7 +422,7 @@ function SearchResultsPageContent() {
                   <div className="absolute right-2 flex flex-col">
                     <button
                       onClick={() => {
-                        const current = parseInt(searchState.adults) || 2;
+                        const current = parseInt(searchState.adults) || 1;
                         if (current < 16) {
                           updateSearchState('adults', (current + 1).toString());
                         }
@@ -430,7 +435,7 @@ function SearchResultsPageContent() {
                     </button>
                     <button
                       onClick={() => {
-                        const current = parseInt(searchState.adults) || 2;
+                        const current = parseInt(searchState.adults) || 1;
                         if (current > 1) {
                           updateSearchState('adults', (current - 1).toString());
                         }
