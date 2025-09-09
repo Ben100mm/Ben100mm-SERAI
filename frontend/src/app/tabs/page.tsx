@@ -122,12 +122,7 @@ function PropertiesPageContent() {
 
   // Helper functions for state management
   const updateSearchState = (field: string, value: string) => {
-    console.log('Updating search state:', field, value);
-    setSearchState(prev => {
-      const newState = { ...prev, [field]: value };
-      console.log('New search state:', newState);
-      return newState;
-    });
+    setSearchState(prev => ({ ...prev, [field]: value }));
     // Clear error when user starts typing
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
@@ -266,6 +261,7 @@ function PropertiesPageContent() {
           }));
         }
         searchParams.set('interests', searchState.interests);
+        searchParams.set('guests', searchState.guests);
         break;
       case 'serais':
         searchParams.set('location', searchState.where);
@@ -446,7 +442,7 @@ function PropertiesPageContent() {
                   value={interestsInput}
                   onChange={(e) => handleInterestsInputChange(e.target.value)}
                   onFocus={() => {
-                    console.log('Interests field focused');
+                    // console.log('Interests field focused');
                     if (!isInterestsDropdownOpen) {
                       filterInterests(interestsInput);
                       setIsInterestsDropdownOpen(true);
@@ -468,8 +464,8 @@ function PropertiesPageContent() {
                     </button>
                   </div>
                 )}
-              </div>
-              
+            </div>
+            
               {/* Interests Dropdown */}
               {isInterestsDropdownOpen && (
                 <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-[9999] max-h-80 overflow-y-auto">
@@ -544,6 +540,47 @@ function PropertiesPageContent() {
               )}
             </div>
             
+            {/* Add Guests Field */}
+            <div className={`flex-1 px-6 py-3 ${!isMobile ? 'border-r border-serai-neutral-300' : 'border-b border-serai-neutral-300'} relative`}>
+              <div className="relative flex items-center">
+              <input
+                type="text"
+                  placeholder="Add guests"
+                  value={searchState.guests}
+                  onChange={(e) => updateSearchState('guests', e.target.value)}
+                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors pr-12"
+                />
+                <div className="absolute right-2 flex flex-col">
+                  <button
+                    onClick={() => {
+                      const current = parseInt(searchState.guests) || 1;
+                      if (current < 16) {
+                        updateSearchState('guests', (current + 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => {
+                      const current = parseInt(searchState.guests) || 1;
+                      if (current > 1) {
+                        updateSearchState('guests', (current - 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+            
             {/* Search Button */}
             <div className={`px-6 py-3 ${isMobile ? 'flex justify-center' : ''}`}>
               <button 
@@ -575,7 +612,7 @@ function PropertiesPageContent() {
               </div>
               {errors.where && <p className="text-red-500 text-xs mt-1">{errors.where}</p>}
               {dropdownStates.where && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Popular destinations</div>
                     {['Montreal', 'Toronto', 'Vancouver', 'Quebec City', 'Ottawa', 'Calgary', 'Halifax'].map((city) => (
@@ -585,7 +622,6 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Where dropdown clicked:', city);
                           updateSearchState('where', city);
                           closeDropdown('where');
                         }}
@@ -615,39 +651,43 @@ function PropertiesPageContent() {
 
             {/* Who Field */}
             <div className={`flex-1 px-6 py-3 ${!isMobile ? '' : 'border-b border-gray-300'} relative`}>
-              <div className="relative">
+              <div className="relative flex items-center">
               <input
                 type="text"
                 placeholder="Add guests"
                 value={searchState.guests}
                 onChange={(e) => updateSearchState('guests', e.target.value)}
-                onFocus={() => toggleDropdown('guests')}
-                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors"
-              />
-              </div>
-              {dropdownStates.guests && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-2">
-                    <div className="text-sm text-gray-700 mb-2">Guest options</div>
-                    {['1 adult', '2 adults', '3 adults', '4 adults', '1 adult, 1 child', '2 adults, 1 child', '2 adults, 2 children'].map((option) => (
+                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors pr-12"
+                />
+                <div className="absolute right-2 flex flex-col">
                       <button
-                        key={option}
-                        data-dropdown-button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          console.log('Guests dropdown clicked:', option);
-                          updateSearchState('guests', option);
-                          closeDropdown('guests');
-                        }}
-                        className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded text-sm text-gray-700"
-                      >
-                        {option}
+                        onClick={() => {
+                      const current = parseInt(searchState.guests) || 1;
+                      if (current < 16) {
+                        updateSearchState('guests', (current + 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
                       </button>
-                    ))}
+                  <button
+                    onClick={() => {
+                      const current = parseInt(searchState.guests) || 1;
+                      if (current > 1) {
+                        updateSearchState('guests', (current - 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
                   </div>
                 </div>
-              )}
             </div>
             
             {/* Search Button */}
@@ -681,7 +721,7 @@ function PropertiesPageContent() {
               </div>
               {errors.experience && <p className="text-red-500 text-xs mt-1">{errors.experience}</p>}
               {dropdownStates.experience && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Cultural Experiences</div>
                     {[
@@ -704,7 +744,7 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Experience dropdown clicked:', experience);
+                          // console.log('Experience dropdown clicked:', experience);
                           updateSearchState('experience', experience);
                           closeDropdown('experience');
                         }}
@@ -732,7 +772,7 @@ function PropertiesPageContent() {
               </div>
               {errors.bazaarLocation && <p className="text-red-500 text-xs mt-1">{errors.bazaarLocation}</p>}
               {dropdownStates.bazaarLocation && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Popular destinations</div>
                     {['Montreal', 'Toronto', 'Vancouver', 'Quebec City', 'Ottawa', 'Calgary', 'Halifax'].map((city) => (
@@ -742,7 +782,7 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Bazaar location dropdown clicked:', city);
+                          // console.log('Bazaar location dropdown clicked:', city);
                           updateSearchState('bazaarLocation', city);
                           closeDropdown('bazaarLocation');
                         }}
@@ -779,7 +819,7 @@ function PropertiesPageContent() {
                 />
               </div>
               {dropdownStates.time && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Time slots</div>
                     {['Morning (8AM-12PM)', 'Afternoon (12PM-5PM)', 'Evening (5PM-9PM)', 'Night (9PM-12AM)'].map((timeSlot) => (
@@ -789,7 +829,7 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Bazaar time dropdown clicked:', timeSlot);
+                          // console.log('Bazaar time dropdown clicked:', timeSlot);
                           updateSearchState('time', timeSlot);
                           closeDropdown('time');
                         }}
@@ -805,39 +845,43 @@ function PropertiesPageContent() {
             
             {/* Group Size Field */}
             <div className={`flex-1 px-6 py-3 ${!isMobile ? '' : 'border-b border-serai-neutral-300'} relative`}>
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Add guests"
-                  value={searchState.groupSize}
-                  onChange={(e) => updateSearchState('groupSize', e.target.value)}
-                  onFocus={() => toggleDropdown('groupSize')}
-                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors"
+              <div className="relative flex items-center">
+              <input
+                type="text"
+                placeholder="Add guests"
+                value={searchState.groupSize}
+                onChange={(e) => updateSearchState('groupSize', e.target.value)}
+                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors pr-12"
                 />
-              </div>
-              {dropdownStates.groupSize && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-2">
-                    <div className="text-sm text-gray-700 mb-2">Group size options</div>
-                    {['1 person', '2 people', '3-5 people', '6-10 people', '10+ people'].map((option) => (
+                <div className="absolute right-2 flex flex-col">
                       <button
-                        key={option}
-                        data-dropdown-button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          console.log('Group size dropdown clicked:', option);
-                          updateSearchState('groupSize', option);
-                          closeDropdown('groupSize');
-                        }}
-                        className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded text-sm text-gray-700"
-                      >
-                        {option}
+                        onClick={() => {
+                      const current = parseInt(searchState.groupSize) || 1;
+                      if (current < 16) {
+                        updateSearchState('groupSize', (current + 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
                       </button>
-                    ))}
+                  <button
+                    onClick={() => {
+                      const current = parseInt(searchState.groupSize) || 1;
+                      if (current > 1) {
+                        updateSearchState('groupSize', (current - 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
                   </div>
                 </div>
-              )}
             </div>
                             
             {/* Search Button */}
@@ -871,7 +915,7 @@ function PropertiesPageContent() {
               </div>
               {errors.service && <p className="text-red-500 text-xs mt-1">{errors.service}</p>}
               {dropdownStates.service && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Serai Services</div>
                     {[
@@ -894,7 +938,7 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Service dropdown clicked:', service);
+                          // console.log('Service dropdown clicked:', service);
                           updateSearchState('service', service);
                           closeDropdown('service');
                         }}
@@ -922,7 +966,7 @@ function PropertiesPageContent() {
               </div>
               {errors.essentialsLocation && <p className="text-red-500 text-xs mt-1">{errors.essentialsLocation}</p>}
               {dropdownStates.essentialsLocation && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Popular destinations</div>
                     {['Montreal', 'Toronto', 'Vancouver', 'Quebec City', 'Ottawa', 'Calgary', 'Halifax'].map((city) => (
@@ -932,7 +976,7 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Essentials location dropdown clicked:', city);
+                          // console.log('Essentials location dropdown clicked:', city);
                           updateSearchState('essentialsLocation', city);
                           closeDropdown('essentialsLocation');
                         }}
@@ -957,7 +1001,7 @@ function PropertiesPageContent() {
             </div>
             
             {/* Time Field */}
-            <div className={`flex-1 px-6 py-3 ${!isMobile ? '' : 'border-b border-serai-neutral-300'} relative`}>
+            <div className={`flex-1 px-6 py-3 ${!isMobile ? 'border-r border-serai-neutral-300' : 'border-b border-serai-neutral-300'} relative`}>
               <div className="relative">
               <input
                   type="text"
@@ -969,7 +1013,7 @@ function PropertiesPageContent() {
               />
               </div>
               {dropdownStates.time && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50" data-dropdown-container>
                   <div className="p-2">
                     <div className="text-sm text-gray-700 mb-2">Time slots</div>
                     {['Morning (8AM-12PM)', 'Afternoon (12PM-5PM)', 'Evening (5PM-9PM)', 'Night (9PM-12AM)'].map((timeSlot) => (
@@ -979,7 +1023,7 @@ function PropertiesPageContent() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          console.log('Time dropdown clicked:', timeSlot);
+                          // console.log('Time dropdown clicked:', timeSlot);
                           updateSearchState('time', timeSlot);
                           closeDropdown('time');
                         }}
@@ -995,39 +1039,43 @@ function PropertiesPageContent() {
             
             {/* Add Guests Field */}
             <div className={`flex-1 px-6 py-3 ${!isMobile ? '' : 'border-b border-serai-neutral-300'} relative`}>
-              <div className="relative">
+              <div className="relative flex items-center">
                 <input
                   type="text"
                   placeholder="Add guests"
                   value={searchState.guests}
                   onChange={(e) => updateSearchState('guests', e.target.value)}
-                  onFocus={() => toggleDropdown('guests')}
-                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors"
+                  className="w-full text-sm text-serai-charcoal-500 placeholder-serai-neutral-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors pr-12"
                 />
-              </div>
-              {dropdownStates.guests && (
-                <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50">
-                  <div className="p-2">
-                    <div className="text-sm text-gray-700 mb-2">Guest options</div>
-                    {['1 adult', '2 adults', '3 adults', '4 adults', '1 adult, 1 child', '2 adults, 1 child', '2 adults, 2 children'].map((option) => (
-                      <button
-                        key={option}
-                        data-dropdown-button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          console.log('Essentials guests dropdown clicked:', option);
-                          updateSearchState('guests', option);
-                          closeDropdown('guests');
-                        }}
-                        className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded text-sm text-gray-700"
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
+                <div className="absolute right-2 flex flex-col">
+                  <button
+                    onClick={() => {
+                      const current = parseInt(searchState.guests) || 1;
+                      if (current < 16) {
+                        updateSearchState('guests', (current + 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => {
+                      const current = parseInt(searchState.guests) || 1;
+                      if (current > 1) {
+                        updateSearchState('guests', (current - 1).toString());
+                      }
+                    }}
+                    className="text-gray-400 hover:text-gray-600 p-1"
+                  >
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
                 </div>
-              )}
+              </div>
             </div>
 
             {/* Search Button */}
@@ -1054,12 +1102,21 @@ function PropertiesPageContent() {
     function handleClickOutside(event: MouseEvent) {
       const target = event.target as Node;
       
-      // Check if click is on a dropdown button - if so, don't close
-      const isDropdownButton = target instanceof Element && 
-        (target.closest('[data-dropdown-button]') || target.closest('button'));
+      // Check if click is inside any dropdown container or on dropdown buttons
+      const isInsideDropdown = target instanceof Element && (
+        target.closest('[data-dropdown-button]') || 
+        target.closest('[data-dropdown-container]') ||
+        target.closest('input[placeholder*="Where"]') ||
+        target.closest('input[placeholder*="Add guests"]') ||
+        target.closest('input[placeholder*="Experience"]') ||
+        target.closest('input[placeholder*="Location"]') ||
+        target.closest('input[placeholder*="Group"]') ||
+        target.closest('input[placeholder*="Service"]') ||
+        target.closest('input[placeholder*="Time"]')
+      );
       
-      if (isDropdownButton) {
-        return; // Don't close if clicking on dropdown buttons
+      if (isInsideDropdown) {
+        return; // Don't close if clicking inside dropdown or input
       }
       
       // Close all dropdowns when clicking outside
@@ -1070,8 +1127,13 @@ function PropertiesPageContent() {
       });
     }
 
-    document.addEventListener('click', handleClickOutside);
+    // Use a small delay to allow click events to process first
+    const timeoutId = setTimeout(() => {
+      document.addEventListener('click', handleClickOutside);
+    }, 100);
+
     return () => {
+      clearTimeout(timeoutId);
       document.removeEventListener('click', handleClickOutside);
     };
   }, [dropdownStates]);
@@ -1085,7 +1147,7 @@ function PropertiesPageContent() {
     }
 
     if (isLocationDropdownOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {

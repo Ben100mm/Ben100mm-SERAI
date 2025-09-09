@@ -13,11 +13,31 @@ function SearchResultsPageContent() {
   const mapRef = useRef<HTMLDivElement>(null);
   
   // Get search parameters from URL
-  const location = searchParams.get('location') || '';
+  const locationParam = searchParams.get('location') || '';
   const checkInParam = searchParams.get('checkIn') || '';
   const checkOutParam = searchParams.get('checkOut') || '';
-  const adults = searchParams.get('adults') || '2 adults';
-  const children = searchParams.get('children') || '0 children';
+  const adultsParamRaw = searchParams.get('adults') || '2';
+  
+  // Clean up adults parameter to extract just the number
+  const adultsParam = adultsParamRaw.replace(/\s+adults?/i, '').replace(/\s+guests?/i, '');
+
+  // Search state management
+  const [searchState, setSearchState] = useState({
+    location: locationParam,
+    adults: adultsParam
+  });
+
+  // Dropdown state for location
+  const [isLocationDropdownOpen, setIsLocationDropdownOpen] = useState(false);
+  const locationDropdownRef = useRef<HTMLDivElement>(null);
+
+  // Location options for dropdown
+  const popularDestinations = [
+    'New York', 'London', 'Paris', 'Tokyo', 'Sydney', 'Rome', 'Barcelona', 'Amsterdam',
+    'Dubai', 'Singapore', 'Hong Kong', 'Los Angeles', 'San Francisco', 'Miami', 'Chicago',
+    'Boston', 'Seattle', 'Toronto', 'Vancouver', 'Montreal', 'Berlin', 'Madrid', 'Vienna',
+    'Prague', 'Budapest', 'Copenhagen', 'Stockholm', 'Oslo', 'Helsinki', 'Zurich', 'Geneva'
+  ];
 
   // Parse dates from URL parameters
   const [checkInDate, setCheckInDate] = useState<Date | null>(
@@ -26,6 +46,84 @@ function SearchResultsPageContent() {
   const [checkOutDate, setCheckOutDate] = useState<Date | null>(
     checkOutParam ? new Date(checkOutParam) : null
   );
+
+  // Helper function for state management
+  const updateSearchState = (field: string, value: string) => {
+    setSearchState(prev => ({ ...prev, [field]: value }));
+  };
+
+  // Search function
+  const handleSearch = () => {
+    const searchParams = new URLSearchParams();
+    
+    if (searchState.location) {
+      searchParams.set('location', searchState.location);
+    }
+    
+    if (checkInDate) {
+      searchParams.set('checkIn', checkInDate.toISOString().split('T')[0]);
+    }
+    
+    if (checkOutDate) {
+      searchParams.set('checkOut', checkOutDate.toISOString().split('T')[0]);
+    }
+    
+    if (searchState.adults) {
+      searchParams.set('adults', searchState.adults);
+    }
+    
+    // Navigate to search results with parameters
+    const queryString = searchParams.toString();
+    window.location.href = `/search?${queryString}`;
+  };
+
+  // Sync state with URL parameters on mount
+  useEffect(() => {
+    const location = searchParams.get('location');
+    const adultsRaw = searchParams.get('adults');
+    
+    if (location) updateSearchState('location', location);
+    if (adultsRaw) {
+      // Clean up adults parameter to extract just the number
+      const adults = adultsRaw.replace(/\s+adults?/i, '').replace(/\s+guests?/i, '');
+      updateSearchState('adults', adults);
+    }
+  }, [searchParams]);
+
+  // Handle Enter key press for search
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  // Location dropdown functions
+  const toggleLocationDropdown = () => {
+    setIsLocationDropdownOpen(!isLocationDropdownOpen);
+  };
+
+  const closeLocationDropdown = () => {
+    setIsLocationDropdownOpen(false);
+  };
+
+  const selectLocation = (location: string) => {
+    updateSearchState('location', location);
+    closeLocationDropdown();
+  };
+
+  // Click outside handler for location dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (locationDropdownRef.current && !locationDropdownRef.current.contains(event.target as Node)) {
+        closeLocationDropdown();
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   // State for map controls
   const [isMapFullscreen, setIsMapFullscreen] = useState(false);
@@ -133,7 +231,7 @@ function SearchResultsPageContent() {
   ];
 
   // Calculate total guests
-  const totalGuests = adults + ', ' + children;
+  const totalGuests = searchState.adults;
 
   // Filter options data
   const placeTypes = [
@@ -262,14 +360,36 @@ function SearchResultsPageContent() {
             <div className="flex items-center bg-white border border-gray-300 rounded-full shadow-sm hover:shadow-md transition-shadow flex-1 mr-4">
               {/* Where Field */}
               <div className="flex-1 px-6 py-3 border-r border-gray-300">
-                <label className="block text-xs font-semibold text-gray-900 mb-1">Where</label>
-                <input
-                  type="text"
-                  placeholder="Search destinations"
-                  value={location}
-                  readOnly
-                  className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
-                />
+                <div className="relative" ref={locationDropdownRef}>
+                  <input
+                    type="text"
+                    placeholder="Where"
+                    value={searchState.location}
+                    onChange={(e) => updateSearchState('location', e.target.value)}
+                    onFocus={toggleLocationDropdown}
+                    onKeyPress={handleKeyPress}
+                    className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors"
+                  />
+                  
+                  {/* Location Dropdown */}
+                  {isLocationDropdownOpen && (
+                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-60 overflow-y-auto">
+                      {popularDestinations.map((city) => (
+                        <button
+                          key={city}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            selectLocation(city);
+                          }}
+                          className="w-full text-left px-3 py-2 hover:bg-gray-100 rounded text-sm text-gray-700"
+                        >
+                          {city}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
               
               {/* Date Range Picker */}
@@ -286,23 +406,55 @@ function SearchResultsPageContent() {
 
               {/* Who Field */}
               <div className="flex-1 px-6 py-3 border-r border-gray-300">
-                <label className="block text-xs font-semibold text-gray-900 mb-1">Who</label>
-                <input
-                  type="text"
-                  placeholder="Add guests"
-                  value={totalGuests}
-                  readOnly
-                  className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent"
-                />
+                <div className="relative flex items-center">
+                  <input
+                    type="text"
+                    placeholder="Add guests"
+                    value={totalGuests}
+                    readOnly
+                    className="w-full text-sm text-gray-900 placeholder-gray-500 focus:outline-none bg-transparent border border-gray-200 rounded px-3 py-2 hover:border-gray-300 focus:border-gray-400 transition-colors pr-12"
+                  />
+                  <div className="absolute right-2 flex flex-col">
+                    <button
+                      onClick={() => {
+                        const current = parseInt(searchState.adults) || 2;
+                        if (current < 16) {
+                          updateSearchState('adults', (current + 1).toString());
+                        }
+                      }}
+                      className="text-gray-400 hover:text-gray-600 p-1"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() => {
+                        const current = parseInt(searchState.adults) || 2;
+                        if (current > 1) {
+                          updateSearchState('adults', (current - 1).toString());
+                        }
+                      }}
+                      className="text-gray-400 hover:text-gray-600 p-1"
+                    >
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
               
               {/* Search Button */}
               <div className="px-6 py-3">
-                <Link href="/" className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white p-3 rounded-full shadow-lg transition-all duration-200 inline-flex items-center">
+                <button 
+                  onClick={handleSearch}
+                  className="bg-gradient-to-r from-serai-red-500 to-serai-red-600 hover:from-serai-red-600 hover:to-serai-red-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 inline-flex items-center"
+                >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -324,7 +476,7 @@ function SearchResultsPageContent() {
         <div className="w-1/2 bg-white border-r border-gray-200 flex flex-col">
           <div className="p-6 flex-shrink-0">
             <h1 className="text-2xl font-semibold text-gray-900">
-              Over 1000 stays
+              Stays
             </h1>
           </div>
 
@@ -368,7 +520,7 @@ function SearchResultsPageContent() {
                         <div className="text-lg font-semibold text-gray-900">{property.price}</div>
                         <div className="text-sm text-gray-600">{property.totalPrice}</div>
                       </div>
-                      <button className="bg-gradient-to-r from-serai-red-800 to-serai-red-900 hover:from-serai-red-900 hover:to-serai-red-950 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+                      <button className="bg-gradient-to-r from-serai-red-500 to-serai-red-600 hover:from-serai-red-600 hover:to-serai-red-700 text-white px-4 py-2 rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200">
                         View Details
                       </button>
                     </div>
@@ -674,7 +826,7 @@ function SearchResultsPageContent() {
                 </button>
                 <button
                   onClick={() => setIsFilterModalOpen(false)}
-                  className="px-6 py-2 bg-gradient-to-r from-serai-red-800 to-serai-red-900 text-white rounded-lg font-medium hover:from-serai-red-900 hover:to-serai-red-950 transition-all"
+                  className="px-6 py-2 bg-gradient-to-r from-serai-red-500 to-serai-red-600 text-white rounded-lg font-medium hover:from-serai-red-600 hover:to-serai-red-700 transition-all"
                 >
                   Show results
                 </button>
