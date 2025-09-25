@@ -2,11 +2,6 @@
 
 ## Project Rules & Guidelines
 
-### Communication & Response Style Rules
-- **No Emojis Rule**: The user prefers that the assistant does not use emojis in responses
-- **Follow Exact Instructions Rule**: The user prefers that the assistant follow their exact instructions and not be creative or make unauthorized modifications when given clear direction
-- **Deletion Confirmation Rule**: Must not delete unless explicitly asked to do so. The assistant must ask the user 2 times to confirm before any deletion.
-
 ### Design & UI Standards
 - **Color Scheme Rules**: 
   - Favicons and logos must be the opposite of the page background (dark vs light)
@@ -175,6 +170,11 @@
 - Destructuring for cleaner code
 - Arrow functions for event handlers
 - Functional components with hooks
+
+- ### Communication & Response Style Rules
+- **No Emojis Rule**: The user prefers that the assistant does not use emojis in responses
+- **Follow Exact Instructions Rule**: The user prefers that the assistant follow their exact instructions and not be creative or make unauthorized modifications when given clear direction
+- **Deletion Confirmation Rule**: Must not delete unless explicitly asked to do so. The assistant must ask the user 2 times to confirm before any deletion.
 
 ### Import Organization Rules
 - React imports first
