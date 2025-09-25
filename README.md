@@ -2,7 +2,7 @@
 
 > **SERAI** is a direct-booking marketplace designed for a new generation of boutique hotels, inns, and lodges—positioned as an OYO/Sonder-style "Airbnb" for markets where residential short-term rentals are heavily regulated.
 
-## 🏨 Overview
+## Overview
 
 SERAI targets cities where STR (Short-Term Rental) restrictions have opened the door for licensed hotel properties to reclaim market share—but with a modern, curated experience travelers now expect. Unlike Airbnb, we're not chasing quantity. We're curating quality—offering travelers an elevated stay with the warmth of boutique hospitality and the confidence of consistency.
 
@@ -14,7 +14,7 @@ SERAI targets cities where STR (Short-Term Rental) restrictions have opened the 
 - **Frictionless, mobile-first booking UX**
 - **Community-driven layer** that fosters trust, discovery, and repeat bookings
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -53,7 +53,7 @@ npm run dev:operations  # Port 4002 - Operations App
 npm run dev:mobile      # Port 8082 - React Native App
 ```
 
-## 🏗️ Architecture
+## Architecture
 
 ### Core Applications
 
@@ -76,7 +76,7 @@ SERAI features 9 specialized AI agents for comprehensive automation:
 8. **Upsell Agent** - Personalized add-on recommendations
 9. **Insights AI** - Analytics and anomaly detection
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React.js + Next.js** (Owner Dashboard)
@@ -103,7 +103,7 @@ SERAI features 9 specialized AI agents for comprehensive automation:
 - **Stripe** (Payments)
 - **Twilio** (SMS/WhatsApp)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 serai-hotels/
@@ -122,7 +122,7 @@ serai-hotels/
 └── development.config.json   # Development configuration
 ```
 
-## 🔧 Development URLs
+## Development URLs
 
 - **Frontend Dashboard**: http://localhost:4000
 - **Backend API**: http://localhost:4001
@@ -130,24 +130,24 @@ serai-hotels/
 - **API Documentation**: http://localhost:4001/docs
 - **Health Check**: http://localhost:4001/health
 
-## 📚 Documentation
+## Documentation
 
 - [**Business Model**](./BUSINESS_MODEL.md) - Detailed business strategy and market positioning
 - [**Development Setup**](./DEVELOPMENT_SETUP.md) - Comprehensive setup guide
 - [**Tech Stack**](./TECH_STACK.md) - Complete technology architecture
 - [**Project Specification**](./PROJECT_SPECIFICATION.md) - Development standards and guidelines
 
-## 🔒 Private Project
+## Private Project
 
 This is a **private, proprietary project** for SERAI Hotels. This codebase is confidential and not available for public use, modification, or distribution.
 
 **All Rights Reserved** - Unauthorized access, copying, or use is strictly prohibited.
 
-## 📄 License
+## License
 
 This is a **proprietary, confidential project**. All rights reserved. See the [LICENSE](LICENSE) file for details.
 
-## 🆘 Internal Support
+## Internal Support
 
 For development issues (internal team only):
 1. Check the [Development Setup Guide](./DEVELOPMENT_SETUP.md)
@@ -155,14 +155,14 @@ For development issues (internal team only):
 3. Check service health: `npm run health`
 4. Contact the development team directly
 
-## 🎯 Roadmap
+## Roadmap
 
 - [ ] **Phase 1**: Core booking platform and owner dashboard
 - [ ] **Phase 2**: AI agent implementation and automation
 - [ ] **Phase 3**: Mobile app and advanced features
 - [ ] **Phase 4**: OTA integrations and scaling
 
-## 🔗 Internal Links
+## Internal Links
 
 - **Website**: [Coming Soon]
 - **Documentation**: [Internal Wiki](https://github.com/Ben100mm/Ben100mm-serai-hotels/wiki)
@@ -170,4 +170,4 @@ For development issues (internal team only):
 
 ---
 
-**SERAI** - *Boutique Hotel Booking Reinvented* 🏨✨
+**SERAI** - *Boutique Hotel Booking Reinvented* 
